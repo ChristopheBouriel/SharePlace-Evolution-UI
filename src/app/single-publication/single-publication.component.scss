@@ -1,0 +1,50 @@
+.single-publication-like {
+    background-color: rgb(157, 194, 147);
+}
+
+.single-publication {
+    border: solid 1px pink;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    a:focus {
+        border: solid 1px  rgb(17, 184, 235);
+        padding: 2px;
+    }
+
+    span {
+        font-weight: 500;
+        font-style: italic;
+        
+    }
+
+    h2 {
+        color:  rgb(80, 51, 210);
+        font-size: 1.5rem;
+    }
+}
+
+.publication-view {
+   
+    padding: 10px;
+    border-top: solid 1px black;
+    p {
+        font-size: 1.1rem;
+        white-space: pre-line;
+    }
+}
+
+.post-buttons {
+    display: flex;
+    justify-content: space-between;
+    button {
+        background-color: rgb(29, 108, 160);
+        border-radius: 5px;
+        color: white;
+    }
+    
+}
+
+.mod span {
+    color: black;
+}

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-10 col-lg-8 mx-auto">
+    <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
+    <div class="top row">
+        <h2 class="text-center align-self-center col-8 mb-2 mx-auto">Les dernières publications</h2>
+        <button mat-raised-button class="col-3 mb-2 ml-1 text-center mx-auto" color="primary" *ngIf="!posting" (click)="onWantPost()">Publier</button>
+    </div>
+
+  <!--  <div class="row">
+      <p class="text-center align-self-center col-7 mb-2 mx-auto">Liste des utilisateurs</p>
+      <button mat-raised-button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
+  </div>-->
+
+    <form [formGroup]="publicationForm" *ngIf="!loading && posting">
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" class="form-control" id="title" formControlName="title"  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF ]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \x22!?:(),\.\'-]{0,59}">
+          </div>
+        <div class="form-group mt-3">
+          <label for="publication">Publication</label>
+          <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF ]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication"></textarea>
+        </div>
+        <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+        <div class="my-2" *ngIf="publicationForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</div>
+        <button class="my-2 mr-2" mat-raised-button color="primary" [disabled]="publicationForm.invalid" (click)="onPost()">Envoyer</button>
+        <!--<p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>--> 
+        <button class="mb-3" mat-raised-button color="primary" (click)="onCancel()">Annuler</button> 
+    </form>
+
+    <ul class="list-group">
+        <app-publication-list-item  *ngFor="let publication of publications; let i = index"
+              [publicationTitle]="publication.title"
+              [publicationContent]="publication.content"
+              [publicationDate]="publication.date_publication"
+              [publicationLikes]="publication.likes"
+              [publicationNumberComments]="publication.numberComments"
+              [publicationUserName]="publication.userName"
+              [publicationModerated]="publication.moderated"
+              [index]="i" 
+              [id]="publication.id">
+        </app-publication-list-item>
+    </ul>
+  </div>
+</div>

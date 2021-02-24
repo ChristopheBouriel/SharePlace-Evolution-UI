@@ -1,0 +1,23 @@
+.overview p {
+    white-space: pre-line;
+}
+
+.list-group-item .moderatedBackground {
+    font-size: 1.2rem;
+    text-align: center;
+    color: rgb(221, 55, 9);
+}
+
+.see-it a:focus {
+    //border: solid 3px black;
+    background-color: rgb(17, 184, 235)
+}
+
+.overview a:focus {
+    border: solid 1px  rgb(17, 184, 235);
+    padding: 2px;
+}
+
+li {
+    border: solid 1px pink;
+}

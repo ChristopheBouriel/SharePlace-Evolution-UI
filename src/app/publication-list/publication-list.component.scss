@@ -1,0 +1,19 @@
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-style: italic;
+        border: solid 3px rgb(80, 37, 235);
+        border-radius: 5px;
+        padding: 7px 10px 7px 10px;
+        color: rgb(82, 82, 82)
+    }
+
+    button {
+        font-size: 1.1rem;
+    }
+}

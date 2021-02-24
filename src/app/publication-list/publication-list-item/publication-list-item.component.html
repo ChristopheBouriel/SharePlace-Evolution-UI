@@ -1,0 +1,16 @@
+<li [ngClass]="{'list-group-item': true,
+                'list-group-item-like': publicationLikes === 1}"
+                id="{{id}}">
+    <div class="overview">
+        <h3 [ngStyle]="{color: ' rgb(82, 105, 183)'}">{{title}}</h3>
+        <p>Par <a routerLink="/profile/{{publicationUserName}}" (click)="onSeeProfile()"><span>{{publicationUserName}}</span></a>, le {{publicationDate | date: 'd LLLL yyyy'}}</p>
+        <div  class="text-overview">
+            <p *ngIf="publicationModerated !== 1">{{content}}</p>
+            <p *ngIf="publicationModerated===1" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>
+        </div>
+    </div>
+    <div class="see-it" *ngIf="publicationModerated !== 1 || moderator">
+        <a [routerLink]="[id]" (click)="onSeePublication()">Voir</a>
+        <p>Commentaires : {{publicationNumberComments}}</p>
+    </div>
+</li>

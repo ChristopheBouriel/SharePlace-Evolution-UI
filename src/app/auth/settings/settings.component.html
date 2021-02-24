@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="frame col-xs-12 col-md-10 py-5 mx-auto">
+    <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
+    <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <div *ngIf="notChanging === true" class="row"> 
+    <button mat-raised-button color="primary" class="col-8 col-md-7 mx-auto my-3" (click)="onChangePassword()">Changer le mot de passe</button>
+    <button mat-raised-button color="primary" class="col-8 col-md-7 mx-auto my-3" (click)="onChangeUserName()">Changer le nom d'utilisateur</button>
+    <button mat-raised-button color="primary" class="col-8 col-md-7 mx-auto my-3" (click)="onWantToDelete()">Se désinscrire</button>
+    </div>
+    <div *ngIf="makeSure" class="col-8 col-md-7 mx-auto my-3">
+      <p>Voulez-vous vraiment vous désinscrire ?</p>
+      <button mat-raised-button color="primary" class="mr-2" (click)="onDeleteAccount()">Confirmer</button>
+      <button mat-raised-button color="primary" (click)="onCancel()">Annuler</button>
+    </div>
+
+
+    <form [formGroup]="passwordForm" *ngIf="modPass"  class="col-8 col-md-7 mx-auto my-3">
+        <div class="form-group">
+          <label for="newPassword">Saisissez votre mot de passe</label>
+          <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+        </div>
+        
+        <button class="mr-2" mat-raised-button color="primary" (click)="onModifyPassword()">Valider</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">Annuler</button>
+    </form>
+
+    <form [formGroup]="userNameForm" *ngIf="modName"  class="col-8 col-md-7 mx-auto my-3">
+        <div class="form-group">
+          <label for="newUserName">Saisissez votre nom d'utilisateur</label>
+          <input type="text" class="form-control" id="newUserName" formControlName="newUserName">
+        </div>
+        
+        <button class="mr-2" mat-raised-button color="primary" (click)="onModifyUserName()">Valider</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">Annuler</button>
+    </form>
+  </div>
+</div>
