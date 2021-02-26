@@ -101,17 +101,10 @@ export class ProfileService {
     })
     }  
 
-  modifyProfile(firstname: string, lastname: string, userName: string, 
-  dept: string, email: string, aboutMe: string) {
+  modifyProfile(profile: Profile) {
       return new Promise((resolve, reject) => {
-        this.httpClient.put('http://localhost:3000/api/profiles/modify', {
-          firstname: firstname,
-          lastname: lastname,
-          userName: userName,
-          service: dept,
-          email: email,
-          aboutMe: aboutMe
-      }).subscribe(
+        
+        this.httpClient.put('http://localhost:3000/api/profiles/modify', profile).subscribe(
     (response :{message: string }
       ) => {
       resolve(response.message);
@@ -122,4 +115,21 @@ export class ProfileService {
   );
   });
     }
+
+    loadPicture(userName: string, image: File) {
+      return new Promise((resolve, reject) => {
+        const formData = new FormData();
+        formData.append('datas', JSON.stringify({"userName":userName}));
+        formData.append('image', image);
+        this.httpClient.post('http://localhost:3000/api/profiles/picture', formData).subscribe(
+    (response :{message: string }
+      ) => {
+      resolve(response.message);
+    },
+    (error) => {
+      reject(error.error);
+    }
+  );
+  });
+  }    
 }

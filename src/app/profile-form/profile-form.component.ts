@@ -13,12 +13,16 @@ import { AuthService } from '../services/auth.service';
 export class ProfileFormComponent implements OnInit {
 
   profileForm: FormGroup;
+  pictureForm: FormGroup;
   editMode: boolean;
   loading: boolean;
   profile: Profile;
   errorMsg: string;
+  pictureChanged: boolean = false;
+  imagePreview: string;
 
   constructor(private formBuilder: FormBuilder,
+              private picFormBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private profileService: ProfileService,
@@ -37,9 +41,15 @@ export class ProfileFormComponent implements OnInit {
           this.profileService.getProfileByUserName(params.username).then(
             (profile: Profile) => {
               this.profile = profile[0];
-              this.initModifyForm(this.profile);
+              this.initModifyForm(this.profile);              
+              this.initPicForm();             
+              this.loading = false;
             }
-          )
+          ).catch(
+            (error) => {
+              this.errorMsg = JSON.stringify(error);
+            }
+          );
         }
       }
     );
@@ -52,8 +62,9 @@ export class ProfileFormComponent implements OnInit {
       username: [null, Validators.required],
       password: [null, Validators.required],
       department: [null, Validators.required],
-      email: [null],
-      aboutMe: [null],
+      /*image: [null, Validators.required],*/
+      email: [''],
+      aboutMe: [''],
     });
   }
 
@@ -68,29 +79,53 @@ export class ProfileFormComponent implements OnInit {
       aboutMe: [profile.aboutMe],
     });
     this.loading = false;
+    
   }
 
+  initPicForm() {
+    this.pictureForm = this.picFormBuilder.group({      
+      image: [this.profile.imageUrl]
+    });
+    this.imagePreview = this.profile.imageUrl;
+  }
+
+  onLoadPic() {
+    this.profileService.loadPicture(this.profile.userName, this.pictureForm.get('image').value).then(
+      (response: { message: string }) => {
+        console.log(response.message);
+        this.loading = false;
+        this.pictureChanged = false;
+      }
+    ).catch(
+      (error) => {
+        console.error(error);
+        this.loading = false;
+        this.errorMsg = error.message;
+      }
+    )
+  }
+
+
   onSubmit() {
-
     this.loading = true;
-    const firstname = this.profileForm.get('firstname').value;
-    const lastname = this.profileForm.get('lastname').value;
-    const username = this.profileForm.get('username').value;    
-    const password = this.profileForm.get('password').value;   
-    const dept = this.profileForm.get('department').value;
-    //const email = this.profileForm.get('email').value;
-    let aboutMe = this.profileForm.get('aboutMe').value;
-    let email = this.profileForm.get('email').value;
+    const newUser = new Profile();
+    newUser.firstname = this.profileForm.get('firstname').value;
+    newUser.lastname = this.profileForm.get('lastname').value;
+    newUser.userName = this.profileForm.get('username').value;    
+    newUser.password = this.profileForm.get('password').value;   
+    newUser.serviceName = this.profileForm.get('department').value;    
+    newUser.aboutMe = this.profileForm.get('aboutMe').value;
+    newUser.email = this.profileForm.get('email').value;
 
-    if (aboutMe === null) {aboutMe = '';}
-    if (email === null) {email = '';}
+    /*if (aboutMe === null) {aboutMe = '';}
+    if (email === null) {email = '';}*/
     
     if (this.editMode === false) {
-      this.authService.signUp(firstname, lastname, username, password, dept, email, aboutMe).then(
+      this.authService.signUp(newUser, this.profileForm.get('image').value).then(
       (response) => {
         if (response === 'Création réussie') {
           this.authService.headMessage$.next('Votre compte a bien été créé');
-          this.authService.loginUser(username, password).then(
+          this.authService.loginUser(newUser.userName, newUser.password).then(
             () => {
               this.loading = false;
               this.router.navigate(['publications']);
@@ -110,8 +145,8 @@ export class ProfileFormComponent implements OnInit {
       }
     );
     } else if (this.editMode === true) {
-      this.profileService.modifyProfile(firstname, lastname, username, 
-        dept, email, aboutMe).then(
+      console.log(newUser)
+      this.profileService.modifyProfile(newUser).then(
           (response) => {
             this.loading = false;
             this.authService.headMessage$.next('Votre profil a bien été modifié');
@@ -125,6 +160,22 @@ export class ProfileFormComponent implements OnInit {
         );
     }    
   }
+
+
+  onFileAdded(event: Event) {
+  const file = (event.target as HTMLInputElement).files[0];
+   /**/
+  this.pictureForm.patchValue({
+    image: file
+  });
+  this.pictureForm.get('image').updateValueAndValidity();
+  const reader = new FileReader();
+  reader.onload = () => {
+    this.imagePreview = reader.result as string;    
+  };
+  reader.readAsDataURL(file);
+  this.pictureChanged = true;
+}
 
 }
 

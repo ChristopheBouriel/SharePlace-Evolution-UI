@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { Profile, ShortProfile } from '../models/profile';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,18 +44,10 @@ export class AuthService {
     this.newCommentSubject.next(this.newComments);    }
 
   
-  signUp(firstname: string, lastname: string, userName: string, password:string, 
-        dept: string, email: string, aboutMe: string) {
+  signUp(profile: Profile, image: File) {
       return new Promise((resolve, reject) => {
-        this.httpClient.post('http://localhost:3000/api/auth/signup', {
-          firstname: firstname,
-          lastname: lastname,
-          userName: userName, 
-          userPassword: password,
-          service: dept,
-          email: email,
-          aboutMe: aboutMe
-      }).subscribe(
+      
+        this.httpClient.post('http://localhost:3000/api/auth/signup', profile).subscribe(
           (response :{message: string }) => {              
               resolve(response.message);       
           },
@@ -78,7 +72,7 @@ export class AuthService {
             this.emitUserNameSubject();
             this.authToken = response.token;
             this.isAuth$.next(true);
-            resolve();
+            resolve(response);
           },
           (error) => {
             reject(error.error);
@@ -99,7 +93,7 @@ export class AuthService {
                 this.newComments = resp[1];
                 this.emitNewPostSubject();
                 this.emitNewCommentSubject();
-                resolve();
+                resolve(response);
           },
           (error) => {
             reject(error.error);
@@ -171,7 +165,7 @@ export class AuthService {
       return new Promise((resolve, reject) => {
         this.httpClient.put('http://localhost:3000/api/auth/logout', {userName: userName, dateLogout: dateLogout }).subscribe(
           (response :{message: string }) => {
-            resolve();
+            resolve(response);
             this.authToken = null;      
             this.isAuth$.next(false);
             this.isAdmin$.next(false);

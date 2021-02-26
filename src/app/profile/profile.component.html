@@ -3,6 +3,9 @@
 
         <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
         <div class="show-profile" *ngIf="!searching">
+            <div class="profilePic" *ngIf="profile?.imageUrl">
+                <img [src]="profile?.imageUrl">
+            </div>
             <div id="zero"><p>Nom d'utilisateur : <span>{{profile?.userName}}</span></p></div>
             <div id="first">
                 <p>Prénom : <span>{{profile?.firstname}}</span></p>
