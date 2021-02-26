@@ -21,3 +21,22 @@
 li {
     border: solid 1px pink;
 }
+
+.profilePic {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 0px;
+    img {
+        /*display: block;*/
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: solid 1px rgb(48, 48, 48);
+        margin-right: 10px;
+    }
+    p {
+       padding-top: 15px; 
+    }
+}
+

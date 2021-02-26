@@ -2,8 +2,12 @@
                 'list-group-item-like': publicationLikes === 1}"
                 id="{{id}}">
     <div class="overview">
-        <h3 [ngStyle]="{color: ' rgb(82, 105, 183)'}">{{title}}</h3>
-        <p>Par <a routerLink="/profile/{{publicationUserName}}" (click)="onSeeProfile()"><span>{{publicationUserName}}</span></a>, le {{publicationDate | date: 'd LLLL yyyy'}}</p>
+        <h3 class="mb-0" [ngStyle]="{color: ' rgb(82, 105, 183)'}">{{title}}</h3>
+        <div class="profilePic pt-0" >
+            <img [src]="userImage">
+        
+            <p>Par <a routerLink="/profile/{{publicationUserName}}" (click)="onSeeProfile()"><span>{{publicationUserName}}</span></a>, le {{publicationDate | date: 'd LLLL yyyy'}}</p>
+        </div>
         <div  class="text-overview">
             <p *ngIf="publicationModerated !== 1">{{content}}</p>
             <p *ngIf="publicationModerated===1" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>

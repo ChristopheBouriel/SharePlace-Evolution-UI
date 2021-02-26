@@ -20,6 +20,7 @@ export class ProfileFormComponent implements OnInit {
   errorMsg: string;
   pictureChanged: boolean = false;
   imagePreview: string;
+  newProfile: boolean = true;
 
   constructor(private formBuilder: FormBuilder,
               private picFormBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class ProfileFormComponent implements OnInit {
         if (!params.username) {
           this.editMode = false;
           this.initEmptyForm();
+          this.initPicForm(); 
           this.loading = false;
         } else {
           this.editMode = true;
@@ -84,9 +86,13 @@ export class ProfileFormComponent implements OnInit {
 
   initPicForm() {
     this.pictureForm = this.picFormBuilder.group({      
-      image: [this.profile.imageUrl]
+      image: [null]
     });
-    this.imagePreview = this.profile.imageUrl;
+    if (this.profile) {
+      this.imagePreview = this.profile.imageUrl;
+      this.newProfile = false;
+    }
+    
   }
 
   onLoadPic() {
@@ -121,7 +127,7 @@ export class ProfileFormComponent implements OnInit {
     if (email === null) {email = '';}*/
     
     if (this.editMode === false) {
-      this.authService.signUp(newUser, this.profileForm.get('image').value).then(
+      this.authService.signUp(newUser).then(
       (response) => {
         if (response === 'Création réussie') {
           this.authService.headMessage$.next('Votre compte a bien été créé');

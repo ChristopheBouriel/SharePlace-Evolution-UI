@@ -5,8 +5,8 @@
     <form [formGroup]="pictureForm" *ngIf="!loading">
       <div class="form-group">
             <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
-            <button mat-raised-button color="primary" *ngIf="!imagePreview" (click)="imageInput.click()">ADD IMAGE</button>
-            <button mat-raised-button color="primary" *ngIf="imagePreview" (click)="imageInput.click()">CHANGE IMAGE</button>
+            <button mat-raised-button color="primary" *ngIf="!newProfile && imagePreview==='http://localhost:3000/images/default.png'" (click)="imageInput.click()">ADD IMAGE</button>
+            <button mat-raised-button color="primary" *ngIf="!newProfile && imagePreview!=='http://localhost:3000/images/default.png'" (click)="imageInput.click()">CHANGE IMAGE</button>
             <button mat-raised-button color="primary" *ngIf="pictureChanged" (click)="onLoadPic()">SUBMIT</button>
             <img [src]="imagePreview" *ngIf="imagePreview" style="max-height: 100px; display:block; margin-top:10px">
       </div>
