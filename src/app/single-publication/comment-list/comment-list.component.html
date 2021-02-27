@@ -2,6 +2,7 @@
 <ul class="list-group row mt-3">
     <app-comment-list-item  *ngFor="let comment of comments; let i = index"
           [commentUserName]="comment.userName"
+          [commentImageUrl]="comment.imageUrl"
           [commentContent]="comment.content"
           [commentDate]="comment.date_comment"
           [modifDate]="comment.date_modif"

@@ -22,3 +22,18 @@ span {
     font-style: italic;
     font-weight: normal;
 }
+
+.profilePic {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 0px;
+    img {
+        /*display: block;*/
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: solid 1px rgb(48, 48, 48);
+        margin-right: 10px;
+    }
+}

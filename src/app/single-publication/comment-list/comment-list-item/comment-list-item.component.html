@@ -1,7 +1,10 @@
 <li [ngClass]="{'list-group-item': true}"
 *ngIf="!deleted" class="col-10 mx-auto my-0">
+    <div class="profilePic pt-0" >
+        <img [src]="commentImageUrl">
+        <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span>, le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
+    </div>
     <div class="infos">
-    <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span>, le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
     
     <a *ngIf="modified" routerLink="/publications/{{postId}}" (click)="onSeeDate()">Modifié</a>
     </div>

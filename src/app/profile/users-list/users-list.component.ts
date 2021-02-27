@@ -12,11 +12,14 @@ export class UsersListComponent implements OnInit {
   @Input() firstname: string;
   @Input() lastname: string;
   @Input() serviceName: string;
+  @Input() imageUrl: string;
+
+  userImage: string;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
-
+    this.userImage = this.imageUrl;
   }
 
   onSeeProfile() {

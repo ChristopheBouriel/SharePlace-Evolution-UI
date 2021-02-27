@@ -14,4 +14,5 @@ export class ShortProfile {
     firstname: string;
     lastname: string;
     serviceName: string;
+    imageUrl: string;
 }

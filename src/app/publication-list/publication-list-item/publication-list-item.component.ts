@@ -23,7 +23,7 @@ export class PublicationListItemComponent implements OnInit {
   
   content: string;
   title: string;
-  userImage: string;
+  
   moderator: boolean;
 
   constructor(private publicationService: PublicationService,
@@ -32,7 +32,7 @@ export class PublicationListItemComponent implements OnInit {
   ngOnInit(): void {
     this.content = this.publicationContent.replace(/&µ/gi,'\"');
     this.title = this.publicationTitle.replace(/&µ/gi,'\"');
-    this.userImage = this.publicationImageUser;
+    
     this.authService.isAdmin$.subscribe(
       (isAdmin) => {
         this.moderator = isAdmin;

@@ -14,6 +14,7 @@ export class CommentListItemComponent implements OnInit {
 
 
   @Input() commentUserName: string;
+  @Input() commentImageUrl: string;
   @Input() commentContent: string;
   @Input() commentDate: string;
   @Input() modifDate: string;

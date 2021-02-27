@@ -6,4 +6,5 @@ export class Comment {
     content: string;
     moderated: string; 
     userName: string;
+    imageUrl: string;
 }
