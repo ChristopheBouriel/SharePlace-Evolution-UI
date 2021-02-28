@@ -3,7 +3,7 @@
 
         <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
         <div class="show-profile" *ngIf="!searching">
-            <div class="profilePic" *ngIf="profile?.imageUrl">
+            <div class="profilePic mt-3" *ngIf="profile?.imageUrl">
                 <img [src]="profile?.imageUrl">
             </div>
             <div id="zero"><p>Nom d'utilisateur : <span>{{profile?.userName}}</span></p></div>
@@ -20,13 +20,13 @@
         <p class="noUser mx-auto">{{noUser}}</p>
         <div class="row controls">
             <div class="row col-xs-12 col-md-6 mx-auto">
-                <button mat-raised-button color="primary" class="col-xs-12 col-sm-11 mx-auto my-1 text-center" *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}">Retour publication</button>
-                <button mat-raised-button color="primary" class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" routerLink="/publications">Retour liste</button>
-                <button mat-raised-button color="primary" class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" (click)="onGetList()">Rechercher</button>
+                <button class="col-xs-12 col-sm-11 mx-auto my-1 text-center" *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}">Retour publication</button>
+                <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" routerLink="/publications">Retour liste</button>
+                <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" (click)="onGetList()">Rechercher</button>
             </div>
             <div class="row col-xs-12 col-md-6 mx-auto">
-                <button mat-raised-button color="primary" class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="modify">Modifier</button>
-                <button mat-raised-button color="primary" class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="settings">Paramètres</button>
+                <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="modify">Modifier</button>
+                <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="settings">Paramètres</button>
             </div>
         </div>
         <br/>
@@ -53,19 +53,20 @@
         <div class="search" *ngIf="searching">
             <div class="row">
                 <h2 class="text-center align-self-center col-7 mb-2 mx-auto">Liste des utilisateurs</h2>
-                <button mat-raised-button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
+                <button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
             </div>    
         </div>
         <br/>
         <br/>
         <div class="users-list" *ngIf="searching">
-            <label for="search-window">Entrer un nom d'utilisateur ci-dessous</label>
-            <div class="row">
+            <label for="search-window">Entrer un nom d'utilisateur</label>
+            <div class="row align-items-center ">
                                 
-                    <input id="search-window" class="col-7 mb-2 mx-auto"  #inputUserName name="search">
-                    <button mat-raised-button color="primary" class="mb-2 ml-1 mx-auto col-4" type="submit" (click)="onSearch(inputUserName.value)">Chercher</button>
+                    <input id="search-window" class="col-7 mx-auto"  #inputUserName name="search">
+                    <button class="ml-1 mx-auto align-items-center col-4" type="submit" (click)="onSearch(inputUserName.value)">Chercher</button>
             </div>
-            <ul class="list-group">        
+            
+            <ul class="list-group mt-4">        
                 <app-users-list *ngFor="let shortProfile of shortProfiles; let j = index"
                     [userName]="shortProfile.userName"
                     [firstname]="shortProfile.firstname"

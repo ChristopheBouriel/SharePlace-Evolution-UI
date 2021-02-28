@@ -16,11 +16,14 @@ export class AuthGuard implements CanActivate {
           (observer) => {
             this.authService.isAuth$.subscribe(
               (auth) => {
-                if (auth) {
+
+                observer.next(true);
+
+                /*if (auth) {
                   observer.next(true);
                 } else {
                   this.router.navigate(['auth']);
-                }
+                }*/
               }
             );
           }

@@ -1,38 +1,45 @@
+@import '../../../colors';
+
 li {
-    border: solid 1px pink;
-    border-radius: 5px;
+    background-color:  rgb(33,33,33);
     list-style-type: none;
     padding: 10px;
     margin: 10px 0px 0px 0px;
-    background-color:  rgb(172, 183, 220);
+    
+}
+
+.list-com {
+    
 }
 
 .infos {
     display: flex;
     justify-content: space-between;
-    p {
-        font-weight: 600;
-        color: rgb(32, 3, 163);
-        
+    p {        
+        color: whitesmoke;        
     }
     span {
-        font-weight: bold;
+        font-weight: 500;
     }
-
     a:focus {
-        border: solid 1px  rgb(17, 184, 235);
+        border: solid 1px $btn-main;
         padding: 2px;
     }
-
     a{
-        color: rgb(41, 41, 41);
+        color: $prof-link;
     }
 }
 
+.comment-all {
+    background-color:  $grey-black;
+    border: solid 1px $btn-main;  
+    border-radius: 10px;
+}
+
 .comment-view {
-    border: solid #b47a7a 1px;
+    border: solid $post-bg 1px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.975);       
+    background-color: whitesmoke;       
     font-size: 1.1rem;
     padding: 10px;
     margin-bottom: 10px;
@@ -54,17 +61,22 @@ li {
 .profilePic {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px 0px;
     img {
         /*display: block;*/
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
-        border: solid 1px rgb(48, 48, 48);
+        border: solid 1px $post-bg;
         margin-right: 10px;
     }
     p {
        padding-top: 15px; 
+       color: whitesmoke;
+    }
+
+    a {
+        color: $prof-link;
     }
 }

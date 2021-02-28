@@ -1,3 +1,5 @@
+@import '../../colors';
+
 li {
     border: solid 1px rgb(155, 171, 225);
     border-radius: 5px;
@@ -5,22 +7,27 @@ li {
     margin-bottom: 10px; 
 }
 
-.profile-link a:focus {
-    border: solid 1px  rgb(9, 109, 140);
+.profile-link {
+    a:focus {
+    border: solid 1px $prof-link;
     padding: 2px;
-}
-
-a {
-    color: rgb(52, 43, 226);
+    }
+    a {
+    color: $prof-link;
+    
+    }
 }
 
 p {
-    font-weight: 600;
+    font-weight: 500;
+    color: whitesmoke;
+    margin-top: 5px;
 }
 
 span {
     font-style: italic;
     font-weight: normal;
+    color: $post-bg;
 }
 
 .profilePic {
@@ -33,7 +40,14 @@ span {
         width: 80px;
         height: 80px;
         border-radius: 50%;
-        border: solid 1px rgb(48, 48, 48);
-        margin-right: 10px;
+        border: solid 1px $btn-main;
+        margin-right: 5px;
     }
+}
+
+.items-users-list {
+    background-color: black;
+    border-radius: 5px 50px 50px 5px;
+    padding-left: 10px;
+    font-size: 1.2rem;
 }

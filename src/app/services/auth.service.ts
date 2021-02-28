@@ -11,9 +11,9 @@ import { Profile, ShortProfile } from '../models/profile';
 
 export class AuthService {
 
-    isAuth$ = new BehaviorSubject<boolean>(false);
+    isAuth$ = new BehaviorSubject<boolean>(true);
     isAdmin$ = new BehaviorSubject<boolean>(false);
-    userName$ = new BehaviorSubject<string>('No one is connected');
+    userName$ = new BehaviorSubject<string>('Tof'); /*'No one is connected'*/
     headMessage$ = new BehaviorSubject<string>('');
     newPostSubject = new Subject();
     newCommentSubject = new Subject();
@@ -58,7 +58,7 @@ export class AuthService {
       });
     }  
 
-  loginUser(userName: string, password) {
+  loginUser(userName: string, password: string) {
       return new Promise((resolve, reject) => {
         this.httpClient.post('http://localhost:3000/api/auth/login', {userName: userName, userPassword: password}).subscribe(
           (response :{admin: number, token: string, userName: string, lastLogout:string}

@@ -4,7 +4,7 @@
                 'list-group-item-like': publicationLikes === 1}"
                 id="{{id}}"   class="mx-auto">
     <div class="overview">
-        <h2 [ngStyle]="{color: ' rgb(82, 105, 183)'}">{{title}}</h2>
+        <h2 [ngStyle]="{color: 'rgb(176, 94, 31)'}">{{title}}</h2>
         <p>Par <a routerLink="/profile/{{publicationUserName}}"><span>{{publicationUserName}}</span></a>, le {{publicationDate | date: 'd LLLL yyyy'}}</p>
         <div  class="text-overview">
             <p *ngIf="publicationModerated !== 1">{{content}}</p>
@@ -12,7 +12,6 @@
         </div>
     </div>
     <div class="see-it" *ngIf="publicationModerated !== 1 || isAuthor">
-        <a  (click)="onSeePublication()">Voir</a>
-        <p>Commentaires : {{publicationNumberComments}}</p>
+        <a  (click)="onSeePublication()"><img src="./assets/images/see-icon.png"></a>
     </div>
 </li>

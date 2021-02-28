@@ -7,13 +7,16 @@
     'single-publication-like': likes === true
                     }" *ngIf="!loading">
         <h2 [ngStyle]="{color: 'primary'}">{{title}}</h2>
-        <div class="profilePic pt-0" >
-          <img [src]="publication?.imageUrl">
-      
-          <p>Par <span>{{publication?.userName}}</span></p>
+        <div class="infos-post">
+          <div class="profilePic pt-0" >
+            <img [src]="publication?.imageUrl">      
+            <p>Par <span>{{publication?.userName}}</span></p>
+          </div>
+          <div class="infos-date">
+            <p>Publié le {{publication?.date_publication | date: 'EEEE d LLLL yyyy'}}</p>
+            <a *ngIf="publication?.modified" class="mb-2" routerLinkActive="active" routerLink="/publications/{{postId}}" (click)="onSeeDate()">Modifié</a>     
+          </div>
         </div>
-        <p>Publié le {{publication?.date_publication | date: 'EEEE d LLLL yyyy'}}</p>
-        <a *ngIf="publication?.modified" class="mb-2" routerLinkActive="active" routerLink="/publications/{{postId}}" (click)="onSeeDate()">Modifié</a>
         <p *ngIf="seeDate" class="mb-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm' | lowercase}}</p>
         <div *ngIf=!modifying  class="publication-view">
             <p>{{content}}</p>
@@ -28,26 +31,26 @@
               <textarea pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!;?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication"></textarea>
             </div>
             <p class="my-2" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</p>
-            <button *ngIf="!confirm" class="mr-2" mat-raised-button color="primary" (click)="onMakeModif()">Envoyer</button>
-            <button *ngIf="!confirm" class="mr-2" mat-raised-button color="primary" (click)="onCancelModif()">Annuler</button>
-            <button *ngIf="!confirm" class="mr-2" mat-raised-button color="primary" (click)="onWantDelete()">Effacer</button>
+            <button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()">Envoyer</button>
+            <button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
+            <button *ngIf="!confirm" class="mr-2" (click)="onWantDelete()">Effacer</button>
             <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication</p>
-            <button *ngIf="confirm" class="mr-2" mat-raised-button color="primary" (click)="onCancelDelete()">Annuler</button>
-            <button *ngIf="confirm" mat-raised-button color="primary" (click)="onDelete()">Effacer</button>        
+            <button *ngIf="confirm" class="mr-2" (click)="onCancelDelete()">Annuler</button>
+            <button *ngIf="confirm" (click)="onDelete()">Effacer</button>        
         </form>
         <br/>
         <div *ngIf="moderator" class="row">
           <button *ngIf="!moderated && !isAuthor" mat-raised-button color="accent" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Modérer</span></button>
           <button *ngIf="moderated && !isAuthor" mat-stroked-button color="accent" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Rétablir</span></button> 
         </div>
-        <div *ngIf=!modifying  class="post-buttons row">
+        <div *ngIf=!modifying  class="post-buttons row no-gutters col-8 col-sm-6 mx-auto">
         <!--  <div>-->
         <!--  <button class="btn btn mb-1 mr-2" (click)="onLike()">Like it</button>--> 
-            <button class="col-11 col-sm-3 mx-auto text-center" (click)="onWantComment()">Commenter</button>
+            <button class="" (click)="onWantComment()"><img src="./assets/images/comment-icon.png"></button>
         <!--  <div>-->
-            <button class="col-11 col-sm-3 mx-auto text-center" routerLink="/publications">Retour liste</button>
-            <button *ngIf="!isAuthor" class="col-11 col-sm-3 mx-auto text-center" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()">Voir profil</button>
-            <button *ngIf="isAuthor" class="col-11 col-sm-3 mx-auto text-center" (click)="onWantModify()">Modifier</button>        
+            <button class="" routerLink="/publications"><img src="./assets/images/back-icon.png"></button>
+            <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png"></button>
+            <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png"></button>        
         </div>
     </div>
 

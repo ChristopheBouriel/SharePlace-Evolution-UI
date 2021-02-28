@@ -1,16 +1,29 @@
-.search {
-    
-    padding-bottom: 20px;
-    border-bottom: solid 2px rgb(80, 37, 235);
+@import '../colors';
+
+
+.search {    
+    padding:20px;
     margin-bottom: 20px;
+    background-color: $post-bg;
+    border-radius: 10px;
+    button {
+        background-color: $btn-main;
+        font-size: 1.5rem;
+            
+            border-radius: 3px;
+            color: whitesmoke;
+            font-weight: 500;
+            height: 55px;
+            margin-bottom: 15px;
+    }
 }
 
-#window {   
+#search-window {   
     padding: 5px 10px 5px 10px;   
-    border: solid 2px rgb(80, 37, 235);
+    border: solid 2px $btn-main;
     border-radius: 5px;
     font-size: 1rem;
-    height: auto;
+    height: 55px;
     :focus {
         border: solid 2px ;       
         color:rgb(169, 55, 144)
@@ -24,6 +37,8 @@
 .controls {
     button {
     font-size: 0.75rem;
+    color: whitesmoke;
+    background-color: $btn-main;
     }
 }
 
@@ -39,49 +54,53 @@
 }
 
 .show-profile {
-    background-color: lavender;
-    border: solid 1px rgb(80, 37, 235);
+    background-color: $grey-black;
+    border: solid 2px $post-bg;
+    border-radius: 10px;
     div {
         font-weight: 600;
-        color: rgb(58, 58, 228);
         white-space: pre-line;
         border-radius: 5px;
         background-color: rgb(255, 255, 255);
-        padding: 10px;
-        
-        
+        padding: 10px; 
+        color: whitesmoke;
+        background-color: black;
+        border: solid 1px $btn-main;       
     }
     span {
         font-weight: initial;
-        color: rgb(87, 87, 87);
+        color: whitesmoke;
     }
         #zero {
             margin: 20px 20px 10px 20px;
+            color: $post-bg;
         }
         #first {
             margin: 5px 20px 10px 20px;
+            color: $post-bg;
         }
         #second {
             margin: 5px 20px 10px 20px;
+            color: $post-bg;
         }
         #aboutMe {
             margin: 5px 20px 20px 20px;
+            color: $post-bg;
             min-height: 80px;
         }
         .profilePic {
-            background-color: lavender;
+            background-color: $grey-black;
+            border: none;
         }
 }
 
 .profilePic {
-    
-    padding: 20px 0px;
     img {
         display: block;
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        border: solid 1px rgb(48, 48, 48);
+        border: solid 2px $post-bg;
         margin: auto;
     }
 }
@@ -90,4 +109,15 @@ h2 {
     font-size: 1.5rem;
     font-style: italic;
     font-weight: 600;
+    color: whitesmoke;
+}
+
+button {
+    background-color: $btn-main;
+    font-size: 1.5rem;
+        
+        border-radius: 20px;
+        color: whitesmoke;
+        font-weight: 500;
+        margin-bottom: 15px;
 }

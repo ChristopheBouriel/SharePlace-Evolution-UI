@@ -49,8 +49,8 @@ const appRoutes: Routes = [
   {path: 'notifications', component: NotificationsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: ProfileFormComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'auth'},
-  {path: '**', redirectTo: 'auth' }
+  /*{path: '', pathMatch: 'full', redirectTo: 'auth'},
+  {path: '**', redirectTo: 'auth' }*/
 ];
 
 @NgModule({

@@ -1,33 +1,57 @@
-.single-publication-like {
+@import '../colors';
+
+/*.single-publication-like {
     background-color: rgb(157, 194, 147);
-}
+}*/
 
 .single-publication {
-    border: solid 1px pink;
-    border-radius: 5px;
+    border: solid 1px black;
+    border-radius: 10px;
     padding: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: $post-bg;
     a:focus {
-        border: solid 1px  rgb(17, 184, 235);
+        border: solid 1px $prof-link;
         padding: 2px;
     }
 
     span {
         font-weight: 500;
         font-style: italic;
+        color: $btn-main;
         
     }
 
     h2 {
-        color:  rgb(80, 51, 210);
+        color:  $btn-main;
         font-size: 1.5rem;
+        font-style: italic;
+        font-weight: 600;
+    }
+}
+
+.infos-post {
+    background-color: $grey-black;
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+}
+
+.infos-date {
+    display: flex;
+    justify-content: space-between;
+    a {
+        color: $prof-link;
     }
 }
 
 .publication-view {
    
     padding: 10px;
-    border-top: solid 1px black;
+    border: solid 1px $btn-main;
+    border-radius: 10px;
+    background-color: whitesmoke;
     p {
         font-size: 1.1rem;
         white-space: pre-line;
@@ -36,13 +60,28 @@
 
 .post-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-color: $btn-main;
+        border: solid 1px $grey-black;
+        border-radius: 10px;
+        /*margin: 0px 10px;*/
     button {
-        background-color: rgb(29, 108, 160);
-        border-radius: 5px;
-        color: white;
+        background-color: $btn-main;
+        padding: 10px;
     }
-    
+    img {
+        width: 25px;
+        height: 25px;
+        
+    }
+    button:hover {
+        background-color: $grey-black;
+       /* border: solid 1px whitesmoke;*/
+    }
+}
+
+form button {
+    background-color: $btn-main;
 }
 
 .mod span {

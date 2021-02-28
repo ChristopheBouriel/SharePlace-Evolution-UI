@@ -1,5 +1,8 @@
+@import '../../colors';
+
 .overview p {
     white-space: pre-line;
+    
 }
 
 .list-group-item .moderatedBackground {
@@ -8,18 +11,77 @@
     color: rgb(221, 55, 9);
 }
 
+.items-publi {
+    margin-bottom: 10px;
+    background-color: $post-bg;
+    border-radius: 20px;
+    padding: 10px;
+    .overview {
+        border: solid 1px;
+        border-radius: 15px;
+        list-style-type: none;
+        padding: 10px;        
+        background-color: $grey-black;        
+        p {
+            font-style: italic;
+            color: whitesmoke; 
+        }
+    }    
+
+    .see-it {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        a {
+        background-color: $btn-main;
+        color: white;
+        padding: 10px 10px;
+        border-radius: 50%;
+        border: solid 1px rgb(48, 48, 48);
+        }
+        a:hover {
+            background-color: $grey-black;
+        }
+        p {
+            color: whitesmoke;
+        }
+    }
+
+    .text-overview {
+        border: 1px;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        max-height: 100px;
+        overflow: hidden;
+        padding: 10px;
+        margin-bottom: 10px;
+        p {
+            color: rgb(24, 24, 24);
+        }
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    span {
+        color: $prof-link;
+    }
+}
+
 .see-it a:focus {
     //border: solid 3px black;
-    background-color: rgb(17, 184, 235)
+    background-color: black
 }
 
 .overview a:focus {
-    border: solid 1px  rgb(17, 184, 235);
+    border: solid 1px $prof-link;
     padding: 2px;
 }
 
 li {
-    border: solid 1px pink;
+    border: solid 1px black;
+    margin: 20px 0px;
 }
 
 .profilePic {
@@ -38,4 +100,9 @@ li {
     p {
        padding-top: 15px; 
     }
+}
+
+.see-it img {
+    width: 30px;
+    height: 30px;
 }

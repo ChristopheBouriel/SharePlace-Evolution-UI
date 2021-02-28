@@ -1,3 +1,5 @@
+@import '../colors';
+
 .top {
     display: flex;
     justify-content: space-between;
@@ -7,13 +9,35 @@
         font-size: 1.5rem;
         font-weight: 600;
         font-style: italic;
-        border: solid 3px rgb(80, 37, 235);
-        border-radius: 5px;
+        border: solid 3px rgba(255, 209, 129, 0.722);
+        border-radius: 20px;
         padding: 7px 10px 7px 10px;
-        color: rgb(82, 82, 82)
+        color: whitesmoke;
     }
 
     button {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
+        background-color: rgba(255, 209, 129, 0.722);
+        border-radius: 20px;
+        color: whitesmoke;
+        font-weight: 500;
+        height: 55px;
+        margin-bottom: 15px;
+
     }
+
+    button:hover {
+        background-color: rgb(176, 94, 31);
+    }
+}
+
+form {
+    button {
+    background-color: $btn-main;
+    color:whitesmoke;
+    }
+    button:hover {
+        background-color: $post-bg;
+    }
+    
 }

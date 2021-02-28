@@ -3,7 +3,7 @@
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
     <div class="top row">
         <h2 class="text-center align-self-center col-8 mb-2 mx-auto">Les dernières publications</h2>
-        <button mat-raised-button class="col-3 mb-2 ml-1 text-center mx-auto" color="primary" *ngIf="!posting" (click)="onWantPost()">Publier</button>
+        <button class="col-3 ml-1 text-center align-self-center mx-auto" *ngIf="!posting" (click)="onWantPost()">Publier</button>
     </div>
 
   <!--  <div class="row">
@@ -22,9 +22,9 @@
         </div>
         <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
         <div class="my-2" *ngIf="publicationForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</div>
-        <button class="my-2 mr-2" mat-raised-button color="primary" [disabled]="publicationForm.invalid" (click)="onPost()">Envoyer</button>
+        <button class="my-2 mr-2" [disabled]="publicationForm.invalid" (click)="onPost()">Envoyer</button>
         <!--<p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>--> 
-        <button class="mb-3" mat-raised-button color="primary" (click)="onCancel()">Annuler</button> 
+        <button class="mb-3" (click)="onCancel()">Annuler</button> 
     </form>
 
     <ul class="list-group">

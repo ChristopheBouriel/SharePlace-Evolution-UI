@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 .overview p {
     white-space: pre-line;
 }
@@ -7,3 +9,70 @@
     text-align: center;
     color: rgb(221, 55, 9);
 }
+
+
+//début mixin
+.list-group-item {
+    margin-bottom: 10px;
+    background-color: $post-bg;
+    border-radius: 20px;
+    padding: 10px;
+    .overview {
+        border: solid 1px;
+        border-radius: 15px;
+        list-style-type: none;
+        padding: 10px;        
+        background-color: $grey-black;        
+        p {
+            font-style: italic;
+            color: whitesmoke; 
+        }
+    }    
+
+    .see-it {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        a {
+        background-color: $btn-main;
+        color: white;
+        padding: 10px 10px;
+        border-radius: 50%;
+        border: solid 1px rgb(48, 48, 48);
+        }
+        a:hover {
+            background-color: $grey-black;
+        }
+        p {
+            color: whitesmoke;
+        }
+    }
+
+    .text-overview {
+        border: 1px;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        max-height: 100px;
+        overflow: hidden;
+        padding: 10px;
+        margin-bottom: 10px;
+        p {
+            color: rgb(24, 24, 24);
+        }
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    span {
+        color: $prof-link;
+    }
+}
+
+.see-it img {
+    width: 30px;
+    height: 30px;
+}
+
+//fin mixin
