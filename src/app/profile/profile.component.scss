@@ -1,21 +1,35 @@
 @import '../colors';
 
-
 .search {    
-    padding:20px;
-    margin-bottom: 20px;
+    padding:10px;    
     background-color: $post-bg;
     border-radius: 10px;
     button {
-        background-color: $btn-main;
-        font-size: 1.5rem;
-            
-            border-radius: 3px;
-            color: whitesmoke;
-            font-weight: 500;
-            height: 55px;
-            margin-bottom: 15px;
+        border-radius: 50%;
+        padding: 10px;        
+        img {
+            width: 30px;
+            height: 30px;             
+        } 
     }
+    button:hover {
+        background-color: $grey-black;
+    }
+     
+    h2 {
+        font-size: 2rem;    
+        font-weight: 600;
+        color: $grey-black;    
+    }
+    /*button {
+        background-color: $btn-main;
+        font-size: 1.5rem;            
+        border-radius: 3px;
+        color: whitesmoke;
+        font-weight: 500;
+        height: 55px;
+        margin-bottom: 15px;
+    }*/
 }
 
 #search-window {   
@@ -23,11 +37,8 @@
     border: solid 2px $btn-main;
     border-radius: 5px;
     font-size: 1rem;
-    height: 55px;
-    :focus {
-        border: solid 2px ;       
-        color:rgb(169, 55, 144)
-    }
+    background-color: $grey-black;
+    color: whitesmoke;    
 }
 
 .noUser {
@@ -36,21 +47,13 @@
 
 .controls {
     button {
-    font-size: 0.75rem;
-    color: whitesmoke;
-    background-color: $btn-main;
+        font-size: 0.75rem;
+        color: whitesmoke;
+        background-color: $btn-main;
     }
-}
-
-.search p {
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-style: italic;
-    border: solid 3px rgb(80, 37, 235);
-    border-radius: 5px;
-    padding: 7px 10px 7px 10px;
-    background-color: lavender;
-    color: rgb(82, 82, 82)
+    button:hover {
+        background-color: $grey-black;
+    }
 }
 
 .show-profile {
@@ -106,18 +109,15 @@
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-style: italic;
+    font-size: 1.8rem;    
     font-weight: 600;
-    color: whitesmoke;
+    color: whitesmoke;    
 }
 
 button {
     background-color: $btn-main;
-    font-size: 1.5rem;
-        
-        border-radius: 20px;
-        color: whitesmoke;
-        font-weight: 500;
-        margin-bottom: 15px;
+    color: whitesmoke;  
 }
+
+
+

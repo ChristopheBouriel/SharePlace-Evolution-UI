@@ -81,7 +81,7 @@ export class SinglePublicationComponent implements OnInit {
     )
 
     this.commentForm = this.formBuilder.group({
-      comment: [null, Validators.required] 
+      comment: [null] 
     });
 
     this.publicationService.fromListSubject.subscribe(

@@ -18,13 +18,13 @@
           </div>
         <div class="form-group mt-3">
           <label for="publication">Publication</label>
-          <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF ]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication"></textarea>
+          <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF ]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication" rows="7"></textarea>
         </div>
         <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
         <div class="my-2" *ngIf="publicationForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</div>
-        <button class="my-2 mr-2" [disabled]="publicationForm.invalid" (click)="onPost()">Envoyer</button>
+        <button mat-raised-button class="my-2 mr-2" [disabled]="publicationForm.invalid" (click)="onPost()">Envoyer</button>
         <!--<p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>--> 
-        <button class="mb-3" (click)="onCancel()">Annuler</button> 
+        <button mat-raised-button class="mb-3" (click)="onCancel()">Annuler</button> 
     </form>
 
     <ul class="list-group">

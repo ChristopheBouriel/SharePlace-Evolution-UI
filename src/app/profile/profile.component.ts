@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   userName: string;
   isMine: boolean = false;
   searching: boolean;
+  research: boolean = false;
   gotUsersList: boolean;
   ifBack: boolean;
 
@@ -152,5 +153,14 @@ export class ProfileComponent implements OnInit {
     } else {
       this.noUser = 'Utilisateur inconnu';
     }
+  }
+
+  onResearch() {
+    if (this.research === false) {
+      this.research = true;
+    }
+    else if (this.research === true) {
+      this.research = false;
+    };
   }
 }

@@ -23,13 +23,13 @@
 
         <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
             <div class="form-group">
-            <label for="comment">Modifier</label>
-            <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{1,4000}" class="form-control" id="comment" formControlName="comment"></textarea>
+                <label for="comment">Modifier</label>
+                <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{0,4000}" class="form-control" id="comment" formControlName="comment"></textarea>
             </div>
             <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
-            <div class="my-2" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi</div>
-            <button class="mr-2" mat-raised-button color="primary" [disabled]="modifyForm.invalid" (click)="onMakeModif()">Envoyer</button>
-            <button mat-raised-button color="primary" (click)="onCancelModif()">Annuler</button>
+            <p class="my-2 text-danger" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi</p>
+            <button mat-raised-button class="mr-2" [disabled]="modifyForm.invalid" (click)="onMakeModif()">Envoyer</button>
+            <button mat-raised-button (click)="onCancelModif()">Annuler</button>
         </form>
         
         <div *ngIf="moderator">
@@ -37,12 +37,12 @@
             <button *ngIf="commentModerated && !isAuthor" mat-stroked-button color="accent" class="mod mb-2" (click)="onModerate()"><span>Rétablir</span></button>
         </div>
 
-        <button class="mr-2" mat-raised-button color="primary" (click)="onWantDelete()" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
-        <button mat-raised-button color="primary" (click)="onModify()" *ngIf="isAuthor && !modifying && !confirm">Modifier</button>
+        <button mat-raised-button class="mr-2" (click)="onWantDelete()" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
+        <button mat-raised-button (click)="onModify()" *ngIf="isAuthor && !modifying && !confirm">Modifier</button>
 
-        <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer ce commentaire</p>
-        <button class="mr-2"  *ngIf="confirm" mat-raised-button color="primary" (click)="onDelete()">Effacer</button>
-        <button *ngIf="confirm" mat-raised-button color="primary" (click)="onCancelDelete()">Annuler</button>
+        <p [ngStyle]="{color: ' rgb(245, 245, 245)'}" *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer ce commentaire ?</p>
+        <button mat-raised-button class="mr-2"  *ngIf="confirm" (click)="onDelete()">Effacer</button>
+        <button mat-raised-button *ngIf="confirm" (click)="onCancelDelete()">Annuler</button>
     </div>
     </div>
 </li>

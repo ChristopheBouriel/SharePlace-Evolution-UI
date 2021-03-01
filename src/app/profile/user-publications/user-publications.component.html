@@ -5,7 +5,7 @@
                 id="{{id}}"   class="mx-auto">
     <div class="overview">
         <h2 [ngStyle]="{color: 'rgb(176, 94, 31)'}">{{title}}</h2>
-        <p>Par <a routerLink="/profile/{{publicationUserName}}"><span>{{publicationUserName}}</span></a>, le {{publicationDate | date: 'd LLLL yyyy'}}</p>
+        <p>Par <span>{{publicationUserName}}</span> le {{publicationDate | date: 'd LLLL yyyy'}}</p>
         <div  class="text-overview">
             <p *ngIf="publicationModerated !== 1">{{content}}</p>
             <p *ngIf="publicationModerated === 1" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>

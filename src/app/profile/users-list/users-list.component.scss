@@ -1,20 +1,21 @@
 @import '../../colors';
 
 li {
-    border: solid 1px rgb(155, 171, 225);
+    border: solid 1px rgb(172, 172, 172);
     border-radius: 5px;
     list-style-type: none;   
     margin-bottom: 10px; 
 }
 
 .profile-link {
-    a:focus {
-    border: solid 1px $prof-link;
-    padding: 2px;
-    }
     a {
-    color: $prof-link;
-    
+    color: $prof-link;    
+    }
+    a:hover {
+        color: whitesmoke;
+    }
+    a:focus {
+        color: $btn-main;
     }
 }
 
@@ -47,7 +48,7 @@ span {
 
 .items-users-list {
     background-color: black;
-    border-radius: 5px 50px 50px 5px;
+    border-radius: 5px;
     padding-left: 10px;
     font-size: 1.2rem;
 }

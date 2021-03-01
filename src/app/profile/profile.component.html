@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-10 col-md-8 mx-auto">
+    <div class="col-10 col-lg-8 mx-auto">
 
         <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
         <div class="show-profile" *ngIf="!searching">
@@ -15,25 +15,29 @@
                 <p>Service : <span>{{profile?.serviceName}}</span></p>
                 <p *ngIf="email">e-mail : <span>{{profile?.email}}</span></p>
             </div>        
-            <div id="aboutMe" *ngIf="aboutMe"><p>A propos de moi : <span>{{aboutMe}}</span></p></div>
+            <div id="aboutMe" *ngIf="aboutMe">
+                <p>A propos de moi : </p>
+                <p><span>{{aboutMe}}</span></p>
+            </div>
         </div>
-        <p class="noUser mx-auto">{{noUser}}</p>
+        
         <div class="row controls">
             <div class="row col-xs-12 col-md-6 mx-auto">
-                <button class="col-xs-12 col-sm-11 mx-auto my-1 text-center" *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}">Retour publication</button>
                 <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" routerLink="/publications">Retour liste</button>
                 <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="!searching" (click)="onGetList()">Rechercher</button>
             </div>
             <div class="row col-xs-12 col-md-6 mx-auto">
                 <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="modify">Modifier</button>
                 <button class="col-xs-12 col-sm-5 mx-auto my-1 text-center" *ngIf="isMine && !searching" routerLink="settings">Paramètres</button>
+                <button class="col-xs-12 col-sm-11 mx-auto my-1 text-center" *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}">Retour publication</button>
+                
             </div>
         </div>
         <br/>
         <br/>
 
         <div *ngIf="!searching">
-            <h2 *ngIf="publications?.length">Publications : </h2>
+            <h2 class="text-center" *ngIf="publications?.length">Publications</h2>
             <ul class="list-group">
                 <app-user-publications  *ngFor="let publication of publications; let i = index"
                     [publicationTitle]="publication.title"
@@ -49,23 +53,27 @@
                 </app-user-publications>
             </ul>
         </div>
-
-        <div class="search" *ngIf="searching">
-            <div class="row">
-                <h2 class="text-center align-self-center col-7 mb-2 mx-auto">Liste des utilisateurs</h2>
-                <button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
-            </div>    
+        
+        <div class="search row no-gutters mx-0" *ngIf="searching">
+            <div class="text-center col-6 col-sm-2 order-2 order-sm-1">
+                <button class="mx-auto" (click)="onBackFromList()"><img src="./assets/images/back-icon.png"></button>
+            </div>
+            <h2 class="text-center align-self-center col-12 col-sm-8 mb-2 mx-auto order-1 order-sm-2">Liste des utilisateurs</h2>
+            <div class="text-center col-6 col-sm-2 order-3">
+                <button (click)="onResearch()"><img src="./assets/images/search-icon.png"></button>
+            </div>
         </div>
         <br/>
         <br/>
         <div class="users-list" *ngIf="searching">
-            <label for="search-window">Entrer un nom d'utilisateur</label>
-            <div class="row align-items-center ">
-                                
-                    <input id="search-window" class="col-7 mx-auto"  #inputUserName name="search">
-                    <button class="ml-1 mx-auto align-items-center col-4" type="submit" (click)="onSearch(inputUserName.value)">Chercher</button>
-            </div>
-            
+            <div *ngIf="research">
+                <label for="search-window" *ngIf="!noUser">Entrer un nom d'utilisateur</label>
+                <p class="noUser mx-auto" *ngIf="noUser">{{noUser}}</p>
+                <div class="row align-items-center ">                                                
+                    <input id="search-window" class="col-7 mx-auto" #inputUserName name="search">
+                    <button mat-raised-button class="mx-auto align-items-center col-4" type="submit" (click)="onSearch(inputUserName.value)">Rechercher</button>
+                </div>
+            </div>          
             <ul class="list-group mt-4">        
                 <app-users-list *ngFor="let shortProfile of shortProfiles; let j = index"
                     [userName]="shortProfile.userName"

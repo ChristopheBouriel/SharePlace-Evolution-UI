@@ -8,10 +8,6 @@ li {
     
 }
 
-.list-com {
-    
-}
-
 .infos {
     display: flex;
     justify-content: space-between;
@@ -27,6 +23,12 @@ li {
     }
     a{
         color: $prof-link;
+    }
+    a:hover {
+        color: whitesmoke;
+    }
+    a:focus {
+        color: $btn-main;
     }
 }
 
@@ -79,4 +81,28 @@ li {
     a {
         color: $prof-link;
     }
+    a:hover {
+        color: whitesmoke;
+    }
+    a:focus {
+        color: $btn-main;
+    }
 }
+
+.form-control {
+    background-color: whitesmoke;
+}
+
+label {
+    color: $post-bg;
+}
+
+button {
+    background-color: $btn-main;
+    color: whitesmoke;
+}
+
+button:disabled {
+    background-color: $grey-black;
+}
+

@@ -9,10 +9,6 @@
     border-radius: 10px;
     padding: 10px;
     background-color: $post-bg;
-    a:focus {
-        border: solid 1px $prof-link;
-        padding: 2px;
-    }
 
     span {
         font-weight: 500;
@@ -26,6 +22,12 @@
         font-size: 1.5rem;
         font-style: italic;
         font-weight: 600;
+    }
+    a:hover {
+        color: whitesmoke;
+    }
+    a:focus {
+        color: $btn-main;
     }
 }
 
@@ -46,8 +48,7 @@
     }
 }
 
-.publication-view {
-   
+.publication-view {   
     padding: 10px;
     border: solid 1px $btn-main;
     border-radius: 10px;
@@ -62,12 +63,13 @@
     display: flex;
     justify-content: space-around;
     background-color: $btn-main;
-        border: solid 1px $grey-black;
-        border-radius: 10px;
+    border: solid 1px $grey-black;
+    border-radius: 10px;
+    
         /*margin: 0px 10px;*/
     button {
-        background-color: $btn-main;
-        padding: 10px;
+        background-color: $btn-main; 
+        padding: 5px 5px;       
     }
     img {
         width: 25px;
@@ -75,13 +77,24 @@
         
     }
     button:hover {
-        background-color: $grey-black;
-       /* border: solid 1px whitesmoke;*/
+        img {
+        width: 35px;
+        height: 35px;
+        }
+        padding: 0px 0px;
     }
 }
 
-form button {
-    background-color: $btn-main;
+form {
+    button {
+        background-color: $btn-main;
+    }
+    button:hover {
+        background-color: $grey-black;
+    }
+    p {
+        color: whitesmoke;
+    }
 }
 
 .mod span {
@@ -105,3 +118,6 @@ form button {
        padding-top: 15px; 
     }
 }
+
+
+
