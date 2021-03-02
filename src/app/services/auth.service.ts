@@ -13,7 +13,7 @@ export class AuthService {
 
     isAuth$ = new BehaviorSubject<boolean>(true);
     isAdmin$ = new BehaviorSubject<boolean>(false);
-    userName$ = new BehaviorSubject<string>('Tof'); /*'No one is connected'*/
+    userName$ = new BehaviorSubject<string>('Mag'); /*'No one is connected'*/
     headMessage$ = new BehaviorSubject<string>('');
     newPostSubject = new Subject();
     newCommentSubject = new Subject();

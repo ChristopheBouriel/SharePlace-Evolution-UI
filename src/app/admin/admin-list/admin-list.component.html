@@ -1,8 +1,9 @@
-<li *ngIf="!postId" [ngClass]="{'list-group-item': true}">
+<li *ngIf="!postId" [ngClass]="{'list-group-item': true
+                                }">
     <div class="notification-message">
         <div>
-            <p [ngStyle]="{color: ' rgb(82, 105, 183)'}">Nouvelle publication <a (click)="onSeePublication()">
-            <span> {{title}}</span></a> par <span>{{postUserName}}</span></p>
+            <p [ngStyle]="{color: 'whitesmoke'}">Nouvelle publication <a (click)="onSeePublication()">
+            <span> {{title}}</span></a> par <span class="username">{{postUserName}}</span></p>
         </div>
     </div>   
 </li>
@@ -10,7 +11,7 @@
 <li *ngIf="postId" [ngClass]="{'list-group-item': true, 'warning': true }">
     <div class="notification-message">
         <div>
-            <p [ngStyle]="{color: ' rgb(82, 105, 183)'}">Nouveau commentaire par {{commentUserName}} sur la publication <a (click)="onSeePublicationCom()">
+            <p [ngStyle]="{color: 'whitesmoke'}">Nouveau commentaire par <span class="username">{{commentUserName}}</span> sur la publication <a (click)="onSeePublicationCom()">
             <span>{{titlePost}}</span></a></p>
         </div>        
     </div>   

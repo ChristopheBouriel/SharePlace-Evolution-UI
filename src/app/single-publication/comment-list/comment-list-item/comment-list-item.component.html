@@ -33,8 +33,8 @@
         </form>
         
         <div *ngIf="moderator">
-            <button *ngIf="!commentModerated && !isAuthor" mat-raised-button color="accent" class="mod mr-2 mb-2" (click)="onModerate()"><span>Modérer</span></button>
-            <button *ngIf="commentModerated && !isAuthor" mat-stroked-button color="accent" class="mod mb-2" (click)="onModerate()"><span>Rétablir</span></button>
+            <button *ngIf="!commentModerated && !isAuthor" mat-raised-button color="warn" class="mod mr-2 mb-2" (click)="onModerate()"><span>Modérer</span></button>
+            <button *ngIf="commentModerated && !isAuthor" mat-stroked-button class="modr mb-2" (click)="onModerate()"><span>Rétablir</span></button>
         </div>
 
         <button mat-raised-button class="mr-2" (click)="onWantDelete()" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>

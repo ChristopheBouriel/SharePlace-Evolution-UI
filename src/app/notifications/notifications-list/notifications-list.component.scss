@@ -1,7 +1,11 @@
+@import '../../colors.scss';
+
 .warning {
     border-color: lightcoral;
+    
     span {
         color: lightcoral;
+        font-weight: bold;
     }
 }
 
@@ -9,11 +13,17 @@ p {
     color: white;
 }
 
-span {
-    font-weight: bold;
-    color: rgb(104, 30, 241);
+.comNotif {
+    border-color: $btn-main;
+    span {
+        font-weight: bold;
+        color: $post-bg;
+    }
 }
 
-.notification-message-mod {
-    background-color: rgb(3,3,3);
+.warning, .comNotif {
+    border-radius: 10px;
+    background-color: black;
+    margin-bottom: 10px;
+
 }

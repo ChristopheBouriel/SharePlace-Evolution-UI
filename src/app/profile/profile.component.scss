@@ -1,7 +1,7 @@
 @import '../colors';
 
 .search {    
-    padding:10px;    
+    margin:20px;    
     background-color: $post-bg;
     border-radius: 10px;
     button {
@@ -32,6 +32,10 @@
     }*/
 }
 
+#search-tool {
+    margin: 0px 5px;
+}
+
 #search-window {   
     padding: 5px 10px 5px 10px;   
     border: solid 2px $btn-main;
@@ -46,13 +50,20 @@
 }
 
 .controls {
+    margin-top: 20px;
     button {
         font-size: 0.75rem;
         color: whitesmoke;
         background-color: $btn-main;
+        border-radius: 50%;
+        padding: 10px;
     }
     button:hover {
         background-color: $grey-black;
+    }
+    img {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -119,5 +130,9 @@ button {
     color: whitesmoke;  
 }
 
-
+.back-to-post button {
+    background-color: $post-bg;
+    color: $grey-black;
+    font-weight: bold;
+}
 

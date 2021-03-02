@@ -1,4 +1,19 @@
+@import '../../colors.scss';
+
 span {
     font-weight: bold;
-    color: rgb(104, 30, 241);
+    color: $btn-main;
 }
+
+span.username {
+    color: $prof-link;
+    font-weight: bold;
+}
+
+.list-group-item {
+    background-color: black;
+    border: solid 1px $btn-main;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+

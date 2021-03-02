@@ -40,8 +40,8 @@
         </form>
         <br/>
         <div *ngIf="moderator" class="row">
-          <button *ngIf="!moderated && !isAuthor" mat-raised-button color="accent" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Modérer</span></button>
-          <button *ngIf="moderated && !isAuthor" mat-stroked-button color="accent" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Rétablir</span></button> 
+          <button *ngIf="!moderated && !isAuthor" mat-raised-button color="warn" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Modérer</span></button>
+          <button *ngIf="moderated && !isAuthor" mat-stroked-button  class="modr col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Rétablir</span></button> 
         </div>
         <div *ngIf=!modifying  class="post-buttons row no-gutters col-8 col-sm-6 mx-auto">
         <!--  <div>-->

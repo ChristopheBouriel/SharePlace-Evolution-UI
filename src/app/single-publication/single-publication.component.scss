@@ -97,8 +97,14 @@ form {
     }
 }
 
+.modr {
+    border: black solid 1px;
+    span {color: black;}
+}
+
 .mod span {
     color: black;
+    font-style: normal;
 }
 
 .profilePic {
