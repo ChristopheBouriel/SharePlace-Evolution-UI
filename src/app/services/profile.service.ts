@@ -116,7 +116,7 @@ export class ProfileService {
   });
     }
 
-    loadPicture(userName: string, image: File) {
+  loadPicture(userName: string, image: File) {
       return new Promise((resolve, reject) => {
         const formData = new FormData();
         formData.append('datas', JSON.stringify({"userName":userName}));
@@ -131,5 +131,21 @@ export class ProfileService {
     }
   );
   });
-  }    
+  }  
+  
+  deletePicture(userName: string) {
+    return new Promise((resolve, reject) => {
+      this.httpClient.put('http://localhost:3000/api/profiles/picture/delete', {userName: userName}).subscribe(
+  (response :{message: string }
+    ) => {
+    resolve(response.message);
+  },
+  (error) => {
+    reject(error.error);
+  }
+);
+});
+}  
 }
+
+

@@ -31,12 +31,12 @@
               <textarea pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!;?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication"></textarea>
             </div>
             <p class="my-2" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</p>
-            <button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()">Envoyer</button>
-            <button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
-            <button *ngIf="!confirm" class="mr-2" (click)="onWantDelete()">Effacer</button>
+            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()">Envoyer</button>
+            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
+            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onWantDelete()">Effacer</button>
             <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication</p>
-            <button *ngIf="confirm" class="mr-2" (click)="onCancelDelete()">Annuler</button>
-            <button *ngIf="confirm" (click)="onDelete()">Effacer</button>        
+            <button mat-raised-button *ngIf="confirm" class="mr-2" (click)="onCancelDelete()">Annuler</button>
+            <button mat-raised-button *ngIf="confirm" (click)="onDelete()">Effacer</button>        
         </form>
         <br/>
         <div *ngIf="moderator" class="row">

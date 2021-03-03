@@ -21,7 +21,8 @@ label {
         width: 160px;
         height: 160px;
         border-radius: 50%;
-        border: solid 1px $btn-main;        
+        border: solid 1px $btn-main;
+        background-color: black;        
     }
     button {
         background-color: $btn-main;
@@ -31,12 +32,18 @@ label {
         width: 30px;
         height: 30px; 
         border: none;
+        background-color: $btn-main;
         }       
     }
     button:hover {
         background-color: $grey-black;
     }
     
+}
+
+.ctrlPic {
+    display: flex;
+    justify-content: center;
 }
 
 .infosForm {

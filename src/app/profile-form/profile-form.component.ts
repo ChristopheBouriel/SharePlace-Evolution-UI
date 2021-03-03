@@ -19,6 +19,7 @@ export class ProfileFormComponent implements OnInit {
   profile: Profile;
   errorMsg: string;
   pictureChanged: boolean = false;
+  pictureDeleted: boolean = false;
   imagePreview: string;
   newProfile: boolean = true;
 
@@ -55,6 +56,12 @@ export class ProfileFormComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngDoCheck() {
+    if (this.pictureDeleted === true) {
+      this.imagePreview = 'http://localhost:3000/images/default.png';
+    }
   }
 
   initEmptyForm() {
@@ -97,9 +104,25 @@ export class ProfileFormComponent implements OnInit {
   onLoadPic() {
     this.profileService.loadPicture(this.profile.userName, this.pictureForm.get('image').value).then(
       (response: { message: string }) => {
-        console.log(response.message);
         this.loading = false;
         this.pictureChanged = false;
+      }
+    ).catch(
+      (error) => {
+        console.error(error);
+        this.loading = false;
+        this.errorMsg = error.message;
+      }
+    )
+  }
+
+  onDeletePic() {
+    console.log(this.profile.userName)
+    this.profileService.deletePicture(this.profile.userName).then(
+      (response: { message: string }) => {
+        this.loading = false;
+        this.pictureDeleted = true;
+        
       }
     ).catch(
       (error) => {
