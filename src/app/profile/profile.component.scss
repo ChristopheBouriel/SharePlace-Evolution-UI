@@ -21,15 +21,6 @@
         font-weight: 600;
         color: $grey-black;    
     }
-    /*button {
-        background-color: $btn-main;
-        font-size: 1.5rem;            
-        border-radius: 3px;
-        color: whitesmoke;
-        font-weight: 500;
-        height: 55px;
-        margin-bottom: 15px;
-    }*/
 }
 
 #search-tool {
@@ -71,7 +62,7 @@
     background-color: $grey-black;
     border: solid 2px $post-bg;
     border-radius: 10px;
-    div {
+    .profilePic, #zero, #first, #second, #aboutMe {
         font-weight: 600;
         white-space: pre-line;
         border-radius: 5px;
@@ -79,8 +70,9 @@
         padding: 10px; 
         color: whitesmoke;
         background-color: black;
-        border: solid 1px $btn-main;       
+        border: solid 1px $post-bg;               
     }
+    
     span {
         font-weight: initial;
         color: whitesmoke;
@@ -106,6 +98,11 @@
             background-color: $grey-black;
             border: none;
         }
+        button {
+            background-color: $post-bg;
+            border-radius: 5px;
+            padding: 5px 30px;
+        }
 }
 
 .profilePic {
@@ -116,7 +113,9 @@
         border-radius: 50%;
         border: solid 2px $post-bg;
         margin: auto;
+        background-color: black;
     }
+    
 }
 
 h2 {
@@ -130,9 +129,4 @@ button {
     color: whitesmoke;  
 }
 
-.back-to-post button {
-    background-color: $post-bg;
-    color: $grey-black;
-    font-weight: bold;
-}
 

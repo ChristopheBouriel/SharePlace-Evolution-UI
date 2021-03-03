@@ -11,9 +11,9 @@ import { Profile, ShortProfile } from '../models/profile';
 
 export class AuthService {
 
-    isAuth$ = new BehaviorSubject<boolean>(true);
+    isAuth$ = new BehaviorSubject<boolean>(false);
     isAdmin$ = new BehaviorSubject<boolean>(false);
-    userName$ = new BehaviorSubject<string>('Mag'); /*'No one is connected'*/
+    userName$ = new BehaviorSubject<string>('No one is connected');
     headMessage$ = new BehaviorSubject<string>('');
     newPostSubject = new Subject();
     newCommentSubject = new Subject();

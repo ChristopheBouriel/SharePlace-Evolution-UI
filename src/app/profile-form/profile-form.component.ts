@@ -92,7 +92,6 @@ export class ProfileFormComponent implements OnInit {
       this.imagePreview = this.profile.imageUrl;
       this.newProfile = false;
     }
-    
   }
 
   onLoadPic() {

@@ -3,13 +3,13 @@
     <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
     <form [formGroup]="pictureForm" *ngIf="!loading">
-      <div class="form-group profilePic">          
+        <div class="form-group profilePic">          
             <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
             <img [src]="imagePreview" *ngIf="imagePreview">          
             <button  *ngIf="!newProfile && imagePreview!=='http://localhost:3000/images/default.png'" (click)="imageInput.click()"><img src="./assets/images/change-icon.png"></button>
             <button  *ngIf="pictureChanged" (click)="onLoadPic()"><img src="./assets/images/check-icon.png"></button>         
-            <button  *ngIf="!newProfile && imagePreview==='http://localhost:3000/images/default.png'" (click)="imageInput.click()">Ajouter</button>            
-          </div>
+            <button  *ngIf="!newProfile && imagePreview==='http://localhost:3000/images/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png"></button>            
+        </div>
     </form>
     <form [formGroup]="profileForm" *ngIf="!loading" class="infosForm">
         <div class="form-group">

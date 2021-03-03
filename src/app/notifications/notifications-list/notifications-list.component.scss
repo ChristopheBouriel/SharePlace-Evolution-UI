@@ -1,8 +1,8 @@
 @import '../../colors.scss';
 
 .warning {
-    border-color: lightcoral;
     
+    border: solid 2px lightcoral;    
     span {
         color: lightcoral;
         font-weight: bold;
@@ -13,17 +13,17 @@ p {
     color: white;
 }
 
-.comNotif {
-    border-color: $btn-main;
+.commented {
+    border: solid 2px $btn-main;
     span {
         font-weight: bold;
         color: $post-bg;
     }
 }
 
-.warning, .comNotif {
+.warning, .commented {
     border-radius: 10px;
     background-color: black;
     margin-bottom: 10px;
-
+    
 }

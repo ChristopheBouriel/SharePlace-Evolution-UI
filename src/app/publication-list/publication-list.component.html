@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-xs-10 col-lg-8 mx-auto">
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
-    <div class="top row">
-        <h2 class="text-center align-self-center col-8 mb-2 mx-auto">Les dernières publications</h2>
-        <button class="col-3 ml-1 text-center align-self-center mx-auto" *ngIf="!posting" (click)="onWantPost()">Publier</button>
+    <div class="top row mx-1 mx-sm-0">
+        <h2 class="text-center align-self-center col-8 mb-2 mx-auto d-none d-sm-block">Les dernières publications</h2>
+        <button class="col-12 col-sm-3 ml-1 text-center align-self-center mx-auto" *ngIf="!posting" (click)="onWantPost()">Publier</button>
     </div>
 
   <!--  <div class="row">

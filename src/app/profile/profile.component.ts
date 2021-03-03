@@ -150,6 +150,7 @@ export class ProfileComponent implements OnInit {
     if(check) {
       this.profileService.getProfileByUserName(inputUserName);
       this.searching = false;
+      this.isMine = false;
     } else {
       this.noUser = 'Utilisateur inconnu';
     }

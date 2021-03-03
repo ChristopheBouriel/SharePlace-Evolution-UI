@@ -6,6 +6,16 @@
             <div class="profilePic mt-3" *ngIf="profile?.imageUrl">
                 <img [src]="profile?.imageUrl">
             </div>
+            <div class="controls">
+                <div class="row no-gutters col-12 mx-auto" *ngIf="isMine && !searching">
+                    <div class="col-6 mx-auto text-left">
+                        <button routerLink="modify"><img src="./assets/images/write-icon.png"></button>
+                    </div>
+                    <div class="col-6 mx-auto text-right">
+                        <button routerLink="settings"><img src="./assets/images/settings-icon.png"></button>
+                    </div>                
+                </div>
+            </div>
             <div id="zero"><p>Nom d'utilisateur : <span>{{profile?.userName}}</span></p></div>
             <div id="first">
                 <p>Prénom : <span>{{profile?.firstname}}</span></p>
@@ -18,33 +28,24 @@
             <div id="aboutMe" *ngIf="aboutMe">
                 <p>A propos de moi : </p>
                 <p><span>{{aboutMe}}</span></p>
-            </div>
-        </div>
-        
-        <div class="row controls">
-            <div class="row col-xs-12 col-sm-6 mx-auto">
-                <div class="col-6 mx-auto my-1 text-center">
+            </div>            
+        </div>        
+        <div class="controls">            
+            <div class="row no-gutters col-12 mx-auto">
+                <div class="col-4 mx-auto my-1 text-left">
                     <button *ngIf="!searching" routerLink="/publications"><img src="./assets/images/list-icon.png"></button>
                 </div>
-                <div class="col-6 mx-auto my-1 text-center">
+                <div class="col-4 mx-auto my-1 text-center">
+            <button  *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}"><img src="./assets/images/back-icon.png"></button>
+        </div>
+                <div class="col-4 mx-auto my-1 text-right">
                     <button *ngIf="!searching" (click)="onGetList()"><img src="./assets/images/search-icon.png"></button>
                 </div>
-            </div>
-            <div class="row col-12 col-sm-6 mx-auto">
-                <div class="col-12 col-sm-5 mx-auto my-1 text-center">
-                    <button *ngIf="isMine && !searching" routerLink="modify"><img src="./assets/images/write-icon.png"></button>
-                </div>
-                <div class="col-12 col-sm-5 mx-auto my-1 text-center">
-                    <button *ngIf="isMine && !searching" routerLink="settings"><img src="./assets/images/settings-icon.png"></button>
-                </div>                
-            </div>
+            </div>            
         </div>
-        <div class="back-to-post row">
-            <button class="col-10 mx-auto text-center" *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}">Retour publication</button>
-        </div>
+        
         <br/>
         <br/>
-
         <div *ngIf="!searching">
             <h2 class="text-center" *ngIf="publications?.length">Publications</h2>
             <ul class="list-group">
