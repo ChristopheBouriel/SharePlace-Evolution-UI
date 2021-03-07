@@ -7,11 +7,11 @@
             <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
             <img [src]="imagePreview" *ngIf="imagePreview">
             <div class="ctrlPic row col-5 mx-auto">         
-              <button  *ngIf="!newProfile && imagePreview!=='http://localhost:3000/images/default.png'" (click)="imageInput.click()"><img src="./assets/images/change-icon.png"></button>
-              <button  *ngIf="!newProfile && imagePreview!=='http://localhost:3000/images/default.png'" (click)="onDeletePic()"><img src="./assets/images/delete-icon.png"></button>            
+              <button  *ngIf="!newProfile && imagePreview!=='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/change-icon.png"></button>
+              <button  *ngIf="!newProfile && !pictureChanged && imagePreview!=='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="onDeletePic()"><img src="./assets/images/delete-icon.png"></button>            
               <button  *ngIf="pictureChanged" (click)="onLoadPic()"><img src="./assets/images/check-icon.png"></button>         
             </div>
-            <button  *ngIf="!newProfile && imagePreview==='http://localhost:3000/images/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png"></button>            
+            <button  *ngIf="!newProfile && imagePreview==='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png"></button>            
         </div>
     </form>
     <form [formGroup]="profileForm" *ngIf="!loading" class="infosForm">

@@ -60,7 +60,8 @@ export class ProfileFormComponent implements OnInit {
 
   ngDoCheck() {
     if (this.pictureDeleted === true) {
-      this.imagePreview = 'http://localhost:3000/images/default.png';
+      this.imagePreview = 'https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png';
+      this.pictureDeleted = false;
     }
   }
 
