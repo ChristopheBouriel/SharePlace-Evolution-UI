@@ -21,17 +21,27 @@
         <div *ngIf=!modifying  class="publication-view">
             <p>{{content}}</p>
         </div>
+
         <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
             <div class="form-group">
-                <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" formControlName="title">
+              <label for="title">Titre</label>
+              <input type="text" class="form-control" id="title" formControlName="title">
             </div>
+            <div *ngIf="modifyForm.get('title').errors && (modifyForm.get('title').touched || modifyForm.get('title').dirty)">          
+              <p class="text-danger" *ngIf="modifyForm.get('title').errors?.required">A title is required</p>
+              <p class="text-danger" *ngIf="modifyForm.get('title').errors?.maxlength">The title must be at max 100 characters</p>
+              <p class="text-danger" *ngIf="modifyForm.get('title').errors?.pattern">Title must start with a capital, contain only letters, numbers and the following symbols : !?:(),.'"-</p>
+            </div>  
             <div class="form-group mt-3">
               <label for="publication">Publication</label>
-              <textarea pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!;?:(),\.\'-]{0,4000}" class="form-control" id="publication" formControlName="publication"></textarea>
+              <textarea class="form-control" id="publication" formControlName="publication"></textarea>
             </div>
-            <p class="my-2" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi ou un champ est vide</p>
-            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()">Envoyer</button>
+            <div *ngIf="modifyForm.get('publication').errors && (modifyForm.get('publication').touched || modifyForm.get('publication').dirty)">
+              <p class="text-danger" *ngIf="modifyForm.get('publication').errors?.required">A content is required</p>
+              <p class="text-danger" *ngIf="modifyForm.get('publication').errors?.maxlength">Publication must be at max 4000 characters long</p>
+              <p class="text-danger" *ngIf="modifyForm.get('publication').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+            </div>
+            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()" [disabled]="modifyForm.invalid">Envoyer</button>
             <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
             <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onWantDelete()">Effacer</button>
             <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication</p>

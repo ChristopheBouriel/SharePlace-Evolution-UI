@@ -14,26 +14,53 @@
             <button  *ngIf="!newProfile && imagePreview==='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png"></button>            
         </div>
     </form>
+    <p class="text-danger">* Les champs avec une astérisque sont obligatoires</p>
     <form [formGroup]="profileForm" *ngIf="!loading" class="infosForm">
         <div class="form-group">
-            <label for="firstname">Prénom</label>
+            <label for="firstname">Prénom*</label>
             <input type="text" class="form-control" id="firstname" formControlName="firstname">
-        </div>
+            <div *ngIf="profileForm.get('firstname').errors ">          
+              <p class="text-danger mt-1" *ngIf="profileForm.get('firstname').errors?.maxlength">Firstname must be at max 40 characters</p>
+              <p class="text-danger mt-1" *ngIf="profileForm.get('firstname').errors?.pattern">Firstname must start with a capital and contain only letters, numbers, hyphens and single quotes</p>
+            </div>
+          </div>
         <div class="form-group">
-            <label for="lastname">Nom</label>
+            <label for="lastname">Nom*</label>
             <input type="text" class="form-control" id="lastname" formControlName="lastname">
-        </div>
+            <div *ngIf="profileForm.get('lastname').errors ">          
+              <p class="text-danger mt-1" *ngIf="profileForm.get('lastname').errors?.maxlength">Lastname must be at max 40 characters</p>
+              <p class="text-danger mt-1" *ngIf="profileForm.get('lastname').errors?.pattern">Lastname must start with a capital and contain only letters, numbers, hyphens and single quotes</p>
+            </div>
+          </div>
         <div class="form-group" *ngIf="!editMode">
-          <label for="username">Nom d'utilisateur</label>
+          <label for="username">Nom d'utilisateur*</label>
           <input type="text" class="form-control" id="username" formControlName="username">
+          <div *ngIf="profileForm.get('username').errors ">          
+            <p class="text-danger mt-1" *ngIf="profileForm.get('username').errors?.maxlength">Username must be at max 40 characters</p>
+            <p class="text-danger mt-1" *ngIf="profileForm.get('username').errors?.pattern">Username must contain only letters, numbers, hyphens and single quotes</p>
+          </div>
         </div>
         <div class="form-group" *ngIf="!editMode">
-          <label for="password">Mot de passe</label>
+          <label for="password">Mot de passe*</label>
           <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="profileForm.get('password').errors">         
+            <p class="text-danger mt-1" *ngIf="profileForm.get('password').errors?.pattern">Password must contain at least one capital, one lowercase, one number, one special character and be at least 8 characters long</p>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="!editMode && !profileForm.get('password').errors">
+          <label for="password2">Répeter le mot de passe*</label>
+          <input type="password" class="form-control" id="password2" formControlName="password2" pattern="{{ profileForm.get('password').value }}">
+          <div *ngIf="profileForm.get('password2').errors ">         
+            <p class="text-danger mt-1" *ngIf="profileForm.get('password2').errors?.pattern">Password doesn't match</p>
+          </div>
         </div>
         <div class="form-group">
-            <label for="department">Service</label>
+            <label for="department">Service*</label>
             <input type="text" class="form-control" id="department" formControlName="department">
+            <div *ngIf="profileForm.get('department').errors ">          
+              <p class="text-danger mt-1" *ngIf="profileForm.get('department').errors?.maxlength">Department name must be at max 30 characters</p>
+              <p class="text-danger mt-1" *ngIf="profileForm.get('department').errors?.pattern">Department name must start with a capital and contain only letters, numbers, hyphens and single quotes</p>
+            </div>
         </div>
         <div class="form-group">
           <label for="email">E-mail</label>

@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PublicationService} from '../services/publication.service';
 import { AuthService } from '../services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { forbiddenCharactersValidator } from './../input-validators';
 @Component({
   selector: 'app-publication-list',
   templateUrl: './publication-list.component.html',
@@ -31,8 +32,9 @@ export class PublicationListComponent implements OnInit {
     );
     this.publicationService.getAllPublications();
     this.publicationForm = this.formBuilder.group({
-      title: [null],
-      publication: [null]
+      title: new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \x22!?:(),\.\'-]*$')]),
+      publication: new FormControl(null, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)]),
+        
     });
   }
 

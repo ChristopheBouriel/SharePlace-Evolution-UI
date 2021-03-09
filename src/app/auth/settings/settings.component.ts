@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
 import { AuthService } from '../../services/auth.service';
 import { Profile } from '../../models/profile';
@@ -45,11 +45,12 @@ export class SettingsComponent implements OnInit {
       )
 
       this.passwordForm = this.formBuilder.group({
-            newPassword: [null, Validators.required],
+            newPassword: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
+            password2: new FormControl(null, [Validators.required]),
           });
 
       this.userNameForm = this.formBuilder.group({
-            newUserName: [null, Validators.required],
+            newUserName: new FormControl(null, [Validators.required, Validators.maxLength(40), Validators.pattern('^[a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
           });
 
       this.notChanging = true;

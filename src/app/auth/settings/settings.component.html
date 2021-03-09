@@ -1,12 +1,14 @@
 <div class="row">
+  <p class="text-danger col-6 mx-auto text-center" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>
+
+<div class="row">  
   <div class="frame col-10 col-md-8 py-3 mx-auto">
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
-    <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
-
     <div *ngIf="notChanging === true" class="row"> 
-    <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangePassword()">Changer le mot de passe</button>
-    <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangeUserName()">Changer le nom d'utilisateur</button>
-    <button class="col-8 col-md-7 mx-auto my-3" (click)="onWantToDelete()">Se désinscrire</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangePassword()">Changer le mot de passe</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangeUserName()">Changer le nom d'utilisateur</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="onWantToDelete()">Se désinscrire</button>
     </div>
     <div *ngIf="makeSure" class="col-12 col-md-8 text-center mx-auto my-3">
       <p>Voulez-vous vraiment vous désinscrire ?</p>
@@ -14,14 +16,22 @@
       <button mat-raised-button class="px-4" (click)="onCancel()">Annuler</button>
     </div>
 
-
     <form [formGroup]="passwordForm" *ngIf="modPass"  class="col-11 mx-auto my-3">
         <div class="form-group text-center">
           <label for="newPassword">Saisissez votre mot de passe</label>
           <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+          <div *ngIf="passwordForm.get('newPassword').errors ">
+            <p class="text-danger mt-1" *ngIf="passwordForm.get('newPassword').errors?.pattern">Password must contain at least one capital, one lowercase, one number, one special character and be at least 8 characters long</p>
+          </div>
         </div>
-        
-        <button class="text-left" mat-raised-button class="mr-2" (click)="onModifyPassword()">Valider</button>
+        <div class="form-group" *ngIf="!editMode && !passwordForm.get('newPassword').errors">
+          <label for="password2">Répeter le mot de passe*</label>
+          <input type="password" class="form-control" id="password2" formControlName="password2" pattern="{{ passwordForm.get('newPassword').value }}">
+          <div *ngIf="passwordForm.get('password2').errors ">         
+            <p class="text-danger mt-1" *ngIf="passwordForm.get('password2').errors?.pattern">Password doesn't match</p>
+          </div>
+        </div>
+        <button class="text-left" mat-raised-button class="mr-2" (click)="onModifyPassword()" [disabled]="passwordForm.invalid">Valider</button>
         <button class="text-right" mat-raised-button (click)="onCancel()">Annuler</button>
     </form>
 
@@ -29,8 +39,12 @@
         <div class="form-group text-center">
           <label for="newUserName">Saisissez votre nom d'utilisateur</label>
           <input type="text" class="form-control" id="newUserName" formControlName="newUserName">
+          <div *ngIf="userNameForm.get('newUserName').errors ">          
+            <p class="text-danger mt-1" *ngIf="userNameForm.get('newUserName').errors?.maxlength">Username must be at max 40 characters</p>
+            <p class="text-danger mt-1" *ngIf="userNameForm.get('newUserName').errors?.pattern">Username must contain only letters, numbers, hyphens and single quotes</p>
+          </div>
         </div>        
-        <button mat-raised-button class="mr-2" (click)="onModifyUserName()">Valider</button>
+        <button mat-raised-button class="mr-2" (click)="onModifyUserName()" [disabled]="userNameForm.invalid">Valider</button>
         <button mat-raised-button (click)="onCancel()">Annuler</button>
     </form>
   </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
@@ -67,18 +67,19 @@ export class ProfileFormComponent implements OnInit {
 
   initEmptyForm() {
     this.profileForm = this.formBuilder.group({
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      username: [null, Validators.required],
-      password: [null, Validators.required],
-      department: [null, Validators.required],
-      /*image: [null, Validators.required],*/
+      firstname: new FormControl(null, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
+      lastname: new FormControl(null, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
+      username: new FormControl(null, [Validators.required, Validators.maxLength(40), Validators.pattern('^[a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),      
+      password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
+      password2: new FormControl(null, [Validators.required]),
+      department: new FormControl(null, [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
       email: [''],
       aboutMe: [''],
     });
   }
-
+  
   initModifyForm(profile) {
+    this.loading = true;
     this.profileForm = this.formBuilder.group({
       firstname: [profile.firstname, Validators.required],
       lastname: [profile.lastname, Validators.required],
@@ -88,8 +89,7 @@ export class ProfileFormComponent implements OnInit {
       email: [profile.email],
       aboutMe: [profile.aboutMe],
     });
-    this.loading = false;
-    
+    this.loading = false;    
   }
 
   initPicForm() {
@@ -137,6 +137,7 @@ export class ProfileFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
+
     const newUser = new Profile();
     newUser.firstname = this.profileForm.get('firstname').value;
     newUser.lastname = this.profileForm.get('lastname').value;

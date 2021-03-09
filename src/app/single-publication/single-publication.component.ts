@@ -3,11 +3,11 @@ import { PublicationService} from '../services/publication.service';
 import { ActivatedRoute } from '@angular/router';
 import { Publication } from '../models/publication';
 import { CommentService } from '../services/comment.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
-
+import { forbiddenCharactersValidator } from './../input-validators';
 @Component({
   selector: 'app-single-publication',
   templateUrl: './single-publication.component.html',
@@ -64,9 +64,9 @@ export class SinglePublicationComponent implements OnInit {
         this.initialTitle = response[0].title.replace(/&µ/gi,'\"');
         this.initialContent = response[0].content.replace(/&µ/gi,'\"');
         this.modifyForm = this.formBuilder.group({
-          title: [this.initialTitle, Validators.required],
-          publication: [this.initialContent, Validators.required],
-        });
+          title: new FormControl(this.initialTitle, [Validators.required, Validators.maxLength(100), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \x22!?:(),\.\'-]*$')]),
+          publication: new FormControl(this.initialContent, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)]),
+        }); //I could have used Validators.pattern but I wanted to practice with a custom validator (see input-validator.ts)
         if (this.isAuthor === true) {
           const username = this.authService.getUserName();
           const viewed = 1;
@@ -74,6 +74,9 @@ export class SinglePublicationComponent implements OnInit {
           }
       }
     );
+
+    
+
     this.authService.isAdmin$.subscribe(
       (isAdmin) => {
         this.moderator = isAdmin;
@@ -94,6 +97,7 @@ export class SinglePublicationComponent implements OnInit {
 
     this.loading = false;
   }
+
 
   //onLike() {
   //  if(this.likes === false) {

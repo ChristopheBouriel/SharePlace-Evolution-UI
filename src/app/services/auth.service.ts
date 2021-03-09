@@ -118,7 +118,7 @@ export class AuthService {
     modifyPassword(password: string, userName: string) {
       return new Promise((resolve, reject) => {
         this.httpClient.put('http://localhost:3000/api/auth/changeP', {
-          userPassword: password,
+          password: password,
           userName: userName          
       }).subscribe(
           (response :{message: string }) => {
