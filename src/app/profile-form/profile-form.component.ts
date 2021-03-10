@@ -5,6 +5,8 @@ import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
 
+import { forbiddenCharactersValidator } from './../input-validators';
+import { emailValidator } from './../input-validators';
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
@@ -73,19 +75,20 @@ export class ProfileFormComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
       password2: new FormControl(null, [Validators.required]),
       department: new FormControl(null, [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
-      email: [''],
-      aboutMe: [''],
+      email: new FormControl('', [emailValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g)]),
+      aboutMe: new FormControl('', [Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)]),
     });
   }
   
   initModifyForm(profile) {
     this.loading = true;
     this.profileForm = this.formBuilder.group({
-      firstname: [profile.firstname, Validators.required],
-      lastname: [profile.lastname, Validators.required],
-      username: [profile.userName, Validators.required],
+      firstname: new FormControl(profile.firstname, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
+      lastname: new FormControl(profile.lastname, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
+      username: [profile.userName],
       password: [null],
-      department: [profile.serviceName, Validators.required],
+      department: new FormControl(profile.serviceName, [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
+      
       email: [profile.email],
       aboutMe: [profile.aboutMe],
     });
@@ -175,7 +178,7 @@ export class ProfileFormComponent implements OnInit {
       }
     );
     } else if (this.editMode === true) {
-      console.log(newUser)
+      
       this.profileService.modifyProfile(newUser).then(
           (response) => {
             this.loading = false;

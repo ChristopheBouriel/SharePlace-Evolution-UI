@@ -84,7 +84,7 @@ export class SinglePublicationComponent implements OnInit {
     )
 
     this.commentForm = this.formBuilder.group({
-      comment: [null] 
+      comment: new FormControl (null, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])   
     });
 
     this.publicationService.fromListSubject.subscribe(

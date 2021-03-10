@@ -2,9 +2,6 @@
                 'list-com': true}"
 *ngIf="!deleted" class="col-11 mx-auto my-0">
     <div class="comment row">
-
-    
-
         <div class="profilePic col-2 pt-0" >
             <img [src]="commentImageUrl">
         </div>
@@ -24,10 +21,14 @@
         <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
             <div class="form-group">
                 <label for="comment">Modifier</label>
-                <textarea  pattern="[A-Z\u00C0-\u00D6\u00D8-\u00DF]{0,1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\n \x22!?:(),\.\'-]{0,4000}" class="form-control" id="comment" formControlName="comment"></textarea>
+                <textarea class="form-control" id="comment" formControlName="comment"></textarea>
+                <div *ngIf="modifyForm.get('comment').errors && (modifyForm.get('comment').touched || modifyForm.get('comment').dirty)">
+                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.required">A content is required</p>
+                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.maxlength">Comment must be at max 4000 characters long</p>
+                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+                </div>
             </div>
             <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
-            <p class="my-2 text-danger" *ngIf="modifyForm.invalid">Un caractère non autorisé a été saisi</p>
             <button mat-raised-button class="mr-2" [disabled]="modifyForm.invalid" (click)="onMakeModif()">Envoyer</button>
             <button mat-raised-button (click)="onCancelModif()">Annuler</button>
         </form>

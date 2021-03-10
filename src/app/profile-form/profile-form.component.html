@@ -1,6 +1,8 @@
 <div class="row">
+  <p class="text-danger col-6 mx-auto text-center" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>
+<div class="row">
   <div class="col-xs-10 col-md-8 mx-auto">
-    <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
     <form [formGroup]="pictureForm" *ngIf="!loading">
         <div class="form-group profilePic">          
@@ -23,7 +25,7 @@
               <p class="text-danger mt-1" *ngIf="profileForm.get('firstname').errors?.maxlength">Firstname must be at max 40 characters</p>
               <p class="text-danger mt-1" *ngIf="profileForm.get('firstname').errors?.pattern">Firstname must start with a capital and contain only letters, numbers, hyphens and single quotes</p>
             </div>
-          </div>
+        </div>
         <div class="form-group">
             <label for="lastname">Nom*</label>
             <input type="text" class="form-control" id="lastname" formControlName="lastname">
@@ -65,10 +67,17 @@
         <div class="form-group">
           <label for="email">E-mail</label>
           <input type="email" class="form-control" id="email" formControlName="email" placeholder="Facultatif">
+          <div *ngIf="profileForm.get('email').errors && (profileForm.get('email').touched || profileForm.get('email').dirty)">
+            <p class="text-danger" *ngIf="profileForm.get('email').errors?.validEmail">Invalid email</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="aboutMe">A propos de moi</label>
           <textarea class="form-control" id="aboutMe" rows="3" formControlName="aboutMe" placeholder="Facultatif"></textarea>            
+          <div *ngIf="profileForm.get('aboutMe').errors && (profileForm.get('aboutMe').touched || profileForm.get('aboutMe').dirty)">
+            <p class="text-danger" *ngIf="profileForm.get('aboutMe').errors?.maxlength">Publication must be at max 4000 characters long</p>
+            <p class="text-danger" *ngIf="profileForm.get('aboutMe').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+          </div>
         </div>
         <button class="row mx-auto" [disabled]="profileForm.invalid" (click)="onSubmit()"><img src="./assets/images/check-icon.png"></button>    
     </form>

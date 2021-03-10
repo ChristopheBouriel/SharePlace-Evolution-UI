@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-10 col-lg-8 mx-auto">
-    <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
+    <mat-spinner style="margin:0 auto" *ngIf="loading"></mat-spinner>
     <div class="top row mx-1 mx-sm-0">
         <h2 class="text-center align-self-center col-8 mb-2 mx-auto d-none d-sm-block">Les dernières publications</h2>
         <button class="col-12 col-sm-3 ml-1 text-center align-self-center mx-auto" *ngIf="!posting" (click)="onWantPost()">Publier</button>
@@ -10,7 +10,9 @@
       <p class="text-center align-self-center col-7 mb-2 mx-auto">Liste des utilisateurs</p>
       <button mat-raised-button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
   </div>-->
-
+    <div class="row">
+      <p class="text-danger col-6 mx-auto text-center" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </div>
     <form [formGroup]="publicationForm" *ngIf="!loading && posting">
         <div class="form-group">
             <label for="title">Titre</label>

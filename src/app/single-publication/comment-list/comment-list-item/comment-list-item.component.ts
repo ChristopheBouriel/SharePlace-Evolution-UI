@@ -3,8 +3,9 @@ import { CommentService} from '../../../services/comment.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { PublicationService} from '../../../services/publication.service';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+import { forbiddenCharactersValidator } from './../../../input-validators';
 @Component({
   selector: 'app-comment-list-item',
   templateUrl: './comment-list-item.component.html',
@@ -49,7 +50,8 @@ export class CommentListItemComponent implements OnInit {
     const userName = this.authService.getUserName();
     if (this.commentUserName === userName) {this.isAuthor = true}
     this.modifyForm = this.formBuilder.group({
-      comment: [this.commentContent.replace(/&µ/gi,'\"')]});
+      comment: new FormControl (this.commentContent.replace(/&µ/gi,'\"'),[Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])
+      });
       this.initialComment = this.commentContent.replace(/&µ/gi,'\"'); 
       this.publicationService.fromPost = this.postId;
 
