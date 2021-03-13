@@ -5,7 +5,7 @@
     <div class="overview">
         
         <div class="profilePic pt-0" >
-            <img [src]="publicationImageUser">        
+            <img [src]="publicationImageUser" alt="profile picture {{publicationUserName}}">        
             <p>Par <a routerLink="/profile/{{publicationUserName}}" (click)="onSeeProfile()"><span>{{publicationUserName}}</span></a> le {{publicationDate | date: 'd LLLL yyyy'}}</p>
         </div>
         <h3 class="mb-3 text-center" [ngStyle]="{color: ' rgb(176, 94, 31)'}">{{title}}</h3>
@@ -16,7 +16,6 @@
         <p class="text-right">{{publicationNumberComments}} commentaires</p>
     </div>
     <div class="see-it" *ngIf="publicationModerated !== 1 || moderator">
-        <a [routerLink]="[id]" (click)="onSeePublication()"><img src="./assets/images/see-icon.png"></a>
-        
+        <a [routerLink]="[id]" (click)="onSeePublication()"><img src="./assets/images/see-icon.png" alt="see icon"></a>        
     </div>
 </li>

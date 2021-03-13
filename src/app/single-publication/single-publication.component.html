@@ -9,7 +9,7 @@
         <h2 [ngStyle]="{color: 'primary'}">{{title}}</h2>
         <div class="infos-post">
           <div class="profilePic pt-0" >
-            <img [src]="publication?.imageUrl">      
+            <img [src]="publication?.imageUrl" alt="profile picture">      
             <p>Par <span>{{publication?.userName}}</span></p>
           </div>
           <div class="infos-date">
@@ -56,11 +56,11 @@
         <div *ngIf=!modifying  class="post-buttons row no-gutters col-9 col-sm-6 mx-auto">
         <!--  <div>-->
         <!--  <button class="btn btn mb-1 mr-2" (click)="onLike()">Like it</button>--> 
-            <button class="" (click)="onWantComment()"><img src="./assets/images/comment-icon.png"></button>
+            <button (click)="onWantComment()"><img src="./assets/images/comment-icon.png" alt="comment icon"></button>
         <!--  <div>-->
-            <button class="" routerLink="/publications"><img src="./assets/images/back-icon.png"></button>
-            <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png"></button>
-            <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png"></button>        
+            <button routerLink="/publications"><img src="./assets/images/back-icon.png" alt="back icon"></button>
+            <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png" alt="profile icon"></button>
+            <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png" alt="edit icon"></button>        
         </div>
     </div>
 

@@ -88,8 +88,7 @@ export class ProfileFormComponent implements OnInit {
       username: [profile.userName],
       password: [null],
       department: new FormControl(profile.serviceName, [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
-      
-      email: [profile.email],
+      email:  new FormControl(profile.email, [emailValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g)]),
       aboutMe: [profile.aboutMe],
     });
     this.loading = false;    
