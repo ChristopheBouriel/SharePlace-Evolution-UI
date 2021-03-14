@@ -11,9 +11,9 @@ Le site a été déployé en utilisant les services cloud suivant : Netlify pou
 
 On peut également accéder au repository pour faire fonctionner l'application avec Docker en cliquant [ici](https://github.com/ChristopheBouriel/SharePlace-Evo-Docker). Toutes les informations sont dans le README, notamment les noms d'utilisateur et mots de passe pour se connecter sans avoir à créer de profil ou essayer le mode « Modérateur » – lors de la création du container MySQL, des données sont insérées pour permettre une démonstration immédiate.  
 
-Les fonctionnalités déjà implémentées sont détaillée dans ce document [wiki](../../wiki/SharePlace notice).
+Les fonctionnalités déjà implémentées sont détaillée dans le document **wiki** de ce repository.
 
-Liste prévisionnelle des ajouts à venir :
+**Liste prévisionnelle des ajouts à venir :**
 
 * implémentation d'une fonctionnalité "Like" pour les publications puis peut-être les commentaires
 * ancres lors du retour à la liste depuis une publication pour éviter de revenir au sommet
