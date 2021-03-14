@@ -36,12 +36,14 @@ https://portfolio-christophe-bouriel.netlify.app
 
 Ce repository concerne le front-end de l'application, développé avec [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5, et vous pouvez trouver le back-end développé avec Node.js et Express en suivant [ce lien](https://github.com/ChristopheBouriel/SharePlace-Evolution-API.git).  
 
-Pour le lancer sur votre ordinateur, après avoir démarré l'API mentionnée ci-dessus, suivez les instructions suivantes :
+Pour le lancer sur votre ordinateur, après avoir démarré l'API mentionnée ci-dessus, tapez les instructions suivantes dans votre terminal :
 1. Cloner le repository :  
 	`git clone https://github.com/ChristopheBouriel/SharePlace-Evolution-UI.git`
 2. Entrer dans le répertoire racine du projet :  
-	`cd SharePlace-Evolution-UI.git`
-3. Lancer le serveur Angular :  
+	`cd SharePlace-Evolution-UI`
+3. Installer le projet :  
+    `npm install`
+4. Lancer le serveur Angular :  
 	`ng serve`
 
 Vous pouvez alors vous rendre à l'adresse `http://localhost:4200/` sur votre navigateur.
