@@ -11,7 +11,7 @@ Le site a été déployé en utilisant les services cloud suivant : Netlify pou
 
 On peut également accéder au repository pour faire fonctionner l'application avec Docker en cliquant [ici](https://github.com/ChristopheBouriel/SharePlace-Evo-Docker). Toutes les informations sont dans le README, notamment les noms d'utilisateur et mots de passe pour se connecter sans avoir à créer de profil ou essayer le mode « Modérateur » – lors de la création du container MySQL, des données sont insérées pour permettre une démonstration immédiate.  
 
-Les fonctionnalités déjà implémentées sont détaillée dans ce document [wiki](https://github.com/ChristopheBouriel/SharePlace-Evolution-UI.wiki.git).
+Les fonctionnalités déjà implémentées sont détaillée dans ce document [wiki](../../wiki/SharePlace notice).
 
 Liste prévisionnelle des ajouts à venir :
 
@@ -33,14 +33,14 @@ https://portfolio-christophe-bouriel.netlify.app
 
 # Ce repository :
 
-Ce repository concerne le front-end de l'application, développé avec [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5, et vous pouvez trouver le back-end développé avec Node.js et Express en suivant « ce lien »  
+Ce repository concerne le front-end de l'application, développé avec [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5, et vous pouvez trouver le back-end développé avec Node.js et Express en suivant [ce lien](https://github.com/ChristopheBouriel/SharePlace-Evolution-API.git).  
 
 Pour le lancer sur votre ordinateur, après avoir démarré l'API mentionnée ci-dessus, suivez les instructions suivantes :
-1. Cloner le repository :
+1. Cloner le repository :  
 	`git clone https://github.com/ChristopheBouriel/SharePlace-Evolution-UI.git`
-2. Entrer dans le répertoire racine du projet :
+2. Entrer dans le répertoire racine du projet :  
 	`cd SharePlace-Evolution-UI.git`
-3. Lancer le serveur Angular
+3. Lancer le serveur Angular :  
 	`ng serve`
 
 Vous pouvez alors vous rendre à l'adresse `http://localhost:4200/` sur votre navigateur.
