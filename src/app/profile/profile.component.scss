@@ -28,12 +28,14 @@
 }
 
 #search-window {   
-    padding: 5px 10px 5px 10px;   
+    padding: 5px 10px;   
     border: solid 2px $btn-main;
     border-radius: 5px;
     font-size: 1rem;
     background-color: $grey-black;
-    color: whitesmoke;    
+    color: whitesmoke;
+    width: 95%;
+    height: 36px;    
 }
 
 .noUser {

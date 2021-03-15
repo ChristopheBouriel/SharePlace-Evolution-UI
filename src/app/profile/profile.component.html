@@ -74,16 +74,29 @@
             </div>
         </div>
         <br/>
-        <br/>
         <div class="users-list" *ngIf="searching">
-            <div id="search-tool" *ngIf="research">
-                <label for="search-window" *ngIf="!noUser">Entrer un nom d'utilisateur</label>
+            <div id="search-tool" class="mb-5" *ngIf="research">
                 <p class="noUser mx-auto" *ngIf="noUser">{{noUser}}</p>
-                <div class="row align-items-center ">                                                
-                    <input id="search-window" class="col-7 mx-auto" #inputUserName name="search">
-                    <button mat-raised-button class="mx-auto align-items-center col-4" type="submit" (click)="onSearch(inputUserName.value)">Rechercher</button>
-                </div>
-            </div>          
+                <form [formGroup]="searchForm" class="row no-gutters align-items-center mx-0 mx-sm-5" >
+                    <mat-form-field class="col-8">                            
+                        <input type="text"
+                                id="search-window"
+                                placeholder="Entrer un nom d'utilisateur"
+                                aria-label="Entrer un nom d'utilisateur"
+                                name="search"
+                                #inputUserName
+                                matInput
+                                [formControl]="searchControl"
+                                [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let username of filteredUsernames | async" [value]="username">
+                                {{username}}
+                        </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <button mat-raised-button class="mx-auto col-4" type="submit" (click)="onSearch(inputUserName.value)">Rechercher</button>
+                </form>                        
+            </div>                
             <ul class="list-group mt-4">        
                 <app-users-list *ngFor="let shortProfile of shortProfiles; let j = index"
                     [userName]="shortProfile.userName"

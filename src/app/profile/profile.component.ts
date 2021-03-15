@@ -6,6 +6,9 @@ import { ProfileService} from '../services/profile.service';
 import { PublicationService} from '../services/publication.service';
 import { AuthService} from '../services/auth.service';
 
+import { FormControl, FormGroup } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -31,6 +34,10 @@ export class ProfileComponent implements OnInit {
   research: boolean = false;
   gotUsersList: boolean;
   ifBack: boolean;
+
+  searchForm: FormGroup;
+  searchControl = new FormControl();
+  filteredUsernames: Observable<string[]>;
 
   constructor(private route: ActivatedRoute,              
               private profileService: ProfileService,
@@ -139,6 +146,21 @@ export class ProfileComponent implements OnInit {
     this.profileService.getUsersList();
     this.searching = true;
     this.fromUsersList = true;
+
+    this.searchForm = new FormGroup({
+      
+    })
+    this.filteredUsernames = this.searchControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: string): string[] {
+    this.noUser = '';
+    const filterValue = value.toLowerCase();
+    return this.usersNameList.filter(username => username.toLowerCase().includes(filterValue));
   }
 
   onBackFromList() {
