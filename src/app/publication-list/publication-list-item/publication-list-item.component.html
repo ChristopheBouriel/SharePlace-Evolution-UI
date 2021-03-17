@@ -13,7 +13,7 @@
             <p *ngIf="publicationModerated !== 1">{{content}}</p>            
             <p *ngIf="publicationModerated===1" class="text-danger moderatedBackground">Ce contenu a été masqué suite à modération</p>
         </div>
-        <p class="text-right">{{publicationNumberComments}} commentaires</p>
+        <p class="text-right">{{publicationNumberComments | i18nPlural: numberCommentsMapping}}</p>
     </div>
     <div class="see-it" *ngIf="publicationModerated !== 1 || moderator">
         <a [routerLink]="[id]" (click)="onSeePublication()"><img src="./assets/images/see-icon.png" alt="see icon"></a>        

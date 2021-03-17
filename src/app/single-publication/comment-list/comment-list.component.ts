@@ -20,6 +20,10 @@ export class CommentListComponent implements OnInit {
   constructor(private commentService: CommentService,
               private authService: AuthService) { }
 
+  numberCommentsMapping:
+      {[k: string]: string} = {'=0': 'Pas de commentaires', '=1': '1 commentaire', 'other': '# commentaires'};
+        
+
   ngOnInit() {
     this.loading = true;
     this.commentsSubscription = this.commentService.commentsSubject.subscribe(

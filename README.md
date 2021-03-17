@@ -18,7 +18,6 @@ Les fonctionnalités déjà implémentées sont détaillée dans le document **w
 
 * implémentation d'une fonctionnalité "Like" pour les publications puis peut-être les commentaires
 * ancres lors du retour à la liste depuis une publication pour éviter de revenir au sommet
-* amélioration de la fenêtre de recherche d'un utilisateur – correspondance partielle et suggestions
 * afficher le nombre de notifications dans le bouton du menu, sous forme de badge
 * publication de photos, gifs, vidéos...
 * réinitialisation du mot de passe

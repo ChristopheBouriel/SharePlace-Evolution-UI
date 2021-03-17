@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PublicationService} from '../../services/publication.service';
 import { AuthService} from '../../services/auth.service';
 
+
+
 @Component({
   selector: 'app-publication-list-item',
   templateUrl: './publication-list-item.component.html',
@@ -25,6 +27,9 @@ export class PublicationListItemComponent implements OnInit {
   title: string;
   
   moderator: boolean;
+
+  numberCommentsMapping:
+      {[k: string]: string} = {'=0': 'Pas de commentaires', '=1': '1 commentaire', 'other': '# commentaires'};
 
   constructor(private publicationService: PublicationService,
               private authService: AuthService) { }
@@ -50,3 +55,6 @@ export class PublicationListItemComponent implements OnInit {
 
 }
 
+export class Il8nPluralPipeComponent {
+
+}
