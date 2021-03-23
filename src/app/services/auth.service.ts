@@ -47,7 +47,7 @@ export class AuthService {
   signUp(profile: Profile) {
       return new Promise((resolve, reject) => {
       
-        this.httpClient.post('http://localhost:3000api/auth/signup', profile).subscribe(
+        this.httpClient.post('http://localhost:3000/api/auth/signup', profile).subscribe(
           (response :{message: string }) => {              
               resolve(response.message);       
           },
@@ -60,7 +60,7 @@ export class AuthService {
 
   loginUser(userName: string, password: string) {
       return new Promise((resolve, reject) => {
-        this.httpClient.post('http://localhost:3000api/auth/login', {userName: userName, userPassword: password}).subscribe(
+        this.httpClient.post('http://localhost:3000/api/auth/login', {userName: userName, userPassword: password}).subscribe(
           (response :{admin: number, token: string, userName: string, lastLogout:string}
             ) => {
             this.userName = response.userName;
@@ -83,7 +83,7 @@ export class AuthService {
 
     getModeratorNews() {
       return new Promise((resolve, reject) => {
-        this.httpClient.post('http://localhost:3000api/moderate/news', {
+        this.httpClient.post('http://localhost:3000/api/moderate/news', {
           lastLogout: this.lastLogout,
           userName: this.userName          
       }).subscribe(
@@ -117,7 +117,7 @@ export class AuthService {
 
     modifyPassword(password: string, userName: string) {
       return new Promise((resolve, reject) => {
-        this.httpClient.put('http://localhost:3000api/auth/changeP', {
+        this.httpClient.put('http://localhost:3000/api/auth/changeP', {
           password: password,
           userName: userName          
       }).subscribe(
@@ -134,7 +134,7 @@ export class AuthService {
     modifyUserName(newUserName: string) {
       return new Promise((resolve, reject) => {
         const currentUserName = this.getUserName();
-        this.httpClient.put('http://localhost:3000api/auth/changeU', {
+        this.httpClient.put('http://localhost:3000/api/auth/changeU', {
           newUserName: newUserName,
           userName: currentUserName          
       }).subscribe(
@@ -150,7 +150,7 @@ export class AuthService {
 
     deleteAccount(userName: string) {
       return new Promise((resolve, reject) => {
-        this.httpClient.post('http://localhost:3000api/auth/deleteU', {userName: userName }).subscribe(
+        this.httpClient.post('http://localhost:3000/api/auth/deleteU', {userName: userName }).subscribe(
           (response :{message: string }) => {
             resolve(response);
           },
@@ -163,7 +163,7 @@ export class AuthService {
 
     logout(userName: string, dateLogout: string) {
       return new Promise((resolve, reject) => {
-        this.httpClient.put('http://localhost:3000api/auth/logout', {userName: userName, dateLogout: dateLogout }).subscribe(
+        this.httpClient.put('http://localhost:3000/api/auth/logout', {userName: userName, dateLogout: dateLogout }).subscribe(
           (response :{message: string }) => {
             resolve(response);
             this.authToken = null;      

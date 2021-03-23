@@ -46,7 +46,7 @@ export class ProfileService {
     getProfileByUserName(userName: string) {
         return new Promise((resolve, reject) => {
           this.httpClient
-          .get('http://localhost:3000api/profiles/' + userName)
+          .get('http://localhost:3000/api/profiles/' + userName)
             .subscribe(
               (response) => {
                 const resp = Object.values(response);
@@ -67,7 +67,7 @@ export class ProfileService {
     getNews(userName: string) {
       return new Promise((resolve, reject) => {
       this.httpClient
-            .get('http://localhost:3000api/profiles/notifications/' + userName)
+            .get('http://localhost:3000/api/profiles/notifications/' + userName)
             .subscribe(
               (response) => {
                 const resp = Object.values(response);
@@ -87,7 +87,7 @@ export class ProfileService {
   getUsersList() {
     return new Promise((resolve, reject) => {
         this.httpClient
-          .get('http://localhost:3000api/auth/list')
+          .get('http://localhost:3000/api/auth/list')
           .subscribe(
             (response) => {
               this.usersListSubject.next(response);              
@@ -104,7 +104,7 @@ export class ProfileService {
   modifyProfile(profile: Profile) {
       return new Promise((resolve, reject) => {
         
-        this.httpClient.put('http://localhost:3000api/profiles/modify', profile).subscribe(
+        this.httpClient.put('http://localhost:3000/api/profiles/modify', profile).subscribe(
     (response :{message: string }
       ) => {
       resolve(response.message);
@@ -121,7 +121,7 @@ export class ProfileService {
         const formData = new FormData();
         formData.append('datas', JSON.stringify({"userName":userName}));
         formData.append('image', image);
-        this.httpClient.post('http://localhost:3000api/profiles/picture', formData).subscribe(
+        this.httpClient.post('http://localhost:3000/api/profiles/picture', formData).subscribe(
     (response :{message: string }
       ) => {
       resolve(response.message);
@@ -135,7 +135,7 @@ export class ProfileService {
   
   deletePicture(userName: string) {
     return new Promise((resolve, reject) => {
-      this.httpClient.put('http://localhost:3000api/profiles/picture/delete', {userName: userName}).subscribe(
+      this.httpClient.put('http://localhost:3000/api/profiles/picture/delete', {userName: userName}).subscribe(
   (response :{message: string }
     ) => {
     resolve(response.message);
