@@ -7,7 +7,7 @@
 
 Partant sur la base de mon dernier projet de formation, pour lequel on me demandait de réaliser le MVP d'un réseau social d'entreprise – voir mon [portfolio](https://portfolio-christophe-bouriel.netlify.app/#projet-5) – j'ai décidé de continuer à le développer afin de pratiquer, d'intégrer peu à peu des connaissances qui me manquent encore... et parce que je suis curieux et que j'aime coder !  
 
-Le site a été déployé en utilisant les services cloud suivant : Netlify pour ce front-end, Heroku pour le back-end, Cloudinary pour stocker les images car le précédent ne me permet pas de conserver les fichiers créés entre deux démarrages, et enfin ClearDB pour la base de données MySQL. Vous pouvez y accéder en cliquant [ici](https://shareplace-evo.netlify.app).
+Le site a été déployé en utilisant les services cloud suivant : Netlify pour ce front-end, Heroku pour le back-end, Cloudinary pour stocker les images car le précédent ne me permet pas de conserver les fichiers créés entre deux démarrages, et enfin JawsDB pour la base de données MySQL. Vous pouvez y accéder en cliquant [ici](https://shareplace-evo.netlify.app).
 
 On peut également accéder au repository pour faire fonctionner l'application avec Docker en cliquant [ici](https://github.com/ChristopheBouriel/SharePlace-Evo-Docker).  
 Toutes les informations sont dans le README, notamment les noms d'utilisateur et mots de passe pour se connecter sans avoir à créer de profil ou essayer le mode « Modérateur » – lors de la création du container MySQL, des données sont insérées pour permettre une démonstration immédiate.  
@@ -16,7 +16,6 @@ Les fonctionnalités déjà implémentées sont détaillée dans le document **w
 
 **Liste prévisionnelle des ajouts à venir :**
 
-* implémentation d'une fonctionnalité "Like" pour les publications puis peut-être les commentaires
 * ancres lors du retour à la liste depuis une publication pour éviter de revenir au sommet
 * afficher le nombre de notifications dans le bouton du menu, sous forme de badge
 * publication de photos, gifs, vidéos...
