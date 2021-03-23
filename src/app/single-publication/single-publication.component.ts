@@ -205,4 +205,8 @@ export class SinglePublicationComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.publicationService.seeComments = false;
+    this.publicationService.seeLikers = false;
+  }
 }

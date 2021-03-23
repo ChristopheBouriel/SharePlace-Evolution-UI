@@ -109,7 +109,10 @@ export class ProfileComponent implements OnInit {
       this.ifBack = false;
     };
 
-    if(this.searching===false) {this.noUser = '';};
+    if(this.searching===false) {
+      this.noUser = '';
+      this.research = false;
+    };
   
     this.publicationService.fromListSubject.subscribe(
       (fromList:boolean) => {

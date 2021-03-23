@@ -20,7 +20,7 @@ export class CommentService {
 
     getAllComments(postId: number, userName:string) {
         this.httpClient
-          .post<Comment[]>('http://localhost:3000/api/comments', {publicationId: postId, userName: userName})
+          .post<Comment[]>('http://localhost:3000api/comments', {publicationId: postId, userName: userName})
           .subscribe(
             (response) => {
               this.comments = response;
@@ -35,7 +35,7 @@ export class CommentService {
     postComment(comment: string, username: string, postId: number, date: string) {       
         return new Promise((resolve,reject) => {          
             this.httpClient
-          .post('http://localhost:3000/api/comments/add', {content: comment, userName: username, postId: postId, date_comment: date})
+          .post('http://localhost:3000api/comments/add', {content: comment, userName: username, postId: postId, date_comment: date})
           .subscribe(
             (response: {message: string})=> {
               resolve(response.message);
@@ -50,7 +50,7 @@ export class CommentService {
     deleteComment(id:number, publication:number, userName: string) {
         return new Promise((resolve, reject) => {
             this.httpClient
-          .post('http://localhost:3000/api/comments/delete', {id: id, postId: publication, userName: userName})
+          .post('http://localhost:3000api/comments/delete', {id: id, postId: publication, userName: userName})
           .subscribe(
             (response) => {
               resolve(response)
@@ -65,7 +65,7 @@ export class CommentService {
     modifyComment(comment: string, id: number, modified: number, dbDate: string, postId: number, userName: string) {
         return new Promise((resolve, reject) => {
             this.httpClient
-          .put('http://localhost:3000/api/comments/modify', {content: comment, commentId: id, modified: modified, date_modif: dbDate, userName: userName})
+          .put('http://localhost:3000api/comments/modify', {content: comment, commentId: id, modified: modified, date_modif: dbDate, userName: userName})
           .subscribe(
             (response) => {
               resolve(response);
@@ -80,7 +80,7 @@ export class CommentService {
     moderateComment(commentId:number, userName:string, moderate: boolean) {
       return new Promise((resolve, reject) => {
         this.httpClient
-      .put('http://localhost:3000/api/moderate/comment', { commentId: commentId, userName: userName, moderated: moderate ? 1 : 0 })
+      .put('http://localhost:3000api/moderate/comment', { commentId: commentId, userName: userName, moderated: moderate ? 1 : 0 })
       .subscribe(
         (response) => {
           resolve(response)

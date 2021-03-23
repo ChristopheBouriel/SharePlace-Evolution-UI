@@ -51,7 +51,9 @@ export class PublicationListItemComponent implements OnInit {
     this.publicationService.fromListSubject.next(true);
     if (show==='com') {      
       this.publicationService.seeComments = true;
-    }
+    } else if (show==='likers') {      
+        this.publicationService.seeLikers = true;
+    };
   }
 
   onSeeProfile() {

@@ -9,13 +9,16 @@
     </div>   
 </div>
 
-<ul *ngIf="seeLikers">
-    <div *ngFor="let liker of likers; let i = index">
-      <li><a routerLink="/profile/{{likers[i]}}" (click)="onSeeProfile()">{{likers[i]}}</a></li>
-    </div>
-</ul>
+<div class="likers-list mb-5 mt-3" *ngIf="seeLikers && likers?.length>0">
+    <p class="text-center my-2">Ces utilisateurs ont aimé :</p>
+    <ul>
+        <li *ngFor="let liker of likers; let i = index">
+        <a routerLink="/profile/{{likers[i]}}" (click)="onSeeProfile()">{{likers[i]}}</a>
+        </li>
+    </ul>
+</div>
 
-<ul class="list-group row mt-3" *ngIf="seeComments">
+<ul class="list-group row mt-5" *ngIf="seeComments">
     <app-comment-list-item  *ngFor="let comment of comments; let i = index"
           [commentUserName]="comment.userName"
           [commentImageUrl]="comment.imageUrl"

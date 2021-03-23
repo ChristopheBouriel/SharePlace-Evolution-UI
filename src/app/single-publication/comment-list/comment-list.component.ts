@@ -42,6 +42,7 @@ export class CommentListComponent implements OnInit {
     const userName = this.authService.getUserName();
     this.commentService.getAllComments(this.postId, userName);
     this.seeComments = this.publicationService.seeComments;
+    this.seeLikers = this.publicationService.seeLikers;
     this.loading = false;
   }
 
