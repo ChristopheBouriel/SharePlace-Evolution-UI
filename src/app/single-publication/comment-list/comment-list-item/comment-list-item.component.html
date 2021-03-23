@@ -5,45 +5,44 @@
         <div class="profilePic col-2 pt-0" >
             <img [src]="commentImageUrl" alt="profile picture {{commentUsername}}">
         </div>
-    <div class="comment-all col-10 py-2">
-        <div class="infos">
-        <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span> le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
-        
-        <a *ngIf="modified" (click)="seeDate = !seeDate">Modifié</a>
-        </div>
-        <p *ngIf="seeDate" [ngStyle]="{color: 'rgba(255, 209, 129, 0.722)'}"> Dernière modification  le {{modifDate | date: 'd LLLL yyyy' | lowercase}} à {{modifDate | date: 'HH:mm':'GMT+4' | lowercase}}</p>
-        
-        <div *ngIf=!modifying class="comment-view">
-            <p *ngIf="!commentModerated">{{comment}}</p>
-            <p *ngIf="commentModerated" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>
-        </div>
-
-        <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
-            <div class="form-group">
-                <label for="comment">Modifier</label>
-                <textarea class="form-control" id="comment" formControlName="comment"></textarea>
-                <div *ngIf="modifyForm.get('comment').errors && (modifyForm.get('comment').touched || modifyForm.get('comment').dirty)">
-                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.required">A content is required</p>
-                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.maxlength">Comment must be at max 4000 characters long</p>
-                    <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
-                </div>
+        <div class="comment-all col-10 py-2">
+            <div class="infos">
+                <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span> le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
+                <a *ngIf="modified" (click)="seeDate = !seeDate">Modifié</a>
             </div>
-            <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
-            <button mat-raised-button class="mr-2" [disabled]="modifyForm.invalid" (click)="onMakeModif()">Envoyer</button>
-            <button mat-raised-button (click)="onCancelModif()">Annuler</button>
-        </form>
-        
-        <div *ngIf="moderator">
-            <button *ngIf="!commentModerated && !isAuthor" mat-raised-button color="warn" class="mod mr-2 mb-2" (click)="onModerate()"><span>Modérer</span></button>
-            <button *ngIf="commentModerated && !isAuthor" mat-stroked-button class="modr mb-2" (click)="onModerate()"><span>Rétablir</span></button>
+            <p *ngIf="seeDate" [ngStyle]="{color: 'rgba(255, 209, 129, 0.722)'}"> Dernière modification  le {{modifDate | date: 'd LLLL yyyy' | lowercase}} à {{modifDate | date: 'HH:mm':'GMT+4' | lowercase}}</p>
+            
+            <div *ngIf=!modifying class="comment-view">
+                <p *ngIf="!commentModerated">{{comment}}</p>
+                <p *ngIf="commentModerated" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>
+            </div>
+
+            <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
+                <div class="form-group">
+                    <label for="comment">Modifier</label>
+                    <textarea class="form-control" id="comment" formControlName="comment"></textarea>
+                    <div *ngIf="modifyForm.get('comment').errors && (modifyForm.get('comment').touched || modifyForm.get('comment').dirty)">
+                        <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.required">A content is required</p>
+                        <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.maxlength">Comment must be at max 4000 characters long</p>
+                        <p class="text-danger" *ngIf="modifyForm.get('comment').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+                    </div>
+                </div>
+                <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+                <button mat-raised-button class="mr-2" [disabled]="modifyForm.invalid" (click)="onMakeModif()">Envoyer</button>
+                <button mat-raised-button (click)="onCancelModif()">Annuler</button>
+            </form>
+            
+            <div *ngIf="moderator">
+                <button *ngIf="!commentModerated && !isAuthor" mat-raised-button color="warn" class="mod mr-2 mb-2" (click)="onModerate()"><span>Modérer</span></button>
+                <button *ngIf="commentModerated && !isAuthor" mat-stroked-button class="modr mb-2" (click)="onModerate()"><span>Rétablir</span></button>
+            </div>
+
+            <button mat-raised-button class="mr-2" (click)="confirm = !confirm" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
+            <button mat-raised-button (click)="onModify()" *ngIf="isAuthor && !modifying && !confirm">Modifier</button>
+
+            <p [ngStyle]="{color: ' rgb(245, 245, 245)'}" *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer ce commentaire ?</p>
+            <button mat-raised-button class="mr-2"  *ngIf="confirm" (click)="onDelete()">Effacer</button>
+            <button mat-raised-button *ngIf="confirm" (click)="confirm = !confirm">Annuler</button>
         </div>
-
-        <button mat-raised-button class="mr-2" (click)="confirm = !confirm" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
-        <button mat-raised-button (click)="onModify()" *ngIf="isAuthor && !modifying && !confirm">Modifier</button>
-
-        <p [ngStyle]="{color: ' rgb(245, 245, 245)'}" *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer ce commentaire ?</p>
-        <button mat-raised-button class="mr-2"  *ngIf="confirm" (click)="onDelete()">Effacer</button>
-        <button mat-raised-button *ngIf="confirm" (click)="confirm = !confirm">Annuler</button>
-    </div>
     </div>
 </li>

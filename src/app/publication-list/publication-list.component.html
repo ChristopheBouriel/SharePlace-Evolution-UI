@@ -5,11 +5,6 @@
         <h2 class="text-center align-self-center col-8 mb-2 mx-auto d-none d-sm-block">Les dernières publications</h2>
         <button class="col-12 col-sm-3 ml-1 text-center align-self-center mx-auto" *ngIf="!posting" (click)="onWantPost()">Publier</button>
     </div>
-
-  <!--  <div class="row">
-      <p class="text-center align-self-center col-7 mb-2 mx-auto">Liste des utilisateurs</p>
-      <button mat-raised-button class="col-4 mb-2 ml-1 text-center mx-auto" color="primary" (click)="onBackFromList()">Retour au profil</button>
-  </div>-->
     <div class="row">
       <p class="text-danger col-6 mx-auto text-center" *ngIf="errorMsg">{{ errorMsg }}</p>
     </div>

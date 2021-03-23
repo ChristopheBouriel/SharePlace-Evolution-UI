@@ -1,15 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { PublicationService} from '../../services/publication.service';
 import { AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
-
-
 @Component({
   selector: 'app-user-publications',
   templateUrl: './user-publications.component.html',
   styleUrls: ['./user-publications.component.scss']
 })
+
 export class UserPublicationsComponent implements OnInit {
 
 

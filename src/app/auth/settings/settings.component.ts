@@ -56,21 +56,6 @@ export class SettingsComponent implements OnInit {
       this.notChanging = true;
   }
 
-  onChangePassword() {
-    this.modPass = true;
-    this.notChanging = false;
-  }
-
-  /*onChangeUserName() {
-    this.modName = true;
-    this.notChanging = false;
-  }*/
-
-  onWantToDelete() {
-    this.notChanging = false;
-    this.makeSure = true;
-  }
-
   onDeleteAccount() {
     this.authService.deleteAccount(this.userName).then(
       () => {

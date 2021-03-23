@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
 import { AuthService } from '../services/auth.service';
-
 import { forbiddenCharactersValidator } from './../input-validators';
 import { emailValidator } from './../input-validators';
 @Component({
@@ -12,6 +11,7 @@ import { emailValidator } from './../input-validators';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.scss']
 })
+
 export class ProfileFormComponent implements OnInit {
 
   profileForm: FormGroup;

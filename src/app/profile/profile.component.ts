@@ -5,7 +5,6 @@ import { Publication } from '../models/publication';
 import { ProfileService} from '../services/profile.service';
 import { PublicationService} from '../services/publication.service';
 import { AuthService} from '../services/auth.service';
-
 import { FormControl, FormGroup } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -14,6 +13,7 @@ import {map, startWith} from 'rxjs/operators';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
 export class ProfileComponent implements OnInit {
 
   userProfile: string;
@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
   shortProfiles: ShortProfile[];
   usersNameList: string[] = new Array;
   aboutMe: string;
-  //email: boolean;
   fromPost: number;
   fromUsersList: boolean = false;
   noUser: string = '';  
@@ -67,9 +66,6 @@ export class ProfileComponent implements OnInit {
         if (this.profile.aboutMe !== '') {
           this.aboutMe = this.profile.aboutMe.replace(/&µ/gi,'\"');
         }
-        /*if (this.profile.email !== '') {
-          this.email = true;
-        }*/
       }
     );
 
@@ -125,10 +121,6 @@ export class ProfileComponent implements OnInit {
     if (this.profile?.aboutMe !== '') {
       this.aboutMe = this.profile?.aboutMe.replace(/&µ/gi,'\"');
     } else { this.aboutMe = '';};
-
-    /*if (this.profile?.email !== '') {
-      this.email = true;
-    } else {this.email = false;}*/
   }
 
   onGetList() {

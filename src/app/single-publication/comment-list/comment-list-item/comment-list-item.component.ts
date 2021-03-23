@@ -35,17 +35,13 @@ export class CommentListItemComponent implements OnInit {
   confirm: boolean;
   modifyForm: FormGroup;
   comment: string;
-  //modifiedComment: string;
   seeDate: boolean=false;
-  //moderated: boolean;
   moderator: boolean;
-
 
   constructor(private commentService: CommentService,
               private publicationService: PublicationService,
               private authService: AuthService,
-              private formBuilder: FormBuilder,
-              private router: Router) { }
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     const userName = this.authService.getUserName();
@@ -71,7 +67,6 @@ export class CommentListItemComponent implements OnInit {
       (response) => {
         this.loading = false;
         this.deleted = true;
-        //this.commentService.getAllComments(this.postId, username);
         this.publicationService.numberComments-- ;
       }
     ).catch(

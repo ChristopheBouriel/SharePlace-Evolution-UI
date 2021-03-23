@@ -10,7 +10,6 @@ export class PublicationService {
     publicationsSubject = new Subject<Publication[]>();
     publicationSubject = new Subject<Publication>();
     fromProfileSubject = new BehaviorSubject<string>('');
-    //fromPostSubject = new Subject<number>();
     fromListSubject = new BehaviorSubject<boolean>(true);
 
     private publications: Publication[];

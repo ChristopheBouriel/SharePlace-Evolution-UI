@@ -61,12 +61,7 @@
         </div>
         
         <div *ngIf=!modifying  class="post-buttons row no-gutters col-9 col-sm-6 mx-auto">
-        <!--  <div>-->
-        <!--  <button class="btn btn mb-1 mr-2" (click)="onLike()">Like it</button>--> 
             <button (click)="commenting = true"><img src="./assets/images/comment-icon.png" alt="comment icon"></button>
-        
-        
-            <!--  <div>-->
             <button routerLink="/publications"><img src="./assets/images/back-icon.png" alt="back icon"></button>
             <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png" alt="profile icon"></button>
             <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png" alt="edit icon"></button>        
@@ -88,11 +83,7 @@
     </form>
 
     <app-comment-list [postId]="postId"
-                      [likers]="likers"
-                      ></app-comment-list>
-    
-    
-
+                      [likers]="likers"></app-comment-list>
   </div>
 </div>
 

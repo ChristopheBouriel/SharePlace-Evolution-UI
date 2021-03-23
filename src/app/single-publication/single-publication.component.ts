@@ -16,27 +16,21 @@ import { forbiddenCharactersValidator } from './../input-validators';
 
 export class SinglePublicationComponent implements OnInit {
 
-  //title: string;
-  //content: string;
-  //likes: boolean;
   loading: boolean;
   commenting: boolean;
   modifying: boolean;
   confirm: boolean;
   isAuthor: boolean;
   moderator: boolean;
-  //initialTitle: string;
-  //initialContent: string;
   seeDate: boolean=false;
-  //moderated: boolean;
   postId: number;
   fromList: boolean;
-  fromProfile: string; 
-  commentForm: FormGroup;
-  modifyForm: FormGroup;
+  fromProfile: string;  
   errorMsg: string;
   liked: boolean;
 
+  commentForm: FormGroup;
+  modifyForm: FormGroup;
   publication: Publication;
   likers: string[];  
 
@@ -55,7 +49,6 @@ export class SinglePublicationComponent implements OnInit {
         this.publication = publication[0];
         this.publication.content = publication[0].content.replace(/&µ/gi,'\"');
         this.publication.title = publication[0].title.replace(/&µ/gi,'\"');
-        //this.moderated = publication[0].moderated;
         this.likers = JSON.parse(publication[0].likeUsernames);
         const userName = this.authService.getUserName();
         if (publication[0].userName === userName) {
@@ -133,8 +126,6 @@ export class SinglePublicationComponent implements OnInit {
 
   onCancel() {
     this.commenting = false;
-    //this.modifying = false;
-    //this.errorMsg = '';
     this.commentForm.reset('comment');
   }
 
@@ -199,7 +190,7 @@ export class SinglePublicationComponent implements OnInit {
     const publication = this.postId;
     if (!this.publication.moderated) {
       this.publication.moderated = true;
-    } else {this.publication.moderated = false;}
+    } else {this.publication.moderated = false;};
     
     this.publicationService.moderatePublication( publication, userName, this.publication.moderated).then(
       (response) => {
