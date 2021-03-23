@@ -10,7 +10,7 @@ export class PublicationService {
     publicationsSubject = new Subject<Publication[]>();
     publicationSubject = new Subject<Publication>();
     fromProfileSubject = new BehaviorSubject<string>('');
-    fromPostSubject = new Subject<number>();
+    //fromPostSubject = new Subject<number>();
     fromListSubject = new BehaviorSubject<boolean>(true);
 
     private publications: Publication[];
@@ -19,6 +19,8 @@ export class PublicationService {
     lastSeenInList: number;
     fromPost: number;
     fromProfile: string;
+    seeComments: boolean=false;
+    numberComments: number;
 
     constructor(private httpClient: HttpClient) { }
 
@@ -107,10 +109,10 @@ export class PublicationService {
     })
 }
 
-  moderatePublication(publication:number, userName:string, moderate: number) {
+  moderatePublication(publication:number, userName:string, moderate: boolean) {
     return new Promise((resolve, reject) => {
       this.httpClient
-    .put('http://localhost:3000/api/moderate/publication', { postId: publication, userName: userName, moderated: moderate })
+    .put('http://localhost:3000/api/moderate/publication', { postId: publication, userName: userName, moderated: moderate ? 1 : 0 })
     .subscribe(
       (response) => {
         resolve(response)
@@ -135,6 +137,27 @@ export class PublicationService {
       }
     );
   })
+  }
+
+  likePost(id: number, userName: string, like: boolean) {
+    return new Promise((resolve, reject) => {
+      this.httpClient.put(
+        'http://localhost:3000/api/publications/like',
+        {
+          postId: id,
+          userName: userName,
+          like: like ? 1 : 0
+        })
+        .subscribe(
+          (response: { liked: boolean }) => {
+            console.log(response.liked);
+            resolve(response.liked);
+          },
+          (error) => {
+            reject(error);
+        }
+      );
+    });
   }
 
 }

@@ -27,10 +27,18 @@ li {
     a:hover {
         color: whitesmoke;
     }
-    a:focus {
-        color: $btn-main;
+
+.modif p{
+    color: $prof-link;
+    :hover {
+        color: whitesmoke;
     }
+    :focus {
+        font-weight: 500;
+    }}
 }
+
+
 
 .comment-all {
     background-color:  $grey-black;
@@ -108,6 +116,10 @@ label {
 button {
     background-color: $btn-main;
     color: whitesmoke;
+}
+
+button:hover {
+    background-color: $post-bg;
 }
 
 button:disabled {

@@ -1,6 +1,21 @@
 <mat-spinner style="margin:0 auto" *ngIf="loading"></mat-spinner>
-<p class="text-center mt-3">{{comments?.length | i18nPlural: numberCommentsMapping}}</p>
-<ul class="list-group row mt-3">
+
+<div class="stats row mx-1">
+    <div class="col-4 text-left mt-3">
+        <a (click)="seeLikers=!seeLikers">{{likers?.length}} J'aime</a>
+    </div>
+    <div class="col-8 text-right mt-3">
+        <a (click)="seeComments=!seeComments">{{numberComments | i18nPlural: numberCommentsMapping}}</a> 
+    </div>   
+</div>
+
+<ul *ngIf="seeLikers">
+    <div *ngFor="let liker of likers; let i = index">
+      <li><a routerLink="/profile/{{likers[i]}}" (click)="onSeeProfile()">{{likers[i]}}</a></li>
+    </div>
+</ul>
+
+<ul class="list-group row mt-3" *ngIf="seeComments">
     <app-comment-list-item  *ngFor="let comment of comments; let i = index"
           [commentUserName]="comment.userName"
           [commentImageUrl]="comment.imageUrl"

@@ -77,10 +77,10 @@ export class CommentService {
         })
     }
 
-    moderateComment(commentId:number, userName:string, moderate: number) {
+    moderateComment(commentId:number, userName:string, moderate: boolean) {
       return new Promise((resolve, reject) => {
         this.httpClient
-      .put('http://localhost:3000/api/moderate/comment', { commentId: commentId, userName: userName, moderated: moderate })
+      .put('http://localhost:3000/api/moderate/comment', { commentId: commentId, userName: userName, moderated: moderate ? 1 : 0 })
       .subscribe(
         (response) => {
           resolve(response)

@@ -61,10 +61,10 @@ export class SettingsComponent implements OnInit {
     this.notChanging = false;
   }
 
-  onChangeUserName() {
+  /*onChangeUserName() {
     this.modName = true;
     this.notChanging = false;
-  }
+  }*/
 
   onWantToDelete() {
     this.notChanging = false;

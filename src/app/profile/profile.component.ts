@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   shortProfiles: ShortProfile[];
   usersNameList: string[] = new Array;
   aboutMe: string;
-  email: boolean;
+  //email: boolean;
   fromPost: number;
   fromUsersList: boolean = false;
   noUser: string = '';  
@@ -67,9 +67,9 @@ export class ProfileComponent implements OnInit {
         if (this.profile.aboutMe !== '') {
           this.aboutMe = this.profile.aboutMe.replace(/&µ/gi,'\"');
         }
-        if (this.profile.email !== '') {
+        /*if (this.profile.email !== '') {
           this.email = true;
-        }
+        }*/
       }
     );
 
@@ -80,7 +80,9 @@ export class ProfileComponent implements OnInit {
     );
     
     this.profileService.getProfileByUserName(this.userProfile);
-    
+
+    this.fromPost = this.publicationService.fromPost;
+
     this.profileService.searchingSubject.subscribe(
       (search:boolean) => {
         this.searching = search;
@@ -102,33 +104,31 @@ export class ProfileComponent implements OnInit {
     } else if (this.userProfile !== this.userName) {
         this.isMine = false;
         this.checkAboutMe();
-      }
+      };
 
     if (this.userProfile !== this.userName && this.ifBack === true) {
       this.profileService.getProfileByUserName(this.userProfile).then(
         () => this.checkAboutMe()
       );
       this.ifBack = false;
-    }
+    };
 
-    if(this.searching===false) {this.noUser = '';}
-
-    this.fromPost = this.publicationService.fromPost;
+    if(this.searching===false) {this.noUser = '';};
   
     this.publicationService.fromListSubject.subscribe(
       (fromList:boolean) => {
         this.fromList = fromList;
-      })
+      });
   }
 
   checkAboutMe() {
-    if (this.profile.aboutMe !== '') {
-      this.aboutMe = this.profile.aboutMe.replace(/&µ/gi,'\"');
+    if (this.profile?.aboutMe !== '') {
+      this.aboutMe = this.profile?.aboutMe.replace(/&µ/gi,'\"');
     } else { this.aboutMe = '';};
 
-    if (this.profile.email !== '') {
+    /*if (this.profile?.email !== '') {
       this.email = true;
-    } else {this.email = false;}
+    } else {this.email = false;}*/
   }
 
   onGetList() {
@@ -148,7 +148,6 @@ export class ProfileComponent implements OnInit {
     this.fromUsersList = true;
 
     this.searchForm = new FormGroup({
-      
     })
     this.filteredUsernames = this.searchControl.valueChanges
       .pipe(
@@ -163,9 +162,7 @@ export class ProfileComponent implements OnInit {
     return this.usersNameList.filter(username => username.toLowerCase().includes(filterValue));
   }
 
-  onBackFromList() {
-    this.searching = false;    
-  }
+  
 
   onSearch(inputUserName) {
     const check = this.usersNameList.includes(inputUserName);
@@ -178,12 +175,13 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onResearch() {
-    if (this.research === false) {
+  onButtonSearch() {
+    if (this.research) {
+      this.research = false;
+      //this.searchForm.reset('search-window');
+    } else {
       this.research = true;
     }
-    else if (this.research === true) {
-      this.research = false;
-    };
+    
   }
 }

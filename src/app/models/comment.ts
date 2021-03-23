@@ -4,7 +4,7 @@ export class Comment {
     postId: number;
     date_comment: string;
     content: string;
-    moderated: string; 
+    moderated: boolean; 
     userName: string;
     imageUrl: string;
 }

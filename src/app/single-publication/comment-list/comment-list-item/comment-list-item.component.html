@@ -9,13 +9,13 @@
         <div class="infos">
         <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span> le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
         
-        <a *ngIf="modified" routerLink="/publications/{{postId}}" (click)="onSeeDate()">Modifié</a>
+        <a *ngIf="modified" (click)="seeDate = !seeDate">Modifié</a>
         </div>
         <p *ngIf="seeDate" [ngStyle]="{color: 'rgba(255, 209, 129, 0.722)'}"> Dernière modification  le {{modifDate | date: 'd LLLL yyyy' | lowercase}} à {{modifDate | date: 'HH:mm':'GMT+4' | lowercase}}</p>
         
         <div *ngIf=!modifying class="comment-view">
-            <p *ngIf="commentModerated !== 1">{{initialComment}}</p>
-            <p *ngIf="commentModerated===1" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>
+            <p *ngIf="!commentModerated">{{comment}}</p>
+            <p *ngIf="commentModerated" class="moderatedBackground">Ce contenu a été masqué suite à modération</p>
         </div>
 
         <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
@@ -38,12 +38,12 @@
             <button *ngIf="commentModerated && !isAuthor" mat-stroked-button class="modr mb-2" (click)="onModerate()"><span>Rétablir</span></button>
         </div>
 
-        <button mat-raised-button class="mr-2" (click)="onWantDelete()" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
+        <button mat-raised-button class="mr-2" (click)="confirm = !confirm" *ngIf="isAuthor && !modifying && !confirm">Effacer</button>
         <button mat-raised-button (click)="onModify()" *ngIf="isAuthor && !modifying && !confirm">Modifier</button>
 
         <p [ngStyle]="{color: ' rgb(245, 245, 245)'}" *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer ce commentaire ?</p>
         <button mat-raised-button class="mr-2"  *ngIf="confirm" (click)="onDelete()">Effacer</button>
-        <button mat-raised-button *ngIf="confirm" (click)="onCancelDelete()">Annuler</button>
+        <button mat-raised-button *ngIf="confirm" (click)="confirm = !confirm">Annuler</button>
     </div>
     </div>
 </li>

@@ -20,7 +20,7 @@ export class CommentListItemComponent implements OnInit {
   @Input() commentDate: string;
   @Input() modifDate: string;
   @Input() modified: number;
-  @Input() commentModerated: number;
+  @Input() commentModerated: boolean;
   @Input() index: number;
   @Input() postId: number;  
   @Input() id: number;
@@ -34,9 +34,10 @@ export class CommentListItemComponent implements OnInit {
   modifying: boolean;
   confirm: boolean;
   modifyForm: FormGroup;
-  initialComment: string;
+  comment: string;
+  //modifiedComment: string;
   seeDate: boolean=false;
-  moderated: boolean;
+  //moderated: boolean;
   moderator: boolean;
 
 
@@ -49,10 +50,8 @@ export class CommentListItemComponent implements OnInit {
   ngOnInit() {
     const userName = this.authService.getUserName();
     if (this.commentUserName === userName) {this.isAuthor = true}
-    this.modifyForm = this.formBuilder.group({
-      comment: new FormControl (this.commentContent.replace(/&µ/gi,'\"'),[Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])
-      });
-      this.initialComment = this.commentContent.replace(/&µ/gi,'\"'); 
+    
+      this.comment = this.commentContent.replace(/&µ/gi,'\"'); 
       this.publicationService.fromPost = this.postId;
 
     if (this.commentUserName === 'utilisateur désinscrit') {
@@ -66,20 +65,14 @@ export class CommentListItemComponent implements OnInit {
     )      
   }
 
-  onWantDelete() {
-    this.confirm = true;
-  }
-
-  onCancelDelete() {
-    this.confirm = false;
-  }
-
   onDelete() {    
     const publication = this.postId;
     this.commentService.deleteComment(this.id, publication, this.commentUserName).then(
       (response) => {
         this.loading = false;
         this.deleted = true;
+        //this.commentService.getAllComments(this.postId, username);
+        this.publicationService.numberComments-- ;
       }
     ).catch(
       (error) => {
@@ -90,21 +83,17 @@ export class CommentListItemComponent implements OnInit {
   }
   
   onModify() {
-    this.modifying = true;}
+    this.modifying = true;
+    this.modifyForm = this.formBuilder.group({
+      comment: new FormControl (this.commentContent.replace(/&µ/gi,'\"'),[Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])
+      });
+  }
 
   onCancelModif() {
     this.modifying = false;
-    this.commentContent = this.initialComment;
-    this.modifyForm.patchValue({comment: this.initialComment});
+    this.commentContent = this.comment;
+    this.modifyForm.patchValue({comment: this.comment});
     this.errorMsg = '';
-  }
-
-  onSeeDate() {
-    if(this.seeDate===false) {
-      this.seeDate = true;
-    } else {
-      this.seeDate = false;
-      }    
   }
     
   onMakeModif() {    
@@ -116,7 +105,8 @@ export class CommentListItemComponent implements OnInit {
     this.commentService.modifyComment(comment, this.id, modified, dbDate, this.postId, username).then(
       (response) => {
         this.loading = false;
-        this.commentService.getAllComments(this.postId, username);
+        this.comment = comment;
+        this.modifying = false;
       }
     )
     .catch(
@@ -132,19 +122,14 @@ export class CommentListItemComponent implements OnInit {
   }
 
   onModerate() {
-    let state;
     const userName = this.authService.getUserName();
     const commentId = this.id;
-    if (this.commentModerated === 0) {
-      this.moderated = true;
-      state = 1;
-    } else {this.moderated = false;
-            state = 0;}
-    
-    this.commentService.moderateComment( commentId, userName, state).then(
+    if (!this.commentModerated) {
+      this.commentModerated = true;
+    } else {this.commentModerated = false;}    
+    this.commentService.moderateComment( commentId, userName, this.commentModerated).then(
       (response) => {
-        this.loading = false;
-        this.commentService.getAllComments(this.postId, userName);      
+        this.loading = false;      
       }
     ).catch(
       (error) => {

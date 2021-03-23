@@ -16,6 +16,18 @@
             color: whitesmoke;
             white-space: pre-line; 
         }
+
+        .numbers {
+            a {
+                color: whitesmoke;
+            }
+            a:hover {
+                color: $prof-link;
+            }
+            a:focus {
+                font-weight: 600;
+            }
+        }
     }        
 
     .see-it {
@@ -83,15 +95,18 @@ li {
         margin-right: 10px;
     }
     p {
-        padding-top: 15px; 
+        padding-top: 15px;
+        a {
+            color: $prof-link;
+            font-weight: 600;
+        }
         a:focus {
-            border: solid 1px $prof-link;
-            padding: 2px;
+            color: $btn-main;
         }
         a:hover {
             color: whitesmoke;
-        }
-    }    
+        }       
+    }
 }
 
 .see-it img {

@@ -2,26 +2,32 @@
   <div class="col-xs-10 col-md-9 col-lg-8 mx-auto">
 
     <mat-spinner style="margin:0 auto" class="mx-auto" *ngIf="loading"></mat-spinner>
-    <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <p class="text-danger" *ngIf="errorMsg">{{errorMsg }}</p>
     <div [ngClass]="{'single-publication': true,
     'single-publication-like': likes === true
                     }" *ngIf="!loading">
-        <h2 [ngStyle]="{color: 'primary'}">{{title}}</h2>
+        <h2 [ngStyle]="{color: 'primary'}">{{publication?.title}}</h2>
         <div class="infos-post">
-          <div class="profilePic pt-0" >
-            <img [src]="publication?.imageUrl" alt="profile picture">      
-            <p>Par <span>{{publication?.userName}}</span></p>
+          <div class="row no-gutters mx-2 pt-0" >
+            <div class="profilePic col-8 pt-1 pb-3">
+              <img [src]="publication?.imageUrl" alt="profile picture">      
+              <p>Par <span>{{publication?.userName}}</span></p>
+            </div>
+            <div class="like col-4 pb-3">
+              <button (click)="onLike()" *ngIf="!liked"><img src="./assets/images/like-icon.png" alt="like icon"></button>
+              <button (click)="onLike()" *ngIf="liked"><img src="./assets/images/liked-icon.png" alt="like icon"></button>
+            </div>
           </div>
-          <div class="infos-date">
+          <div class="infos-date row ml-2">
             <p>Publié le {{publication?.date_publication | date: 'EEEE d LLLL yyyy'}}</p>
-            <a *ngIf="publication?.modified" class="mb-2" routerLinkActive="active" routerLink="/publications/{{postId}}" (click)="onSeeDate()">Modifié</a>     
+            <a *ngIf="publication?.modified" class="mb-2 ml-2" (click)="seeDate = !seeDate">Modifié</a>     
           </div>
         </div>
-        <p *ngIf="seeDate" class="mb-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm' | lowercase}}</p>
+        <p *ngIf="seeDate" class="mb-2 pl-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm' | lowercase}}</p>
         <div *ngIf=!modifying  class="publication-view">
-            <p>{{content}}</p>
+            <p>{{publication?.content}}</p>
         </div>
-
+        
         <form [formGroup]="modifyForm" *ngIf="!loading && modifying">
             <div class="form-group">
               <label for="title">Titre</label>
@@ -43,21 +49,24 @@
             </div>
             <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()" [disabled]="modifyForm.invalid">Envoyer</button>
             <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
-            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onWantDelete()">Effacer</button>
+            <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="confirm = !confirm">Effacer</button>
             <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication</p>
-            <button mat-raised-button *ngIf="confirm" class="mr-2" (click)="onCancelDelete()">Annuler</button>
+            <button mat-raised-button *ngIf="confirm" class="mr-2" (click)="confirm = !confirm">Annuler</button>
             <button mat-raised-button *ngIf="confirm" (click)="onDelete()">Effacer</button>        
         </form>
         <br/>
         <div *ngIf="moderator" class="row">
-          <button *ngIf="!moderated && !isAuthor" mat-raised-button color="warn" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Modérer</span></button>
-          <button *ngIf="moderated && !isAuthor" mat-stroked-button  class="modr col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Rétablir</span></button> 
+          <button *ngIf="!publication?.moderated && !isAuthor" mat-raised-button color="warn" class="mod col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Modérer</span></button>
+          <button *ngIf="publication?.moderated && !isAuthor" mat-stroked-button  class="modr col-3 mb-2 ml-3 mx-auto" (click)="onModerate()"><span>Rétablir</span></button> 
         </div>
+        
         <div *ngIf=!modifying  class="post-buttons row no-gutters col-9 col-sm-6 mx-auto">
         <!--  <div>-->
         <!--  <button class="btn btn mb-1 mr-2" (click)="onLike()">Like it</button>--> 
-            <button (click)="onWantComment()"><img src="./assets/images/comment-icon.png" alt="comment icon"></button>
-        <!--  <div>-->
+            <button (click)="commenting = true"><img src="./assets/images/comment-icon.png" alt="comment icon"></button>
+        
+        
+            <!--  <div>-->
             <button routerLink="/publications"><img src="./assets/images/back-icon.png" alt="back icon"></button>
             <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png" alt="profile icon"></button>
             <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png" alt="edit icon"></button>        
@@ -78,7 +87,11 @@
         <button mat-raised-button (click)="onCancel()">Annuler</button> 
     </form>
 
-    <app-comment-list [postId]="postId"></app-comment-list>
+    <app-comment-list [postId]="postId"
+                      [likers]="likers"
+                      ></app-comment-list>
+    
+    
 
   </div>
 </div>

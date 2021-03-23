@@ -4,10 +4,11 @@ export class Publication {
         title: string;
         content: string;
         likes: number;
+        likeUsernames: string[];
         numberComments: number;
         userName: string;
         modified: string;
         date_modif: string;
-        moderated: number;
+        moderated: boolean;
         viewed: number;
 }

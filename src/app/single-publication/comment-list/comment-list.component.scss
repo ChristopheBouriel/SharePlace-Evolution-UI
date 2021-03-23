@@ -1,4 +1,18 @@
-p {
-    color: whitesmoke;
-    font-weight: 600;
+@import '../../colors.scss';
+
+.stats {
+    a {
+        color: whitesmoke;
+        font-weight: 600;
+    }
+
+    a:hover {
+        font-size: 1.1rem;
+        color: $prof-link;
+    }
+
+    a:focus {
+        color: $btn-main;
+    }
 }
+

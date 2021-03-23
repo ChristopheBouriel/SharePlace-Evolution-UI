@@ -16,102 +16,94 @@ import { forbiddenCharactersValidator } from './../input-validators';
 
 export class SinglePublicationComponent implements OnInit {
 
-  title: string;
-  content: string;
-  likes: boolean;
+  //title: string;
+  //content: string;
+  //likes: boolean;
   loading: boolean;
   commenting: boolean;
   modifying: boolean;
   confirm: boolean;
   isAuthor: boolean;
   moderator: boolean;
-  initialTitle: string;
-  initialContent: string;
+  //initialTitle: string;
+  //initialContent: string;
   seeDate: boolean=false;
-  moderated: boolean;
+  //moderated: boolean;
   postId: number;
   fromList: boolean;
   fromProfile: string; 
   commentForm: FormGroup;
   modifyForm: FormGroup;
   errorMsg: string;
+  liked: boolean;
 
-  publication: Publication;  
+  publication: Publication;
+  likers: string[];  
 
-  constructor(private publicationService: PublicationService,
-              private route: ActivatedRoute,
-              private formBuilder: FormBuilder,
-              private commentService: CommentService,
-              private authService: AuthService,
-              private router: Router) { }
+  constructor ( private publicationService: PublicationService,
+                private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
+                private commentService: CommentService,
+                private authService: AuthService,
+                private router: Router ) { }
 
   ngOnInit() {
     this.loading = true;
-    this.postId = this.route.snapshot.params['id'];
-    
+    this.postId = this.route.snapshot.params['id'];    
     this.publicationService.publicationSubject.subscribe(
       (publication: Publication) => {
         this.publication = publication[0];
-        this.content = publication[0].content.replace(/&µ/gi,'\"');
-        this.title = publication[0].title.replace(/&µ/gi,'\"');
-        this.moderated = publication[0].moderated;
-      }
-    );
-    this.publicationService.getPublicationById(+this.postId).then(
-      (response: any[]) => {
+        this.publication.content = publication[0].content.replace(/&µ/gi,'\"');
+        this.publication.title = publication[0].title.replace(/&µ/gi,'\"');
+        //this.moderated = publication[0].moderated;
+        this.likers = JSON.parse(publication[0].likeUsernames);
         const userName = this.authService.getUserName();
-        if (response[0].userName === userName) {this.isAuthor = true;}
-        this.initialTitle = response[0].title.replace(/&µ/gi,'\"');
-        this.initialContent = response[0].content.replace(/&µ/gi,'\"');
-        this.modifyForm = this.formBuilder.group({
-          title: new FormControl(this.initialTitle, [Validators.required, Validators.maxLength(100), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \x22!?:(),\.\'-]*$')]),
-          publication: new FormControl(this.initialContent, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)]),
-        }); //I could have used Validators.pattern but I wanted to practice with a custom validator (see input-validator.ts)
-        if (this.isAuthor === true) {
+        if (publication[0].userName === userName) {
+          this.isAuthor = true;
           const username = this.authService.getUserName();
           const viewed = 1;
           this.publicationService.markAsRead(this.postId, username, viewed);
-          }
+        };
+        if (JSON.parse(publication[0].likeUsernames).find(user => user === userName)) {
+          this.liked = true;
+        };
       }
     );
-
-    
-
+    this.publicationService.getPublicationById(+this.postId);
+    this.publicationService.fromPost = this.postId;    
     this.authService.isAdmin$.subscribe(
-      (isAdmin) => {
-        this.moderator = isAdmin;
-      }
-    )
-
+      (isAdmin: boolean) => {this.moderator = isAdmin;
+    });
     this.commentForm = this.formBuilder.group({
       comment: new FormControl (null, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])   
     });
-
     this.publicationService.fromListSubject.subscribe(
-      (fromList:boolean) => {
-        this.fromList = fromList;
-      })
-
+      (fromList: boolean) => { this.fromList = fromList; 
+    });
     this.publicationService.fromProfileSubject.subscribe(
-    (fromProfile) => {  this.fromProfile = fromProfile});
-
+      (fromProfile: string) => { this.fromProfile = fromProfile;
+    });
     this.loading = false;
   }
 
-
-  //onLike() {
-  //  if(this.likes === false) {
-  //    this.likes=true;
-  //  } else {
-  //  this.likes=false;}  
-  //}
-
-  onSeeDate() {    
-    if(this.seeDate===false) {
-      this.seeDate = true;
-    } else{
-      this.seeDate = false;
+  onLike() {
+    //this.likePending = true;
+    const userName = this.authService.getUserName();
+    this.publicationService.likePost(this.postId, userName, !this.liked).then(
+      (liked: boolean) => {
+        //this.likePending = false;
+        this.liked = liked;
+        if (!this.liked) {
+          this.likers = this.likers.filter(user => user !== userName);
+          this.liked = false;
+        } 
+        else {
+          this.likers.push(userName);
+          this.likers = this.likers.slice(0);
+          this.liked = true;
+        }
       }
+    );
   }
 
   onComment() {
@@ -139,32 +131,24 @@ export class SinglePublicationComponent implements OnInit {
     );
   }
 
-  onWantComment() {
-    this.commenting = true;
-  }
-
   onCancel() {
     this.commenting = false;
-    this.modifying = false;
-    this.errorMsg = '';
+    //this.modifying = false;
+    //this.errorMsg = '';
     this.commentForm.reset('comment');
   }
 
   onWantModify() {
     this.modifying = true;
-  }
-
-  onWantDelete() {
-    this.confirm = true;
-  }
-
-  onCancelDelete() {
-    this.confirm = false;
+    this.modifyForm = this.formBuilder.group({
+      title: new FormControl(this.publication.title, [Validators.required, Validators.maxLength(100), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[0-9a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \x22!?:(),\.\'-]*$')]),
+      publication: new FormControl(this.publication.content, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)]),
+    }); //I could have used Validators.pattern but I wanted to practice with a custom validator (see input-validator.ts)    
   }
 
   onCancelModif() {
     this.modifying = false;
-    this.modifyForm.patchValue({title: this.initialTitle, publication: this.initialContent});
+    this.modifyForm.patchValue({title: this.publication.title, publication: this.publication.content});
   }
 
   onMakeModif() {
@@ -193,7 +177,7 @@ export class SinglePublicationComponent implements OnInit {
   onDelete() {
     const userName = this.authService.getUserName();
     const publication = this.postId;
-    this.publicationService.deletePublication( publication, userName).then(
+    this.publicationService.deletePublication(publication, userName).then(
       (response) => {
         this.loading = false;
         this.router.navigate(['publications']);
@@ -211,15 +195,13 @@ export class SinglePublicationComponent implements OnInit {
   }
 
   onModerate() {
-    let state;
     const userName = this.authService.getUserName();
     const publication = this.postId;
-    if (this.publication.moderated === 0) {
-      this.moderated = true;
-      state = 1;
-    } else {this.moderated = false;
-            state = 0}
-    this.publicationService.moderatePublication( publication, userName, state).then(
+    if (!this.publication.moderated) {
+      this.publication.moderated = true;
+    } else {this.publication.moderated = false;}
+    
+    this.publicationService.moderatePublication( publication, userName, this.publication.moderated).then(
       (response) => {
         this.loading = false;
         this.router.navigate(['publications']);       

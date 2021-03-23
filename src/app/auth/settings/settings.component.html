@@ -6,9 +6,9 @@
   <div class="frame col-10 col-md-8 py-3 mx-auto">
     <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
     <div *ngIf="notChanging === true" class="row"> 
-      <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangePassword()">Changer le mot de passe</button>
-      <button class="col-8 col-md-7 mx-auto my-3" (click)="onChangeUserName()">Changer le nom d'utilisateur</button>
-      <button class="col-8 col-md-7 mx-auto my-3" (click)="onWantToDelete()">Se désinscrire</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="modPass = !modPass; notChanging = !notChanging">Changer le mot de passe</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="modName = !modName; notChanging = !notChanging">Changer le nom d'utilisateur</button>
+      <button class="col-8 col-md-7 mx-auto my-3" (click)="makeSure = !makeSure; notChanging = !notChanging">Se désinscrire</button>
     </div>
     <div *ngIf="makeSure" class="col-12 col-md-8 text-center mx-auto my-3">
       <p>Voulez-vous vraiment vous désinscrire ?</p>
