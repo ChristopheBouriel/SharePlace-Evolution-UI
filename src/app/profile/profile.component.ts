@@ -162,6 +162,7 @@ export class ProfileComponent implements OnInit {
   onSearch(inputUserName) {
     const check = this.usersNameList.includes(inputUserName);
     if(check) {
+      this.aboutMe = '';
       this.profileService.getProfileByUserName(inputUserName);
       this.searching = false;
       this.isMine = false;
