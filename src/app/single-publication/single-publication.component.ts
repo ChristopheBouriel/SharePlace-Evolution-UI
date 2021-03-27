@@ -6,6 +6,8 @@ import { CommentService } from '../services/comment.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Subject } from "rxjs"
+import { takeUntil } from "rxjs/operators"
 
 import { forbiddenCharactersValidator } from './../input-validators';
 @Component({
@@ -34,6 +36,8 @@ export class SinglePublicationComponent implements OnInit {
   publication: Publication;
   likers: string[];  
 
+  componentDestroyed$: Subject<boolean> = new Subject()
+
   constructor ( private publicationService: PublicationService,
                 private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
@@ -44,7 +48,7 @@ export class SinglePublicationComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.postId = this.route.snapshot.params['id'];    
-    this.publicationService.publicationSubject.subscribe(
+    this.publicationService.publicationSubject.pipe(takeUntil(this.componentDestroyed$)).subscribe(
       (publication: Publication) => {
         this.publication = publication[0];
         this.publication.content = publication[0].content.replace(/&µ/gi,'\"');
@@ -64,16 +68,16 @@ export class SinglePublicationComponent implements OnInit {
     );
     this.publicationService.getPublicationById(+this.postId);
     this.publicationService.fromPost = this.postId;    
-    this.authService.isAdmin$.subscribe(
+    this.authService.isAdmin$.pipe(takeUntil(this.componentDestroyed$)).subscribe(
       (isAdmin: boolean) => {this.moderator = isAdmin;
     });
     this.commentForm = this.formBuilder.group({
       comment: new FormControl (null, [Validators.required, Validators.maxLength(4000), forbiddenCharactersValidator(/[<>*]/)])   
     });
-    this.publicationService.fromListSubject.subscribe(
+    this.publicationService.fromListSubject.pipe(takeUntil(this.componentDestroyed$)).subscribe(
       (fromList: boolean) => { this.fromList = fromList; 
     });
-    this.publicationService.fromProfileSubject.subscribe(
+    this.publicationService.fromProfileSubject.pipe(takeUntil(this.componentDestroyed$)).subscribe(
       (fromProfile: string) => { this.fromProfile = fromProfile;
     });
     this.loading = false;
@@ -209,5 +213,7 @@ export class SinglePublicationComponent implements OnInit {
   ngOnDestroy() {
     this.publicationService.seeComments = false;
     this.publicationService.seeLikers = false;
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
   }
 }

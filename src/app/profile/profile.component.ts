@@ -6,8 +6,8 @@ import { ProfileService} from '../services/profile.service';
 import { PublicationService} from '../services/publication.service';
 import { AuthService} from '../services/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -142,22 +142,14 @@ export class ProfileComponent implements OnInit {
     this.searching = true;
     this.fromUsersList = true;
 
-    this.searchForm = new FormGroup({
-    })
-    this.filteredUsernames = this.searchControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+    
   }
 
   private _filter(value: string): string[] {
     this.noUser = '';
     const filterValue = value.toLowerCase();
     return this.usersNameList.filter(username => username.toLowerCase().includes(filterValue));
-  }
-
-  
+  }  
 
   onSearch(inputUserName) {
     const check = this.usersNameList.includes(inputUserName);
@@ -166,6 +158,7 @@ export class ProfileComponent implements OnInit {
       this.profileService.getProfileByUserName(inputUserName);
       this.searching = false;
       this.isMine = false;
+      this.searchControl.setValue('');
     } else {
       this.noUser = 'Utilisateur inconnu';
     }
@@ -174,9 +167,18 @@ export class ProfileComponent implements OnInit {
   onButtonSearch() {
     if (this.research) {
       this.research = false;
-      //this.searchForm.reset('search-window');
+      this.searchControl.setValue('');
+
     } else {
       this.research = true;
+      this.searchForm = new FormGroup({
+      })
+      this.filteredUsernames = this.searchControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
+
     }
     
   }

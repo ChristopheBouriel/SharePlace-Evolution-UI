@@ -11,14 +11,14 @@
         <br/>
         <br/>       
         <nav class="menu row no-gutters my-1 ">           
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 mr-md-1 col-md-3 mb-1 text-center" routerLinkActive="active" *ngIf="!isAuth" routerLink="login">Connexion</a>
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 col-md-3 mb-1 text-center" routerLinkActive="active" *ngIf="!isAuth" routerLink="signup">Inscription</a>
+            <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 mr-md-1 col-md-3 mb-1 text-center" routerLinkActive="active-link" *ngIf="!isAuth" routerLink="login">Connexion</a>
+            <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 col-md-3 mb-1 text-center" routerLinkActive="active-link" *ngIf="!isAuth" routerLink="signup">Inscription</a>
 
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active" *ngIf="isAuth" routerLink="notifications">Notifications</a>
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active" *ngIf="isAuth" routerLink="/profile/{{userName}}" (click)="onSeeMine()">Mon profil</a>
-            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active" *ngIf="isAuth" routerLink="publications">Liste</a>
-            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active" *ngIf="isAuth" routerLink="auth" (click)="onLogout()">Déconnexion</a>
-            <a class="col-xs-12 col-sm-11 mb-sm-4 mb-md-1 mx-auto mx-md-0 col-md-2 mb-1 text-center" routerLinkActive="active" *ngIf="isAdmin" routerLink="admin" (click)="onCheckNews()">Admin</a>
+            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="notifications">Notifications</a>
+            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="/profile/{{userName}}" (click)="onSeeMine()">Mon profil</a>
+            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" *ngIf="isAuth" routerLink="publications">Liste</a>
+            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="auth" (click)="onLogout()">Déconnexion</a>
+            <a class="col-xs-12 col-sm-11 mb-sm-4 mb-md-1 mx-auto mx-md-0 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAdmin" routerLink="admin" (click)="onCheckNews()">Admin</a>
         </nav>
         <p *ngIf="showMessage === true"> {{headMessage}}</p>
         <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>

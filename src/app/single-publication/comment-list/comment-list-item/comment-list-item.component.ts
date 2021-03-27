@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentService} from '../../../services/comment.service';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { PublicationService} from '../../../services/publication.service';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -11,6 +10,7 @@ import { forbiddenCharactersValidator } from './../../../input-validators';
   templateUrl: './comment-list-item.component.html',
   styleUrls: ['./comment-list-item.component.scss']
 })
+
 export class CommentListItemComponent implements OnInit {
 
 
@@ -134,4 +134,7 @@ export class CommentListItemComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.authService.isAdmin$.unsubscribe();
+  }
 }

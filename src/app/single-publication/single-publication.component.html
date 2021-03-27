@@ -19,10 +19,10 @@
           </div>
           <div class="infos-date row ml-2">
             <p>Publié le {{publication?.date_publication | date: 'EEEE d LLLL yyyy'}}</p>
-            <a routerLink="#" *ngIf="publication?.modified" class="mb-2 ml-2" (click)="seeDate = !seeDate">Modifié</a>     
+            <a routerLink="/publications/{{postId}}" *ngIf="publication?.modified" class="mb-2 ml-2" (click)="seeDate = !seeDate">Modifié</a>     
           </div>
         </div>
-        <p *ngIf="seeDate" class="mb-2 pl-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm' | lowercase}}</p>
+        <p *ngIf="seeDate" class="mb-2 pl-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm':'GMT+2' | lowercase}}</p>
         <div *ngIf=!modifying  class="publication-view">
             <p>{{publication?.content}}</p>
         </div>
