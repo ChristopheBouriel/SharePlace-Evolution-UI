@@ -12,7 +12,7 @@
     }
 
     a:focus {
-        color: $btn-main;
+        border: solid 1px $btn-main;
     }
 }
 
@@ -49,5 +49,6 @@
 
     a:focus {
         color: whitesmoke;
+        border: solid 1px $btn-main;
     }
 }

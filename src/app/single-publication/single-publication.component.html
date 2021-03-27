@@ -3,8 +3,7 @@
 
     <mat-spinner style="margin:0 auto" class="mx-auto" *ngIf="loading"></mat-spinner>
     <p class="text-danger" *ngIf="errorMsg">{{errorMsg }}</p>
-    <div [ngClass]="{'single-publication': true,
-    'single-publication-like': likes === true
+    <div [ngClass]="{'single-publication': true
                     }" *ngIf="!loading">
         <h2 [ngStyle]="{color: 'primary'}">{{publication?.title}}</h2>
         <div class="infos-post">
@@ -20,7 +19,7 @@
           </div>
           <div class="infos-date row ml-2">
             <p>Publié le {{publication?.date_publication | date: 'EEEE d LLLL yyyy'}}</p>
-            <a *ngIf="publication?.modified" class="mb-2 ml-2" (click)="seeDate = !seeDate">Modifié</a>     
+            <a routerLink="#" *ngIf="publication?.modified" class="mb-2 ml-2" (click)="seeDate = !seeDate">Modifié</a>     
           </div>
         </div>
         <p *ngIf="seeDate" class="mb-2 pl-2"> Dernière modification  le {{publication?.date_modif | date: 'd LLLL yyyy' | lowercase}} à {{publication?.date_modif | date: 'HH:mm' | lowercase}}</p>

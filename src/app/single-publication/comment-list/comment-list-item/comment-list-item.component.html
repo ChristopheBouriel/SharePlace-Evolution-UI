@@ -7,8 +7,8 @@
         </div>
         <div class="comment-all col-10 py-2">
             <div class="infos">
-                <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span> le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+4' | lowercase}}</p>
-                <a *ngIf="modified" (click)="seeDate = !seeDate">Modifié</a>
+                <p >De <a *ngIf="!exOne" routerLink="/profile/{{commentUserName}}" (click)="onSeeProfile()"><span>{{commentUserName}}</span></a><span *ngIf="exOne">{{commentUserName}}</span> le {{commentDate | date: 'd LLLL yyyy' | lowercase}} à {{commentDate | date: 'HH:mm':'UTC+2' | lowercase}}</p>
+                <p><a routerLink="#" *ngIf="modified" (click)="seeDate = !seeDate">Modifié</a></p>
             </div>
             <p *ngIf="seeDate" [ngStyle]="{color: 'rgba(255, 209, 129, 0.722)'}"> Dernière modification  le {{modifDate | date: 'd LLLL yyyy' | lowercase}} à {{modifDate | date: 'HH:mm':'GMT+4' | lowercase}}</p>
             

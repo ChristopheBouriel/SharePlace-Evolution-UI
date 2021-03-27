@@ -2,10 +2,10 @@
 
 <div class="stats row mx-1">
     <div class="col-4 text-left mt-3">
-        <a (click)="seeLikers=!seeLikers">{{likers?.length}} J'aime</a>
+        <a routerLink="#" (click)="seeLikers=!seeLikers">{{likers?.length}} J'aime</a>
     </div>
     <div class="col-8 text-right mt-3">
-        <a (click)="seeComments=!seeComments">{{numberComments | i18nPlural: numberCommentsMapping}}</a> 
+        <a routerLink="#" (click)="seeComments=!seeComments">{{numberComments | i18nPlural: numberCommentsMapping}}</a> 
     </div>   
 </div>
 

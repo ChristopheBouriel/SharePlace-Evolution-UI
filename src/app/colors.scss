@@ -2,3 +2,23 @@ $grey-black: rgb(55, 55, 55);
 $prof-link: rgb(240, 190, 43);
 $btn-main: rgb(176, 94, 31);
 $post-bg: rgba(255, 209, 129, 0.722);
+
+
+input:focus {
+    border-color: brown;
+    box-shadow: 0px 0px 1px 1px $btn-main;
+}
+
+textarea:focus {
+    border-color: brown;
+    box-shadow: 0px 0px 1px 1px $btn-main;
+}
+
+button:focus {
+    outline-offset: 4px;
+    outline-color: brown;
+}
+
+/*a:focus {
+    border-color: whitesmoke;
+}*/

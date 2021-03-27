@@ -17,8 +17,7 @@
     }
 
     a:focus {
-        //border: solid 3px black;
-        background-color: rgba(255, 209, 129, 0.722);
+        box-shadow: inset 0px 0px 1px 2px whitesmoke;
     }
     
 }
@@ -29,14 +28,12 @@
     border-radius: 10px;
 }
 
-.job-place {
-    
+.job-place {    
     h1 {
         font-size: 3rem;
         font-weight: 600;
         font-style: italic;
         color: rgba(255, 209, 129, 0.722);
-
     }
 }
 

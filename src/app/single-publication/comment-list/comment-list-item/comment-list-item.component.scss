@@ -17,28 +17,20 @@ li {
     span {
         font-weight: 500;
     }
-    a:focus {
-        border: solid 1px $btn-main;
-        padding: 2px;
+    
+    a {
+    color: $prof-link;
     }
-    a{
-        color: $prof-link;
-    }
+    
     a:hover {
         color: whitesmoke;
     }
 
-.modif p{
-    color: $prof-link;
-    :hover {
-        color: whitesmoke;
+    a:focus {
+    border: solid 1px $btn-main;
+    padding: 2px;
     }
-    :focus {
-        font-weight: 500;
-    }}
 }
-
-
 
 .comment-all {
     background-color:  $grey-black;
@@ -89,20 +81,6 @@ li {
         border: solid 1px $post-bg;
         margin-right: 10px;
     }
-    p {
-       padding-top: 15px; 
-       color: whitesmoke;
-    }
-
-    a {
-        color: $prof-link;
-    }
-    a:hover {
-        color: whitesmoke;
-    }
-    a:focus {
-        color: $btn-main;
-    }
 }
 
 .form-control {
@@ -115,11 +93,15 @@ label {
 
 button {
     background-color: $btn-main;
-    color: whitesmoke;
+    color: whitesmoke;    
 }
 
 button:hover {
     background-color: $post-bg;
+}
+
+button:focus {
+    outline-offset: 0px;
 }
 
 button:disabled {

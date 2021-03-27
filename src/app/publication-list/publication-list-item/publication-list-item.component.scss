@@ -23,9 +23,11 @@
             }
             a:hover {
                 color: $prof-link;
+                font-weight: 600;
             }
             a:focus {
-                font-weight: 600;
+                border: solid 1px $btn-main;
+                padding: 0px 5px;
             }
         }
     }        
@@ -37,7 +39,7 @@
         a {
         background-color: $btn-main;
         color: white;
-        padding: 10px 10px;
+        padding: 10px;
         border-radius: 50%;
         border: solid 1px rgb(48, 48, 48);
         }
@@ -46,6 +48,12 @@
         }
         a:focus {    
             background-color: $prof-link;
+            border: solid 3px brown;
+            padding: 9px;
+        }
+        img {
+            width: 30px;
+            height: 30px;
         }
     }
 
@@ -101,15 +109,11 @@ li {
             font-weight: 600;
         }
         a:focus {
-            color: $btn-main;
+            border: solid 1px $btn-main;
+            padding: 0px 5px;
         }
         a:hover {
             color: whitesmoke;
         }       
     }
-}
-
-.see-it img {
-    width: 30px;
-    height: 30px;
 }

@@ -10,8 +10,8 @@
             <p *ngIf="publicationModerated===1" class="text-danger moderatedBackground">Ce contenu a été masqué suite à modération</p>
         </div>
         <div class="numbers row" *ngIf="!publicationModerated">
-            <a class="col-6 text-left" [routerLink]="[id]" (click)="onSeePublication('likers')">{{numberLikes | i18nPlural: numberLikesMapping}}</a>
-            <a class="col-6 text-right" [routerLink]="[id]" (click)="onSeePublication('com')">{{publicationNumberComments | i18nPlural: numberCommentsMapping}}</a>
+            <p class="col-6 text-left"><a [routerLink]="[id]" (click)="onSeePublication('likers')">{{numberLikes | i18nPlural: numberLikesMapping}}</a></p>
+            <p class="col-6 text-right"><a [routerLink]="[id]" (click)="onSeePublication('com')">{{publicationNumberComments | i18nPlural: numberCommentsMapping}}</a></p>
         </div>
     </div>
     <div class="see-it" *ngIf="publicationModerated !== 1 || moderator">

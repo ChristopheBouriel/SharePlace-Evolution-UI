@@ -111,6 +111,7 @@ export class SinglePublicationComponent implements OnInit {
         this.commentForm.reset('comment');
         this.commenting = false;
         this.errorMsg = '';
+        
         if (this.isAuthor !== true) {
           const viewed = 0;
           this.publicationService.markAsRead(this.publication.id, username, viewed);

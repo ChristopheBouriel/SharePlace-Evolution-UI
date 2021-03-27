@@ -16,6 +16,7 @@ li {
     }
     a:focus {
         color: $btn-main;
+        border: solid 1px $btn-main;
     }
 }
 

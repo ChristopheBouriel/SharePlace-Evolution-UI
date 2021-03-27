@@ -1,9 +1,5 @@
 @import '../colors';
 
-/*.single-publication-like {
-    background-color: rgb(157, 194, 147);
-}*/
-
 .single-publication {
     border: solid 1px black;
     border-radius: 10px;
@@ -23,12 +19,7 @@
         font-style: italic;
         font-weight: 600;
     }
-    a:hover {
-        color: whitesmoke;
-    }
-    a:focus {
-        color: $btn-main;
-    }
+    
 }
 
 .infos-post {
@@ -45,6 +36,12 @@
     justify-content: flex-start;
     a {
         color: $prof-link;
+    }
+    a:hover {
+        color: whitesmoke;
+    }
+    a:focus {
+        border: solid 1px $btn-main;
     }
 }
 
