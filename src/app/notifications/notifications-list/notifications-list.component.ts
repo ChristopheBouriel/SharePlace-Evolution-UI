@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PublicationService} from '../../services/publication.service';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,14 +16,18 @@ export class NotificationsListComponent implements OnInit {
   @Input() commentId: string;
   @Input() titlePost: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private publicationService: PublicationService) { }
 
   ngOnInit(): void {
-
   }
 
-  onSeePublication() {
-    this.router.navigate(['publications', this.id]);
+  onSeePublication(type) {
+    if (type === 'post') {
+      this.router.navigate(['publications', this.id]);
+    } else if (type === 'com') {
+      this.router.navigate(['publications', this.postId]);
+      this.publicationService.seeComments = true;
+    }    
   }
-
 }

@@ -135,6 +135,6 @@ export class CommentListItemComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.authService.isAdmin$.unsubscribe();
+    
   }
 }

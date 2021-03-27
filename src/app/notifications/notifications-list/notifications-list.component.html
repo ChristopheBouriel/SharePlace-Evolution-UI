@@ -4,11 +4,11 @@
                 'commented': moderated === 0}">
     <div class="notification-message">
         <div *ngIf="!moderated">
-            <p>Votre publication <a (click)="onSeePublication()">
+            <p>Votre publication <a (click)="onSeePublication('post')">
             <span>{{title}}</span></a> a été commentée</p>
         </div>
         <div *ngIf="moderated">
-            <p>Votre publication <a (click)="onSeePublication()">
+            <p>Votre publication <a (click)="onSeePublication('post')">
             <span>{{title}}</span></a> a été modérée</p>
         </div>        
     </div>   
@@ -17,7 +17,7 @@
 <li *ngIf="postId" [ngClass]="{'list-group-item': true, 'warning': true }">
     <div>
         <div >
-            <p>Votre commentaire sur la publication <a (click)="onSeePublication()">
+            <p>Votre commentaire sur la publication <a (click)="onSeePublication('com')">
             <span>{{titlePost}}</span></a> a été modéré</p>
         </div>        
     </div>   

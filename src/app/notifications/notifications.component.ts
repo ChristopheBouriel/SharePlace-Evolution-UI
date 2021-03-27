@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../services/auth.service';
 import { ProfileService} from '../services/profile.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-notifications',
@@ -16,6 +18,8 @@ export class NotificationsComponent implements OnInit {
   gotPostNotifs: boolean = false;
   gotCommentNotifs: boolean = false;
 
+  componentDestroyed$: Subject<boolean> = new Subject()
+
   constructor(private authService: AuthService,
               private profileService: ProfileService) { }
 
@@ -25,14 +29,14 @@ export class NotificationsComponent implements OnInit {
         this.userName = userName}
     )
 
-    this.profileService.postNotifSubject.subscribe(
+    this.profileService.postNotifSubject.pipe(takeUntil(this.componentDestroyed$)).subscribe(
         (postNotifs: any[]) => {
         this.postNotifs = postNotifs;
         if (postNotifs[0]) {this.gotPostNotifs = true}
       }
     );
 
-    this.profileService.commentNotifSubject.subscribe(
+    this.profileService.commentNotifSubject.pipe(takeUntil(this.componentDestroyed$)).subscribe(
       (commentNotifs: any[]) => {
       this.commentNotifs = commentNotifs;
       if (commentNotifs[0]) {this.gotCommentNotifs = true}     
@@ -40,6 +44,11 @@ export class NotificationsComponent implements OnInit {
   );
 
     this.profileService.getNews(this.userName);   
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
   }
 
 }
