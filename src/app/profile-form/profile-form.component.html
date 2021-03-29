@@ -16,8 +16,9 @@
             <button  *ngIf="!newProfile && imagePreview==='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png" alt="add icon"></button>            
         </div>
     </form>
-    <p class="text-danger">* Les champs avec une astérisque sont obligatoires</p>
+    
     <form [formGroup]="profileForm" *ngIf="!loading" class="infosForm">
+        <p class="text-danger">* Les champs avec une astérisque sont obligatoires</p>
         <div class="form-group">
             <label for="firstname">Prénom*</label>
             <input type="text" class="form-control" id="firstname" formControlName="firstname">

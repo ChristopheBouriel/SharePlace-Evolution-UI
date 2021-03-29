@@ -1,3 +1,28 @@
+
+.bannier {
+    background-color: rgb(55, 55, 55);    
+    border: solid rgb(176, 94, 31) 3px;
+    border-radius: 10px;
+}
+
+.job-place {    
+    h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        font-style: italic;
+        color: rgba(255, 209, 129, 0.722);
+    }
+}
+
+img {
+    width: 100%;
+    padding: 40px;
+}
+
+p {
+    color: whitesmoke
+}
+
 .menu {
     display:flex;
     justify-content: flex-end;
@@ -25,28 +50,9 @@
 }
 }
 
-
-
-.bannier {
-    background-color: rgb(55, 55, 55);    
-    border: solid rgb(176, 94, 31) 3px;
-    border-radius: 10px;
-}
-
-.job-place {    
-    h1 {
-        font-size: 3rem;
-        font-weight: 600;
-        font-style: italic;
-        color: rgba(255, 209, 129, 0.722);
+.message {
+    height: 10px;
+    p{
+        color: whitesmoke;
     }
-}
-
-img {
-    width: 100%;
-    padding: 40px;
-}
-
-p {
-    color: whitesmoke
 }

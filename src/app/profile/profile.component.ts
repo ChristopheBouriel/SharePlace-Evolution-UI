@@ -178,8 +178,7 @@ export class ProfileComponent implements OnInit {
           startWith(''),
           map(value => this._filter(value))
         );
-
-    }
-    
+    }    
   }
+
 }

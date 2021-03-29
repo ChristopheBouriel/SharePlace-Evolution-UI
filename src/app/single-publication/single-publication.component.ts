@@ -111,6 +111,7 @@ export class SinglePublicationComponent implements OnInit {
         this.commentForm.reset('comment');
         this.commenting = false;
         this.errorMsg = '';
+        this.authService.headMessage$.next('Votre commentaire a bien été enregistré');
         
         if (this.isAuthor !== true) {
           const viewed = 0;
@@ -154,8 +155,9 @@ export class SinglePublicationComponent implements OnInit {
       (response) => {
         this.loading = false;           
             this.publicationService.getPublicationById(this.postId);
-                  this.modifying = false;
-                  this.errorMsg = '';
+            this.modifying = false;
+            this.errorMsg = '';
+            this.authService.headMessage$.next('Votre publication a bien été modifiée');
       }
     )
     .catch(
@@ -206,8 +208,12 @@ export class SinglePublicationComponent implements OnInit {
     );
   }
 
-  ngOnDestroy() {
+  onBackToList() {
     this.publicationService.seeComments = false;
     this.publicationService.seeLikers = false;
+  }
+
+  ngOnDestroy() {
+    
   }
 }

@@ -38,8 +38,11 @@
     height: 36px;    
 }
 
-.noUser {
-    color: red;
+#noUser {
+    height: 20px;    
+    p {
+        color: red;
+    }
 }
 
 .controls {

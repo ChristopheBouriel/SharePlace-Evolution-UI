@@ -1,0 +1,57 @@
+
+<div class="container-fluid menu col-12 col-lg-10 mx-auto" *ngIf="isAuth">
+    
+    <nav class="navbar navbar-expand-md navbar-dark mb-3">      
+        <button class="navbar-toggler" type="button" [ngClass]="{ 'menu-open': navbarOpen }" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
+        
+            <ul class="navbar-nav col-12 row no-gutters px-0">
+            <!--<a class="navbar-brand" href="#page-top">Accueil</a>
+                <li class="nav-item" routerLinkActive="active-link" *ngIf="!isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="login">Connexion</a></li>
+                <li class="nav-item" routerLinkActive="active-link" *ngIf="!isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="signup">Inscription</a></li>-->
+                    
+                <li class="nav-item col-9 mx-md-1 col-md-2 mb-1 mx-auto px-0 text-center" routerLinkActive="active-link" *ngIf="isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="/notifications" fragment="page-top-notifications" (click)="toggleNavbar()">Notifications</a></li>
+                <li class="nav-item col-9 mx-md-1 col-md-2 mb-1 mx-auto px-0 text-center" routerLinkActive="active-link" *ngIf="isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="/profile/{{userName}}" fragment="page-top-profil" (click)="onSeeMine(); toggleNavbar()">Mon profil</a></li>
+                <li class="nav-item col-9 mb-4 mb-md-1 mx-md-1 mx-auto col-md-2 px-0 text-center" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" *ngIf="isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="/publications" fragment="page-top-list" (click)="toggleNavbar()">Liste</a></li>
+                <li class="nav-item col-9 mb-sm-4 mb-md-1 mx-md-0 mx-auto col-md-2 mb-1 px-0 text-center" routerLinkActive="active-link" *ngIf="isAdmin" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="admin" (click)="onCheckNews(); toggleNavbar()">Admin</a></li>
+                <li class="nav-item col-9 col-sm-4 mb-4 mb-md-1 mx-md-1 mx-auto px-0 col-md-2 px-0 text-center logout" routerLinkActive="active-link" *ngIf="isAuth" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <a class="nav-link" routerLink="auth" (click)="onLogout(); toggleNavbar()">Déconnexion</a></li>                
+            </ul>                 
+        </div>
+    </nav>
+    <div class="row message mb-2" *ngIf="errorMsg">
+        <p class="col-12 text-danger texte-center">{{ errorMsg }}</p>
+    </div>
+
+    
+    <!--<div class="nav row no-gutters col-12 mx-auto px-1">
+        <button class="col-1 mx-auto d-sm-none"  (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">See</span>
+        </button>
+        <div class="row col-10 mx-auto col-md-12" [ngClass]="{ 'hide-menu': navbarOpen }">
+            <div class="row col-12 col-sm-8 justify-content-center menu-left">
+                <a class="col-12 col-sm-3 mx-md-1 mb-1 text-center" routerLinkActive="active-link"  routerLink="notifications">Notifications</a>
+                <a class="col-12 col-sm-3 mx-md-1 mb-1 text-center" routerLinkActive="active-link"  routerLink="/profile/{{userName}}" (click)="onSeeMine()">Mon profil</a>
+                <a class="col-12 col-sm-3 mb-md-1 mx-md-1 mb-1 text-center" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"  routerLink="publications">Liste</a>
+                    
+            </div>
+            <div class="row col-12 col-sm-4 justify-content-center menu-right">
+                <a class="col-12 col-sm-2 mb-md-1 mx-md-1 mb-1 text-center" routerLinkActive="active-link"  routerLink="auth" (click)="onLogout()">Déconnexion</a>
+                <a class="col-12 col-sm-12 mb-md-1 mx-md-0 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAdmin" routerLink="admin" (click)="onCheckNews()">Admin</a>
+                
+            </div>
+        </div>        
+    </div>-->
+   
+
+</div>
+
+

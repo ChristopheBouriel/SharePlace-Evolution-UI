@@ -57,8 +57,7 @@ export class CommentListItemComponent implements OnInit {
     this.authService.isAdmin$.subscribe(
       (isAdmin) => {
         this.moderator = isAdmin;
-      }
-    )      
+      });
   }
 
   onDelete() {    
@@ -114,6 +113,7 @@ export class CommentListItemComponent implements OnInit {
 
   onSeeProfile() {
     this.publicationService.fromListSubject.next(false);
+    this.publicationService.seeComments = true;
   }
 
   onModerate() {

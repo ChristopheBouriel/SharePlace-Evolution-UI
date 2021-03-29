@@ -9,11 +9,11 @@
     </div>   
 </div>
 
-<div class="likers-list mb-5 mt-3" *ngIf="seeLikers && likers?.length>0">
-    <p class="text-center my-2">Ces utilisateurs ont aimé :</p>
-    <ul>
+<div class="likers-list row mx-3 mb-5 mt-3" *ngIf="seeLikers && likers?.length>0">
+    <p class="text-center col-11 mx-auto mb-4 mt-2">Ces utilisateurs ont aimé :</p>
+    <ul class="col-11 mx-auto">
         <li *ngFor="let liker of likers; let i = index">
-        <a routerLink="/profile/{{likers[i]}}" (click)="onSeeProfile()">{{likers[i]}}</a>
+        <a routerLink="/profile/{{likers[i]}}" fragment="page-top-profil" (click)="onSeeProfile()">{{likers[i]}}</a>
         </li>
     </ul>
 </div>

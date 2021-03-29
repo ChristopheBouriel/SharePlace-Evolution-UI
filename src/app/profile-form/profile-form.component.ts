@@ -109,6 +109,7 @@ export class ProfileFormComponent implements OnInit {
       (response: { message: string }) => {
         this.loading = false;
         this.pictureChanged = false;
+        this.authService.headMessage$.next('Votre photo de profil a bien été enregistrée');
       }
     ).catch(
       (error) => {

@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PublicationService} from '../services/publication.service';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { forbiddenCharactersValidator } from './../input-validators';
 @Component({
@@ -22,7 +23,8 @@ export class PublicationListComponent implements OnInit {
   
   constructor(private publicationService: PublicationService,
               private formBuilder: FormBuilder,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private router: Router) {}
 
   ngOnInit() {
     this.publicationsSubscription = this.publicationService.publicationsSubject.subscribe(

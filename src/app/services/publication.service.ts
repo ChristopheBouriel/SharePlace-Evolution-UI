@@ -17,9 +17,9 @@ export class PublicationService {
 
     lastSeenInList: number;
     fromPost: number;
-    fromProfile: string;
-    seeComments: boolean=false;
-    seeLikers: boolean=false;
+    //fromProfile: string;
+    seeComments: boolean;
+    seeLikers: boolean;
     numberComments: number;
 
     constructor(private httpClient: HttpClient) { }

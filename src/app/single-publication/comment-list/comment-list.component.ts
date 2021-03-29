@@ -52,11 +52,11 @@ export class CommentListComponent implements OnInit {
 
   onSeeProfile() {
     this.publicationService.fromListSubject.next(false);
+    this.publicationService.seeLikers = true;
   }
   
   ngOnDestroy() {
     this.commentsSubscription.unsubscribe();
-    this.publicationService.seeComments = false;
   }
 
 }

@@ -1,7 +1,10 @@
 body {
     background-color: rgb(33, 33, 33);
     box-sizing: border-box;
-    margin-bottom: 40px;
+}
+
+footer {
+    height: 40px;
 }
 
 label {
@@ -25,6 +28,11 @@ button {
     font-size: 1rem;
     box-shadow: none;
     border: none;
+}
+
+button:focus {
+    padding: 5px;
+
 }
 
 button:disabled {

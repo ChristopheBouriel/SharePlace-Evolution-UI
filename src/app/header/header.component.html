@@ -1,26 +1,22 @@
-<div class="row my-5 mx-auto">
+<div class="row mt-5 mb-1 mx-auto">
     <div class="bannier col-xs-12 col-lg-10 mx-auto">
         <div class="job-place row no-gutters">
             <div class="mx-auto ml-md-2 col-md-10">
                 <img src="../assets/images/groupo-monochrome-white.png" alt="Logo Groupomania">
             </div>
-            <div class="col-12">
-                <h1 class="text-center text-md-right mr-3 mt-2">SharePlace</h1>
+            <div class="col-12 row mx-auto">
+                <div class="offset-md-6 col-md-6 text-center mt-2">
+                    <h1>SharePlace</h1>
+                </div>
             </div>            
         </div>
-        <br/>
-        <br/>       
-        <nav class="menu row no-gutters my-1 ">           
+        
+        <nav class="menu row no-gutters mb-3 mt-1 ">           
             <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 mr-md-1 col-md-3 mb-1 text-center" routerLinkActive="active-link" *ngIf="!isAuth" routerLink="login">Connexion</a>
             <a class="col-xs-12 col-sm-5 mx-auto mx-md-0 col-md-3 mb-1 text-center" routerLinkActive="active-link" *ngIf="!isAuth" routerLink="signup">Inscription</a>
-
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="notifications">Notifications</a>
-            <a class="col-xs-12 col-sm-5 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="/profile/{{userName}}" (click)="onSeeMine()">Mon profil</a>
-            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" *ngIf="isAuth" routerLink="publications">Liste</a>
-            <a class="col-xs-12 col-sm-5 mb-sm-4 mb-md-1 mx-auto mx-md-1 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAuth" routerLink="auth" (click)="onLogout()">Déconnexion</a>
-            <a class="col-xs-12 col-sm-11 mb-sm-4 mb-md-1 mx-auto mx-md-0 col-md-2 mb-1 text-center" routerLinkActive="active-link" *ngIf="isAdmin" routerLink="admin" (click)="onCheckNews()">Admin</a>
-        </nav>
-        <p *ngIf="showMessage === true"> {{headMessage}}</p>
-        <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+        </nav>       
     </div>
+</div>
+<div class="row message mb-2">
+    <p class="col-12 text-center" *ngIf="showMessage === true"> {{headMessage}}</p>
 </div>

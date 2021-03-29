@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="page-top-profil">
     <div class="col-10 col-lg-8 mx-auto">
 
         <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
@@ -36,17 +36,17 @@
                     <button *ngIf="!searching" routerLink="/publications"><img src="./assets/images/list-icon.png" alt="list icon"></button>
                 </div>
                 <div class="col-4 mx-auto my-1 text-center">
-            <button  *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}"><img src="./assets/images/back-icon.png" alt="back icon"></button>
-        </div>
+                    <button  *ngIf="!fromList && !searching && !fromUsersList && !isMine" routerLink="/publications/{{fromPost}}"><img src="./assets/images/back-icon.png" alt="back icon"></button>
+                </div>
                 <div class="col-4 mx-auto my-1 text-right">
                     <button *ngIf="!searching" (click)="onGetList()"><img src="./assets/images/search-icon.png" alt="search icon"></button>
                 </div>
             </div>            
-        </div>
+        </div>        
         
-        <br/>
-        <br/>
         <div *ngIf="!searching">
+            <br/>
+            <br/>
             <h2 class="text-center" *ngIf="publications?.length">Publications</h2>
             <ul class="list-group">
                 <app-user-publications  *ngFor="let publication of publications; let i = index"
@@ -73,16 +73,17 @@
                 <button (click)="onButtonSearch()"><img src="./assets/images/search-icon.png" alt="search icon"></button>
             </div>
         </div>
-        <br/>
         <div class="users-list" *ngIf="searching">
             <div id="search-tool" class="mb-5" *ngIf="research">
-                <p class="noUser mx-auto" *ngIf="noUser">{{noUser}}</p>
-                <form [formGroup]="searchForm" class="row no-gutters align-items-center mx-0 mx-sm-5" >
+                <div id="noUser">
+                    <p class="col-10 mx-auto" *ngIf="noUser">{{noUser}}</p>
+                </div>
+                <form [formGroup]="searchForm" class="row no-gutters align-items-center mt-1 mx-0 mx-sm-5" >
                     <mat-form-field class="col-8">                            
                         <input type="text"
                                 id="search-window"
-                                placeholder="Entrer un nom d'utilisateur"
-                                aria-label="Entrer un nom d'utilisateur"
+                                placeholder="Entrer un utilisateur"
+                                aria-label="Entrer un utilisateur"
                                 name="search"
                                 #inputUserName
                                 matInput
