@@ -3,7 +3,7 @@
 .warning {
     
     border: solid 2px lightcoral;    
-    span {
+    a {
         color: lightcoral;
         font-weight: bold;
     }
@@ -15,7 +15,7 @@ p {
 
 .commented {
     border: solid 2px $btn-main;
-    span {
+    a {
         font-weight: bold;
         color: $post-bg;
     }
@@ -25,5 +25,13 @@ p {
     border-radius: 10px;
     background-color: black;
     margin-bottom: 10px;
+    a:hover {
+    color: $prof-link;
+    }
+
+    a:focus {
+    border-color: whitesmoke;
+    }
     
 }
+

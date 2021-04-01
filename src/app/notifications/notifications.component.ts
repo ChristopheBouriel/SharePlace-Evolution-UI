@@ -17,6 +17,8 @@ export class NotificationsComponent implements OnInit {
   commentNotifs : any[];
   gotPostNotifs: boolean = false;
   gotCommentNotifs: boolean = false;
+  loading: boolean;
+  errorMsg: string;
 
   componentDestroyed$: Subject<boolean> = new Subject()
 
@@ -24,6 +26,7 @@ export class NotificationsComponent implements OnInit {
               private profileService: ProfileService) { }
 
   ngOnInit()  {
+    this.loading = true;
     this.authService.userName$.subscribe(
       (userName) => {
         this.userName = userName}
@@ -43,7 +46,16 @@ export class NotificationsComponent implements OnInit {
     }
   );
 
-    this.profileService.getNews(this.userName);   
+    this.profileService.getNews(this.userName).then(
+      (response) => {
+        this.loading = false;
+      }
+    ).catch(
+      (error) => {
+        this.loading = false;
+        this.errorMsg = error.message;
+      }
+    );;   
   }
 
   ngOnDestroy() {

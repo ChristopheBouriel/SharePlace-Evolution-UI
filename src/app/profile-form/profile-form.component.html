@@ -3,11 +3,14 @@
 </div>
 <div class="row">
   <div class="col-xs-10 col-md-8 mx-auto">
-    <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
-    <form [formGroup]="pictureForm" *ngIf="!loading">
+    <div class="picSpin" *ngIf="loadingPic">
+      <mat-spinner style="margin:0 auto;" ></mat-spinner>
+    </div>
+    <form [formGroup]="pictureForm" *ngIf="!loadingPic">
         <div class="form-group profilePic">        
             <input type="file" accept="image/*" #imageInput (change)="onFileAdded($event)">
             <img [src]="imagePreview" alt="profile picture" *ngIf="imagePreview">
+            
             <div class="ctrlPic row col-5 mx-auto">         
               <button  *ngIf="!newProfile && imagePreview!=='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/change-icon.png" alt="change icon"></button>
               <button  *ngIf="!newProfile && !pictureChanged && imagePreview!=='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="onDeletePic()"><img src="./assets/images/delete-icon.png" alt="delete-icon"></button>            
@@ -16,7 +19,7 @@
             <button  *ngIf="!newProfile && imagePreview==='https://res.cloudinary.com/cbpicstore/image/upload/v1615060643/SharePlace-Evo/default.png'" (click)="imageInput.click()"><img src="./assets/images/add-icon.png" alt="add icon"></button>            
         </div>
     </form>
-    
+    <mat-spinner style="margin:0 auto" *ngIf="loading"></mat-spinner>
     <form [formGroup]="profileForm" *ngIf="!loading" class="infosForm">
         <p class="text-danger">* Les champs avec une astérisque sont obligatoires</p>
         <div class="form-group">

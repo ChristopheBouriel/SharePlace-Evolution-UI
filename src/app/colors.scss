@@ -15,10 +15,6 @@ textarea:focus {
 }
 
 button:focus {
-    outline-offset: 4px;
-    outline-color: brown;
+    outline: none;
+    box-shadow: inset 0px 0px 3px 2px whitesmoke;
 }
-
-/*a:focus {
-    border-color: whitesmoke;
-}*/

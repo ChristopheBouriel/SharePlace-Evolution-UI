@@ -1,7 +1,8 @@
+@import '../colors.scss';
 
 .bannier {
     background-color: rgb(55, 55, 55);    
-    border: solid rgb(176, 94, 31) 3px;
+    border: solid $btn-main 3px;
     border-radius: 10px;
 }
 
@@ -10,7 +11,7 @@
         font-size: 3rem;
         font-weight: 600;
         font-style: italic;
-        color: rgba(255, 209, 129, 0.722);
+        color: $post-bg;
     }
 }
 
@@ -30,7 +31,7 @@ p {
    
     a{
         font-size: 0.9rem;
-        background-color: rgb(176, 94, 31);
+        background-color: $btn-main;
         border-radius: 5px;
         color: white;
         padding: 10px;
@@ -38,7 +39,7 @@ p {
     }
 
     a:hover {
-        background-color: rgba(255, 209, 129, 0.722);
+        background-color: $post-bg;
     }
 
     a:focus {
@@ -46,7 +47,7 @@ p {
     }
     
     .active-link {
-    background-color: rgba(255, 209, 129, 0.722);
+    background-color: $post-bg;
 }
 }
 

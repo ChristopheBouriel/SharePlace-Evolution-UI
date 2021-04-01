@@ -18,6 +18,7 @@ export class ProfileFormComponent implements OnInit {
   pictureForm: FormGroup;
   editMode: boolean;
   loading: boolean;
+  loadingPic: boolean;
   profile: Profile;
   errorMsg: string;
   pictureChanged: boolean = false;
@@ -34,6 +35,7 @@ export class ProfileFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.loadingPic = true;
     this.route.params.subscribe(
       (params) => {
         if (!params.username) {
@@ -41,6 +43,7 @@ export class ProfileFormComponent implements OnInit {
           this.initEmptyForm();
           this.initPicForm(); 
           this.loading = false;
+          this.loadingPic = false;
         } else {
           this.editMode = true;
           this.profileService.getProfileByUserName(params.username).then(
@@ -49,6 +52,7 @@ export class ProfileFormComponent implements OnInit {
               this.initModifyForm(this.profile);              
               this.initPicForm();             
               this.loading = false;
+              this.loadingPic = false;
             }
           ).catch(
             (error) => {
@@ -81,17 +85,17 @@ export class ProfileFormComponent implements OnInit {
   }
   
   initModifyForm(profile) {
-    this.loading = true;
+    //this.loading = true;
     this.profileForm = this.formBuilder.group({
       firstname: new FormControl(profile.firstname, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
       lastname: new FormControl(profile.lastname, [Validators.required, Validators.maxLength(40), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
-      username: [profile.userName],
-      password: [null],
+      username: new FormControl(profile.userName),
+      password: new FormControl(null),
       department: new FormControl(profile.serviceName, [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z\u00C0-\u00D6\u00D8-\u00DF]{1}[a-zA-Z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F \'-]*$')]),
       email:  new FormControl(profile.email, [emailValidator(/(^$)|^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g)]),
-      aboutMe: [profile.aboutMe],
+      aboutMe: new FormControl(profile.aboutMe),
     });
-    this.loading = false;    
+    //this.loading = false;    
   }
 
   initPicForm() {
@@ -105,28 +109,27 @@ export class ProfileFormComponent implements OnInit {
   }
 
   onLoadPic() {
+    this.loadingPic = true;
     this.profileService.loadPicture(this.profile.userName, this.pictureForm.get('image').value).then(
       (response: { message: string }) => {
-        this.loading = false;
+        this.loadingPic = false;
         this.pictureChanged = false;
         this.authService.headMessage$.next('Votre photo de profil a bien été enregistrée');
       }
     ).catch(
       (error) => {
         console.error(error);
-        this.loading = false;
+        this.loadingPic = false;
         this.errorMsg = error.message;
       }
     )
   }
 
   onDeletePic() {
-    console.log(this.profile.userName)
     this.profileService.deletePicture(this.profile.userName).then(
       (response: { message: string }) => {
         this.loading = false;
-        this.pictureDeleted = true;
-        
+        this.pictureDeleted = true;        
       }
     ).catch(
       (error) => {
@@ -140,7 +143,6 @@ export class ProfileFormComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-
     const newUser = new Profile();
     newUser.firstname = this.profileForm.get('firstname').value;
     newUser.lastname = this.profileForm.get('lastname').value;

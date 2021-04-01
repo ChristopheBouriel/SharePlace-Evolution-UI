@@ -63,8 +63,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.profileSubject.subscribe(
       (profile: Profile) => {
         this.profile = profile[0];
-        if (this.profile.aboutMe !== '') {
-          this.aboutMe = this.profile.aboutMe.replace(/&µ/gi,'\"');
+        if (this.profile?.aboutMe !== '') {
+          this.aboutMe = this.profile?.aboutMe.replace(/&µ/gi,'\"');
         }
       }
     );
@@ -168,7 +168,6 @@ export class ProfileComponent implements OnInit {
     if (this.research) {
       this.research = false;
       this.searchControl.setValue('');
-
     } else {
       this.research = true;
       this.searchForm = new FormGroup({

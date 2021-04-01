@@ -46,11 +46,12 @@
               <p class="text-danger" *ngIf="modifyForm.get('publication').errors?.maxlength">Publication must be at max 4000 characters long</p>
               <p class="text-danger" *ngIf="modifyForm.get('publication').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
             </div>
+            <p id="confirm" *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication ?</p>
             <div class="row justify-content-around">
               <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onMakeModif()" [disabled]="modifyForm.invalid">Envoyer</button>
               <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="onCancelModif()">Annuler</button>
               <button mat-raised-button *ngIf="!confirm" class="mr-2" (click)="confirm = !confirm">Effacer</button>
-              <p *ngIf="confirm">Etes-vous sûr(e) de vouloir supprimer cette publication</p>
+              
               <button mat-raised-button *ngIf="confirm" class="mr-2" (click)="confirm = !confirm">Annuler</button>
               <button mat-raised-button *ngIf="confirm" (click)="onDelete()">Effacer</button>
             </div>        
@@ -64,25 +65,28 @@
         <div *ngIf=!modifying  class="post-buttons row no-gutters col-9 col-sm-6 mx-auto">
             <button (click)="commenting = true"><img src="./assets/images/comment-icon.png" alt="comment icon"></button>
             <button routerLink="/publications" fragment="{{postId}}"><img src="./assets/images/list-icon.png" (click)="onBackToList()" alt="back icon"></button>
-            <button *ngIf="!isAuthor" class="" routerLink="/profile/{{publication?.userName}}" fragment="page-top-profile" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png" alt="profile icon"></button>
-            <button *ngIf="isAuthor" class="" (click)="onWantModify()"><img src="./assets/images/write-icon.png" alt="edit icon"></button>        
+            <button *ngIf="!isAuthor" routerLink="/profile/{{publication?.userName}}" fragment="page-top-profile" (click)="onSeeProfile()"><img src="./assets/images/profile-icon.png" alt="profile icon"></button>
+            <button *ngIf="isAuthor" (click)="onWantModify()"><img src="./assets/images/write-icon.png" alt="edit icon"></button>        
         </div>
     </div>
-
-    <form [formGroup]="commentForm" *ngIf="!loading && commenting">
-        <div class="form-group mt-3">
-          <label for="comment">Commenter</label>
-          <textarea class="form-control" id="comment" formControlName="comment" rows="4"></textarea>
-          <div *ngIf="commentForm.get('comment').errors && (commentForm.get('comment').touched || commentForm.get('comment').dirty)">
-            <p class="text-danger" *ngIf="commentForm.get('comment').errors?.required">A content is required</p>
-            <p class="text-danger" *ngIf="commentForm.get('comment').errors?.maxlength">Comment must be at max 4000 characters long</p>
-            <p class="text-danger" *ngIf="commentForm.get('comment').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+    
+      <form [formGroup]="commentForm" class="mx-1" *ngIf="!loading && commenting">
+          <div class="form-group mt-3">
+            <label for="comment">Commenter</label>
+            <textarea class="form-control" id="comment" formControlName="comment" rows="4"></textarea>
+            <div *ngIf="commentForm.get('comment').errors && (commentForm.get('comment').touched || commentForm.get('comment').dirty)">
+              <p class="text-danger" *ngIf="commentForm.get('comment').errors?.required">A content is required</p>
+              <p class="text-danger" *ngIf="commentForm.get('comment').errors?.maxlength">Comment must be at max 4000 characters long</p>
+              <p class="text-danger" *ngIf="commentForm.get('comment').errors?.forbiddenCharacter">Characters cannot be &lt; > or *</p>
+            </div>
           </div>
-        </div>
-        <button class="mr-2" mat-raised-button [disabled]="commentForm.invalid" (click)="onComment()">Envoyer</button>
-        <button mat-raised-button (click)="onCancel()">Annuler</button> 
-    </form>
-
+          <button class="mr-2" mat-raised-button [disabled]="commentForm.invalid" (click)="onComment()">Envoyer</button>
+          <button mat-raised-button (click)="onCancel()">Annuler</button> 
+          
+      </form>
+      <br>
+      <div id="line" *ngIf="!loading && commenting">
+      </div>
     <app-comment-list [postId]="postId"
                       [likers]="likers"></app-comment-list>
   </div>

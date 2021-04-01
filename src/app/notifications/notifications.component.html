@@ -1,5 +1,7 @@
 <div class="row my-3 mx-auto" id="#page-top-notifications">
-    <div class="frame col-12 col-md-10 py-3 mx-auto">
+    <mat-spinner style="margin:0 auto;" *ngIf="loading"></mat-spinner>
+    <p class="text-danger col-6 mx-auto text-center" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <div class="frame col-12 col-md-10 py-3 mx-auto" *ngIf="!loading">
         <div class="row">
             <ul class="list-group col-10 mx-auto my-1">
                 <app-notifications-list *ngFor="let postNotif of postNotifs; let j = index"
