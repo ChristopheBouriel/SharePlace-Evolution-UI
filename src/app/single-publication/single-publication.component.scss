@@ -68,7 +68,7 @@
         /*margin: 0px 10px;*/
     button {
         background-color: $btn-main; 
-        padding: 5px 5px;       
+        padding: 7px 7px;       
     }
     img {
         width: 25px;
@@ -81,7 +81,12 @@
         height: 35px;
         }
         padding: 0px 0px;
-    }    
+    }
+    
+    button:focus {
+        padding: 7px;
+        box-shadow: inset 0px 0px 2px 1px whitesmoke;
+    }
 }
 
 .like {
