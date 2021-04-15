@@ -12,6 +12,7 @@
 
 @media (max-width: 575.98px) {
     .cname {
+        height: 100px;
         p {
             font-size: 26vw;
         }        
@@ -20,6 +21,7 @@
 
 @media (min-width: 576px) and (max-width: 767.98px) {
     .cname {
+        height: 120px;
         p {
             font-size: 20vw;
         }        
@@ -28,6 +30,7 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     .cname {
+        height: 130px;
         p {
             font-size: 18vw;
         }        
@@ -36,6 +39,7 @@
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .cname {
+        height: 130px;
         p {
             font-size: 16vw;
         }        
@@ -44,6 +48,7 @@
 
 @media (min-width: 1200px) {
     .cname {
+        height: 140px;
         p {
             font-size: 190px;
         }        
@@ -52,14 +57,11 @@
  
 
 .cname {
-    height: 140px;
     margin-bottom: 40px;
     display: flex;
     align-items: flex-end;
     p {
         font-family: 'Belligerent-Madness';
-        //font-size: 16vw;
-        //padding: 10px;
     }
 }
 
