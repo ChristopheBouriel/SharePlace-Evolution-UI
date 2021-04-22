@@ -28,7 +28,7 @@ Vous pourrez trouvez plus d'informations sur le projet initial et cette version 
 https://portfolio-christophe-bouriel.netlify.app  
 
 
-![Screenshots](./montage-readme-2.png)
+![Screenshots](./montage-readme.png)
 
 # Ce repository :
 
