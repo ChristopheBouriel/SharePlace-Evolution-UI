@@ -15,9 +15,8 @@ export class PublicationService {
     private publications: Publication[];
     private publication: Publication;
 
-    lastSeenInList: number;
+    lastSeenInList: string;
     fromPost: number;
-    //fromProfile: string;
     seeComments: boolean;
     seeLikers: boolean;
     numberComments: number;
@@ -47,7 +46,6 @@ export class PublicationService {
     }
 
     getPublicationById(id: number) {
-      this.lastSeenInList = id;
       return new Promise((resolve, reject) => {
         this.httpClient
         .get<Publication>('http://localhost:3000/api/publications/' + id)

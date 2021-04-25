@@ -39,7 +39,7 @@ export class PublicationListItemComponent implements OnInit {
   ngOnInit(): void {
     this.content = this.publicationContent.replace(/&µ/gi,'\"');
     this.title = this.publicationTitle.replace(/&µ/gi,'\"');
-    this.numberLikes = JSON.parse(this.publicationLikeUsernames).length
+    this.numberLikes = JSON.parse(this.publicationLikeUsernames).length;
     this.authService.isAdmin$.subscribe(
       (isAdmin) => {
         this.moderator = isAdmin;
@@ -54,10 +54,12 @@ export class PublicationListItemComponent implements OnInit {
     } else if (show==='likers') {      
         this.publicationService.seeLikers = true;
     };
+    this.publicationService.lastSeenInList = this.id.toString(10);
   }
 
   onSeeProfile() {
     this.publicationService.fromListSubject.next(true);
+    this.publicationService.lastSeenInList = this.id.toString(10);
   }
 }
 

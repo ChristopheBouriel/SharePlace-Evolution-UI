@@ -8,6 +8,8 @@ import { AuthService} from '../services/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ViewportScroller } from '@angular/common';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -41,7 +43,8 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute,              
               private profileService: ProfileService,
               private publicationService: PublicationService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private viewportScroller: ViewportScroller) { }
 
   ngOnInit() {
     this.loading = true;    
@@ -112,6 +115,7 @@ export class ProfileComponent implements OnInit {
     if(this.searching===false) {
       this.noUser = '';
       this.research = false;
+      this.viewportScroller.scrollToPosition([0 , 40]);
     };
   
     this.publicationService.fromListSubject.subscribe(

@@ -2,7 +2,7 @@
                 'items-users-list': true}">
     <div class="row">
         <div class="profile-link col-8 mr-auto">
-            <a routerLink="/profile/{{userName}}" fragment="page-top-profil" (click)="onSeeProfile()">{{userName}}</a>
+            <a routerLink="/profile/{{userName}}" (click)="onSeeProfile()">{{userName}}</a>
             <p>{{firstname}} {{lastname}}</p>
             <p><span>Service {{serviceName}}</span></p>        
         </div>

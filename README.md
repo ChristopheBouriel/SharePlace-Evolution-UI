@@ -16,10 +16,9 @@ Les fonctionnalités déjà implémentées sont détaillée dans le document **w
 
 **Liste prévisionnelle des ajouts à venir :**
 
-* ancres lors du retour à la liste depuis une publication pour éviter de revenir au sommet
 * afficher le nombre de notifications dans le bouton du menu, sous forme de badge
 * publication de photos, gifs, vidéos...
-* réinitialisation du mot de passe
+* réinitialisation du mot de passe en cas de perte
 * utliser le lazy loading
 * amélioration des fonctionnalités de modération – au moins permettre de gérer individuellement la conservation ou l'effacement des notifications concernant chaque publication ou commentaire, au lieu de n'avoir que la liste entre deux connections, renouvellée à chaque fois
 * permettre de répondre directement à un commentaire 
