@@ -6,6 +6,7 @@ import { CommentService } from '../services/comment.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 import { forbiddenCharactersValidator } from './../input-validators';
 @Component({
@@ -39,7 +40,8 @@ export class SinglePublicationComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private commentService: CommentService,
                 private authService: AuthService,
-                private router: Router ) { }
+                private router: Router,
+                private viewportScroller: ViewportScroller ) { }
 
   ngOnInit() {
     this.loading = true;
@@ -77,6 +79,7 @@ export class SinglePublicationComponent implements OnInit {
       (fromProfile: string) => { this.fromProfile = fromProfile;
     });
     this.loading = false;
+    this.viewportScroller.scrollToPosition([0,100]);
   }
 
   onLike() {

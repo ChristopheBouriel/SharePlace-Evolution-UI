@@ -44,7 +44,8 @@ export class PublicationListItemComponent implements OnInit {
       (isAdmin) => {
         this.moderator = isAdmin;
       }
-    )   
+    );
+    this.publicationService.numberIndexes.next(this.index);
   }
 
   onSeePublication(show) {

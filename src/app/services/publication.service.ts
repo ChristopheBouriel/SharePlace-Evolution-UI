@@ -21,6 +21,8 @@ export class PublicationService {
     seeLikers: boolean;
     numberComments: number;
 
+    numberIndexes = new BehaviorSubject<number>(0);
+
     constructor(private httpClient: HttpClient) { }
 
     emitPublicationsSubject( ) {
@@ -44,6 +46,19 @@ export class PublicationService {
             }
           );
     }
+
+  /*checkAnchors() {
+      return new Promise(resolve => {
+        let i: number;
+        this.numberIndexes.subscribe(
+          () => {
+            i = this.publications.length - this.numberIndexes.value;
+            if (i===1) {
+              resolve('Can scroll');              
+            }
+          })        
+      });      
+    }*/
 
     getPublicationById(id: number) {
       return new Promise((resolve, reject) => {
